@@ -174,7 +174,7 @@ public class FrCadastroPaciente extends javax.swing.JFrame {
                                 .addComponent(btnCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(brnExcluir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnSalvar))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(separador2, javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,7 +218,7 @@ public class FrCadastroPaciente extends javax.swing.JFrame {
                                         .addComponent(edtCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
                                         .addComponent(edtNome)
                                         .addComponent(edtEmail)))))
-                        .addGap(0, 16, Short.MAX_VALUE))))
+                        .addGap(0, 17, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
