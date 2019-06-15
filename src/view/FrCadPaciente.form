@@ -95,8 +95,12 @@
                                           <Component id="lblIdade" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="edtIdade" min="-2" pref="43" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="lblTipoSanguineo" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="edtTipoSanguineo" pref="105" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="edtCpf" alignment="0" pref="548" max="32767" attributes="0"/>
+                                      <Component id="edtCpf" alignment="0" max="32767" attributes="0"/>
                                       <Component id="edtNome" alignment="0" max="32767" attributes="0"/>
                                       <Component id="edtEmail" max="32767" attributes="0"/>
                                   </Group>
@@ -125,12 +129,18 @@
                   <Component id="edtCpf" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblSexo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnFem" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnMasc" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblIdade" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="edtIdade" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="lblTipoSanguineo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="edtTipoSanguineo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblSexo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnFem" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnMasc" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblIdade" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="edtIdade" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -419,6 +429,16 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="separador2">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTipoSanguineo">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="DejaVu Sans" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Tipo Sangu&#xed;neo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="edtTipoSanguineo">
     </Component>
   </SubComponents>
 </Form>
