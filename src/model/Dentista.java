@@ -4,17 +4,17 @@ package model;
  *
  * @author cfreitas
  */
-public class Dentista extends Pessoa{
-    
+abstract public class Dentista extends Funcionario {
+
     private String cro;
     protected Procedimento procedimento;
 
     public Dentista() {
-    
+
         super();
         this.cro = "";
         this.procedimento = new Procedimento();
-        
+
     }
 
     @Override
@@ -32,9 +32,16 @@ public class Dentista extends Pessoa{
     }
 
     @Override
-    public void setCSVInfo(String linhaCSV) {
-        super.setCSVInfo(linhaCSV);
+    public void setInfoCSV(String linhaCSV) {
+        super.setInfoCSV(linhaCSV);
         String[] temp = linhaCSV.split(";");
         this.cro = temp[10];
     }
+
+    @Override
+    public double getSalario() {
+        return super.getSalario(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 }

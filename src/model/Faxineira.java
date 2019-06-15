@@ -4,13 +4,13 @@ package model;
  *
  * @author cfreitas
  */
-public class Faxineira extends Funcionario{
-    /*Recebe por dia trabalhado, não está inclusa no regime CLT*/
-    protected String diasTrabalhados;
+public class Faxineira extends Funcionario {
+
     public Faxineira() {
-    
+
         super();
-        this.diasTrabalhados = "";
-        
+        this.diasTrabalhados = 8;
+        this.valorDia = 100;
+
     }
 }

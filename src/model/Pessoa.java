@@ -5,7 +5,7 @@ package model;
  * @author cfreitas
  */
 abstract public class Pessoa {
-    
+
     protected String nome;
     protected int idade;
     protected String telefone;
@@ -13,9 +13,9 @@ abstract public class Pessoa {
     protected String cpf;
 
     public Pessoa() {
-        
+
         this.nome = "";
-        this.idade = 0;
+        this.idade = -1;
         this.telefone = "";
         this.email = "";
         this.cpf = "";
@@ -60,24 +60,34 @@ abstract public class Pessoa {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    
-    public String getCabecalhoCSV(){        
-         String info = "NOME;IDADE;TELEFONE;EMAIL;CPF\n";
-         return info;
-    }
-    
-    public String getInfoCSV(){        
-        String info = this.nome + ";" + this.idade + ";" + this.telefone + ";" +
-            this.email + ";" + this.cpf + ";" + "\n";
+
+    public String getCabecalhoCSV() {
+        String info = "NOME;IDADE;TELEFONE;EMAIL;CPF\n";
         return info;
     }
-    
-    public void setCSVInfo(String linhaCSV){
-        String []temp = linhaCSV.split(";");
-        this.nome = temp[1];
-        this.idade = Integer.parseInt(temp[2]);
-        this.telefone = temp[3];
-        this.email = temp[4];
-        this.cpf = temp[5];
+
+    /**
+     * Salvar (save) informação no arquivo CSV.
+     *
+     * @return uma string em linha única contendo as informações da classe.
+     */
+    public String getInfoCSV() {
+        String info = this.nome + ";" + this.idade + ";" + this.telefone + ";"
+            + this.email + ";" + this.cpf + ";" + "\n";
+        return info;
+    }
+
+    /**
+     * Carregar (load) informação do arquivo CSV.
+     *
+     * @param linhaCSV
+     */
+    public void setInfoCSV(String linhaCSV) {
+        String[] info = linhaCSV.split(";");
+        this.nome = info[1];
+        this.idade = Integer.parseInt(info[2]);
+        this.telefone = info[3];
+        this.email = info[4];
+        this.cpf = info[5];
     }
 }
