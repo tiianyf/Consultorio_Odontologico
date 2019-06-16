@@ -3,12 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/home/cfreitas/Área%20de%20Trabalho/Consultorio_Odontologico/src/model/Pessoa.java</file>
             <file>file:/home/cfreitas/Área%20de%20Trabalho/Consultorio_Odontologico/src/controller/TMMaterial.java</file>
             <file>file:/home/cfreitas/Área%20de%20Trabalho/Consultorio_Odontologico/src/view/FrCadPaciente.java</file>
             <file>file:/home/cfreitas/Área%20de%20Trabalho/Consultorio_Odontologico/src/csv/lst_pacientes.csv</file>
             <file>file:/home/cfreitas/Área%20de%20Trabalho/Consultorio_Odontologico/src/controller/TMPaciente.java</file>
             <file>file:/home/cfreitas/Área%20de%20Trabalho/Consultorio_Odontologico/src/model/Paciente.java</file>
+=======
+            <file>file:/home/ch/Dropbox/Projects/Java/Consultorio_Odontologico/src/model/DProprietario.java</file>
+            <file>file:/home/ch/Dropbox/Projects/Java/Consultorio_Odontologico/src/model/Pessoa.java</file>
+            <file>file:/home/ch/Dropbox/Projects/Java/Consultorio_Odontologico/src/model/Faxineira.java</file>
+            <file>file:/home/ch/Dropbox/Projects/Java/Consultorio_Odontologico/src/model/Paciente.java</file>
+            <file>file:/home/ch/Dropbox/Projects/Java/Consultorio_Odontologico/src/model/DColaborador.java</file>
+>>>>>>> 8c969d7dd847b40823fdd4ccb012d74fe0a18a5e
         </group>
     </open-files>
 </project-private>

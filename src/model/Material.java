@@ -32,7 +32,7 @@ public class Material {
     }
 
     public double getPrecoTotal() {
-        return precoTotal;
+        return this.preco * this.qtd;
     }
 
     public void setPrecoTotal(double precoTotal) {

@@ -20,6 +20,7 @@ public class TMProcedimentos extends AbstractTableModel {
         this.lstPrecos = new double[]{
             400.0, 500.00, 800.00, 631.00, 400.00, 250.00, 432.00
         };
+        this.lstProcedimentos = new ArrayList<>();
         
         this.lstColunas = new ArrayList<>();
         this.lstColunas.add("Nome");
