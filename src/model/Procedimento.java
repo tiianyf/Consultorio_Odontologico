@@ -1,9 +1,5 @@
 package model;
 
-/**
- *
- * @author cfreitas
- */
 public class Procedimento {
 
     private String nome;
@@ -15,7 +11,6 @@ public class Procedimento {
     public Procedimento() {
 
         this.nome = "";
-        this.dentista = new Dentista();
         this.paciente = new Paciente();
         this.valor = 0.0;
         this.formaPgto = 0;

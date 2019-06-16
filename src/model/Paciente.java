@@ -1,9 +1,4 @@
 package model;
-
-/**
- *
- * @author cfreitas
- */
 public class Paciente extends Pessoa {
 
     private String tipoSanguineo;
@@ -30,7 +25,6 @@ public class Paciente extends Pessoa {
         this.alcoolatra = false;
         this.historicoDiabetes = false;
         this.coagulacao = false;
-        this.dentista = new Dentista();
         this.procedimento = new Procedimento();
 
     }
