@@ -11,7 +11,6 @@ public class Paciente extends Pessoa {
     private boolean historicoDiabetes;
     private boolean coagulacao;
     private Dentista dentista;
-    private Procedimento procedimento;
 
     public Paciente() {
 
@@ -25,7 +24,10 @@ public class Paciente extends Pessoa {
         this.alcoolatra = false;
         this.historicoDiabetes = false;
         this.coagulacao = false;
+<<<<<<< HEAD
+=======
         this.procedimento = new Procedimento();
+>>>>>>> ba2e02ebf0943bf2920728ff7b7b3d17f909d234
 
     }
 
@@ -67,14 +69,6 @@ public class Paciente extends Pessoa {
 
     public void setCoagulacao(boolean coagulacao) {
         this.coagulacao = coagulacao;
-    }
-
-    public Procedimento getProcedimento() {
-        return procedimento;
-    }
-
-    public void setProcedimento(Procedimento procedimento) {
-        this.procedimento = procedimento;
     }
 
     public String getTipoSanguineo() {
