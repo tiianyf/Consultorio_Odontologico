@@ -9,16 +9,23 @@ public class Procedimento {
     private String nome;
     private Dentista dentista;
     private Paciente paciente;
-    private double valor;
+    private double preco;
+
+    /*
+    Formas de pagamento:
+    1 - dinheiro
+    2 - à vista no cartão
+    3 - 2x no cartão
+     */
     private int formaPgto;
 
-    public Procedimento() {
+     public Procedimento(String nome, Dentista dentista, Paciente paciente, double valor, int formaPgto) {
+        this.nome = nome;
+        this.dentista = dentista;
+        this.paciente = paciente;
+        this.preco = valor;
+        this.formaPgto = formaPgto;
 
-        this.nome = "";
-        this.dentista = new Dentista();
-        this.paciente = new Paciente();
-        this.valor = 0.0;
-        this.formaPgto = 0;
     }
 
     public String getNome() {
@@ -45,12 +52,12 @@ public class Procedimento {
         this.paciente = paciente;
     }
 
-    public double getValor() {
-        return valor;
+    public double getPreco() {
+        return preco;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
 
     public int getFormaPgto() {
