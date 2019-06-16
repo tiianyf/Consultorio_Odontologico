@@ -6,7 +6,7 @@ package model;
  */
 public class DColaborador extends Dentista {
 
-    protected final double taxa;
+    protected double taxa;
 
     public DColaborador() {
 
@@ -21,6 +21,34 @@ public class DColaborador extends Dentista {
     @Override
     public double getSalario() {
         return super.getSalario() * (1 - this.taxa);
+    }
+
+    @Override
+    public String getCabecalhoCSV() {
+
+        String info = super.getCabecalhoCSV();
+        info += ";taxa";
+        return info;
+
+    }
+
+    @Override
+    public String getInfoCSV() {
+
+        String info = super.getInfoCSV();
+        info += ";" + this.taxa;
+        return info;
+
+    }
+
+    @Override
+    public void setInfoCSV(String linhaCSV) {
+
+        super.setInfoCSV(linhaCSV);
+        String[] info = linhaCSV.split(";");
+
+        this.taxa = Double.parseDouble(info[10]);
+
     }
 
 }

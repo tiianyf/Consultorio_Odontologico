@@ -84,10 +84,10 @@ abstract public class Pessoa {
      */
     public void setInfoCSV(String linhaCSV) {
         String[] info = linhaCSV.split(";");
-        this.nome = info[1];
-        this.idade = Integer.parseInt(info[2]);
-        this.telefone = info[3];
-        this.email = info[4];
-        this.cpf = info[5];
+        this.nome = info[0];
+        this.idade = Integer.parseInt(info[1]);
+        this.telefone = info[2];
+        this.email = info[3];
+        this.cpf = info[4];
     }
 }

@@ -55,26 +55,30 @@ abstract public class Funcionario extends Pessoa {
     @Override
     public String getCabecalhoCSV() {
         String info = super.getCabecalhoCSV();
-        info += ";SALARIO;CARGO;REGIMETRABALHO";
+        info += ";SALARIO;CARGO;VALORDIA;DIASTRABALHADOS";
         return info;
     }
 
     @Override
     public String getInfoCSV() {
         String info = super.getInfoCSV();
-        info += ";" + this.getSalario() + ";" + this.getCargo() + ";" + this.getValorDia();
+        info += ";" + this.salario + ";" + this.cargo + ";" + this.valorDia
+            + ";" + this.diasTrabalhados;
         return info;
     }
 
     @Override
     public void setInfoCSV(String linhaCSV) {
+        
         super.setInfoCSV(linhaCSV);
-        String[] temp = linhaCSV.split(";");
-        String convert = Double.toString(this.getSalario());
-        convert = temp[6];
-        this.setCargo(temp[7]);
-        convert = Double.toString(this.getValorDia());
-        convert = temp[8];
+        String[] info = linhaCSV.split(";");
+
+        this.salario = Double.parseDouble(info[5]);
+        this.cargo = info[6];
+        this.valorDia = Double.parseDouble(info[7]);
+        this.diasTrabalhados = Integer.parseInt(info[8]);
+
+    
     }
 
 }

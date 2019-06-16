@@ -25,29 +25,30 @@ abstract public class Dentista extends Funcionario {
 
     @Override
     public String getCabecalhoCSV() {
+
         String info = super.getCabecalhoCSV();
         info += ";CRO";
         return info;
+
     }
 
     @Override
     public String getInfoCSV() {
+
         String info = super.getInfoCSV();
-        info += ";" + this.getCro();
+        info += ";" + this.cro;
         return info;
+
     }
 
     @Override
     public void setInfoCSV(String linhaCSV) {
+
         super.setInfoCSV(linhaCSV);
         String[] temp = linhaCSV.split(";");
-        this.setCro(temp[10]);
-    }
 
-    @Override
-    public double getSalario() {
+        this.cro = temp[9];
 
-        return super.getSalario();
     }
 
 }

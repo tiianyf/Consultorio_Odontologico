@@ -30,8 +30,6 @@ public class Paciente extends Pessoa {
         this.alcoolatra = false;
         this.historicoDiabetes = false;
         this.coagulacao = false;
-        this.dentista = new Dentista();
-        this.procedimento = new Procedimento();
 
     }
 
@@ -142,18 +140,19 @@ public class Paciente extends Pessoa {
         super.setInfoCSV(linhaCSV);
         String info[] = linhaCSV.split(";");
 
-        this.tipoSanguineo = info[6];
-        this.problemaCardiaco = info[7];
-        this.alergia = info[8];
-        this.doencaCronica = info[9];
+        this.tipoSanguineo = info[5];
+        this.problemaCardiaco = info[6];
+        this.alergia = info[7];
+        this.doencaCronica = info[8];
 
         String aux = Boolean.toString(this.fumante);
+        aux = info[9];
+        aux = Boolean.toString(this.alcoolatra);
         aux = info[10];
-        String aux2 = Boolean.toString(this.alcoolatra);
-        aux2 = info[11];
-        String aux3 = Boolean.toString(this.historicoDiabetes);
-        aux3 = info[12];
-        String aux4 = Boolean.toString(this.coagulacao);
+        aux = Boolean.toString(this.historicoDiabetes);
+        aux = info[11];
+        aux = Boolean.toString(this.coagulacao);
+        aux = info[12];
 
     }
 
