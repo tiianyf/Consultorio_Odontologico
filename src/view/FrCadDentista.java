@@ -1,7 +1,6 @@
 package view;
-public class FrCadFuncionario extends javax.swing.JFrame {
-
-    public FrCadFuncionario() {
+public class FrCadDentista extends javax.swing.JFrame {
+    public FrCadDentista() {
         initComponents();
     }
     @SuppressWarnings("unchecked")
@@ -23,12 +22,10 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         edtTelefone = new javax.swing.JTextField();
         lblEmail = new javax.swing.JLabel();
         edtEmail = new javax.swing.JTextField();
+        lblCro = new javax.swing.JLabel();
+        edtCro = new javax.swing.JTextField();
         lblCargo = new javax.swing.JLabel();
         edtCargo = new javax.swing.JTextField();
-        lblSalario = new javax.swing.JLabel();
-        edtSalario = new javax.swing.JTextField();
-        lblHorasTrabalhadas = new javax.swing.JLabel();
-        edtHorasTrabalhadas = new javax.swing.JTextField();
         btnNovo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
@@ -40,7 +37,7 @@ public class FrCadFuncionario extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("FUNCIONÁRIO");
+        lblTitulo.setText("DENTISTA");
         lblTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -74,14 +71,11 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         lblEmail.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblEmail.setText("Email");
 
+        lblCro.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        lblCro.setText("CRO");
+
         lblCargo.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblCargo.setText("Cargo");
-
-        lblSalario.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
-        lblSalario.setText("Salário");
-
-        lblHorasTrabalhadas.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
-        lblHorasTrabalhadas.setText("Horas Trabalhadas");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,8 +89,7 @@ public class FrCadFuncionario extends javax.swing.JFrame {
                     .addComponent(lblSexo)
                     .addComponent(lblTelefone)
                     .addComponent(lblEmail)
-                    .addComponent(lblCargo)
-                    .addComponent(lblSalario))
+                    .addComponent(lblCargo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(edtCargo)
@@ -107,19 +100,21 @@ public class FrCadFuncionario extends javax.swing.JFrame {
                                 .addComponent(btnFem)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnMasc)))
-                        .addGap(18, 18, 18)
-                        .addComponent(lblIdade)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(edtCpf)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(lblCro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(edtCro))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(lblIdade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(edtCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
                     .addComponent(edtNome)
-                    .addComponent(edtEmail)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(edtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(lblHorasTrabalhadas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(edtHorasTrabalhadas, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)))
+                    .addComponent(edtEmail))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,7 +132,9 @@ public class FrCadFuncionario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSexo)
                     .addComponent(btnFem)
-                    .addComponent(btnMasc))
+                    .addComponent(btnMasc)
+                    .addComponent(lblCro)
+                    .addComponent(edtCro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTelefone)
@@ -148,18 +145,11 @@ public class FrCadFuncionario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmail)
                     .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCargo)
                     .addComponent(edtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSalario)
-                    .addComponent(edtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblHorasTrabalhadas)
-                        .addComponent(edtHorasTrabalhadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         btnNovo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
@@ -191,8 +181,14 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnNovo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditar)
@@ -205,21 +201,14 @@ public class FrCadFuncionario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalvar)
                 .addGap(28, 28, 28))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
                     .addComponent(btnEditar)
@@ -227,7 +216,7 @@ public class FrCadFuncionario extends javax.swing.JFrame {
                     .addComponent(btnCancelar)
                     .addComponent(brnExcluir)
                     .addComponent(btnSalvar))
-                .addGap(14, 14, 14))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         pack();
@@ -248,20 +237,18 @@ public class FrCadFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JTextField edtCargo;
     private javax.swing.JTextField edtCpf;
+    private javax.swing.JTextField edtCro;
     private javax.swing.JTextField edtEmail;
-    private javax.swing.JTextField edtHorasTrabalhadas;
     private javax.swing.JTextField edtIdade;
     private javax.swing.JTextField edtNome;
-    private javax.swing.JTextField edtSalario;
     private javax.swing.JTextField edtTelefone;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCargo;
     private javax.swing.JLabel lblCpf;
+    private javax.swing.JLabel lblCro;
     private javax.swing.JLabel lblEmail;
-    private javax.swing.JLabel lblHorasTrabalhadas;
     private javax.swing.JLabel lblIdade;
     private javax.swing.JLabel lblNome;
-    private javax.swing.JLabel lblSalario;
     private javax.swing.JLabel lblSexo;
     private javax.swing.JLabel lblTelefone;
     private javax.swing.JLabel lblTitulo;

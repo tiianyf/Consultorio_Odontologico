@@ -1,6 +1,6 @@
 /**
- * Título.
- * Insira aqui uma pequena descrição.
+ * Acesso completo ao sistema. A classe que implementa essa interface pode ver
+ * o saldo total do caixa.
  *
  * @author Cláudio Henrique <https://github.com/01ch01>
  * @since Jun 15, 2019 at 11:54:11 PM

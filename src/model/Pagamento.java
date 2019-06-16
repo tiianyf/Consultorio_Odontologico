@@ -1,5 +1,5 @@
 /**
- * Título.
+ * Classe enum de pagamento
  * Insira aqui uma pequena descrição.
  *
  * @author Cláudio Henrique <https://github.com/01ch01>

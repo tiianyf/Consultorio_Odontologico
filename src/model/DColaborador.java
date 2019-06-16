@@ -1,10 +1,12 @@
 package model;
 
 /**
+ * Dentista autônomo, não-proprietário. Recebe 60% do valor total de seus
+ * procedimentos realizados, já que não paga subsídios como aluguel.
  *
  * @author cfreitas
  */
-public class DColaborador extends Dentista {
+public class DColaborador extends Dentista implements Usuario {
 
     protected double taxa;
 
@@ -49,6 +51,31 @@ public class DColaborador extends Dentista {
 
         this.taxa = Double.parseDouble(info[10]);
 
+    }
+
+    @Override
+    public boolean autenticar(String usuario, String senha) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String acessarRelatorio() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean alterarUsuario(String usuario, String senha) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean alterarSenha(String usuario, String senha) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean cadastrarProcedimento(String usuario, String senha) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

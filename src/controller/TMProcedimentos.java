@@ -1,11 +1,3 @@
-/**
- * Título da classe.
- * Insira aqui uma pequena descrição sobre a mesma.
- *
- * @author Cláudio Henrique <https://github.com/01ch01>
- * @since Jun 15, 2019 at 8:01:45 PM
- * @version 0.1
- */
 package controller;
 
 import java.util.ArrayList;
