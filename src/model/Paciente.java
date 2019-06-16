@@ -2,49 +2,23 @@ package model;
 public class Paciente extends Pessoa {
 
     private String tipoSanguineo;
-    private String problemaCardiaco;
     private String alergia;
     private String doencaCronica;
     private double pagamento;
     private boolean fumante;
-    private boolean alcoolatra;
     private boolean historicoDiabetes;
-    private boolean coagulacao;
     private Dentista dentista;
 
     public Paciente() {
 
         super();
         this.tipoSanguineo = "";
-        this.problemaCardiaco = "";
         this.alergia = "";
         this.doencaCronica = "";
         this.pagamento = 0.0;
         this.fumante = false;
-        this.alcoolatra = false;
         this.historicoDiabetes = false;
-        this.coagulacao = false;
-<<<<<<< HEAD
-=======
-        this.procedimento = new Procedimento();
->>>>>>> ba2e02ebf0943bf2920728ff7b7b3d17f909d234
 
-    }
-
-    public String getProblemaCardiaco() {
-        return problemaCardiaco;
-    }
-
-    public void setProblemaCardiaco(String problemaCardiaco) {
-        this.problemaCardiaco = problemaCardiaco;
-    }
-
-    public boolean isAlcoolatra() {
-        return alcoolatra;
-    }
-
-    public void setAlcoolatra(boolean alcoolatra) {
-        this.alcoolatra = alcoolatra;
     }
 
     public String getDoencaCronica() {
@@ -61,14 +35,6 @@ public class Paciente extends Pessoa {
 
     public void setHistoricoDiabetes(boolean historicoDiabetes) {
         this.historicoDiabetes = historicoDiabetes;
-    }
-
-    public boolean isCoagulacao() {
-        return coagulacao;
-    }
-
-    public void setCoagulacao(boolean coagulacao) {
-        this.coagulacao = coagulacao;
     }
 
     public String getTipoSanguineo() {
@@ -116,10 +82,8 @@ public class Paciente extends Pessoa {
 
         String info = super.getInfoCSV();
 
-        info += ";" + this.tipoSanguineo + ";" + this.problemaCardiaco + ";"
-            + this.alergia + ";" + this.doencaCronica + ";" + this.fumante
-            + ";" + this.alcoolatra + ";" + this.historicoDiabetes + ";"
-            + this.coagulacao;
+        info += ";" + this.tipoSanguineo + ";" + this.alergia + ";" + this.doencaCronica + ";" + this.fumante
+            + ";" + this.historicoDiabetes + "\n";
 
         return info;
     }
@@ -131,25 +95,20 @@ public class Paciente extends Pessoa {
         String info[] = linhaCSV.split(";");
 
         this.tipoSanguineo = info[6];
-        this.problemaCardiaco = info[7];
         this.alergia = info[8];
         this.doencaCronica = info[9];
 
         String aux = Boolean.toString(this.fumante);
         aux = info[10];
-        String aux2 = Boolean.toString(this.alcoolatra);
-        aux2 = info[11];
         String aux3 = Boolean.toString(this.historicoDiabetes);
-        aux3 = info[12];
-        String aux4 = Boolean.toString(this.coagulacao);
-
+        aux3 = info[11];
     }
 
     @Override
     public String getCabecalhoCSV() {
 
         String info = super.getCabecalhoCSV();
-        info += ";TIPOSANGUINEO;PROBLEMACARDIACO;ALERGIA;DOENCACRONICA;FUMANTE;ALCOOLATRA;DIABETES;COAGULACAO";
+        info += ";TIPOSANGUINEO;ALERGIA;DOENCACRONICA;FUMANTE;DIABETES\n";
         return info;
 
     }

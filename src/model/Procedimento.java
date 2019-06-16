@@ -22,19 +22,12 @@ public class Procedimento {
         this.preco = valor;
         this.formaPgto = formaPgto;
 
-<<<<<<< HEAD
         this.nome = "";
         this.paciente = new Paciente();
         this.formaPgto = 0;
-=======
-<<<<<<< HEAD
         this.nome = "";
         this.paciente = new Paciente();
-        this.valor = 0.0;
         this.formaPgto = 0;
-=======
->>>>>>> bbdb38947975397836cd387c21ca971015d028b0
->>>>>>> ba2e02ebf0943bf2920728ff7b7b3d17f909d234
     }
 
     public String getNome() {

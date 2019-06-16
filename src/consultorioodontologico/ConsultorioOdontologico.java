@@ -1,5 +1,6 @@
 package consultorioodontologico;
 
+import view.FrCadLogin;
 import view.FrRequisicao;
 
 /**
@@ -14,8 +15,8 @@ import view.FrRequisicao;
 public class ConsultorioOdontologico {
 
     public static void main(String[] args) {
-        FrRequisicao view = new FrRequisicao();
-        view.setEnabled(true);
+        FrCadLogin login = new FrCadLogin();
+        login.setVisible(true);
     }
 
 }

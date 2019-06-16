@@ -3,14 +3,14 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import model.Procedimento;
+//import model.Procedimento;
 
 public class TMProcedimentos extends AbstractTableModel {
 
     private final String[] lstNomes;
     private final double[] lstPrecos;
     private final List<String> lstColunas;
-    private final List<Procedimento> lstProcedimentos;
+//    private final List<Procedimento> lstProcedimentos;
 
     public TMProcedimentos() {
         this.lstNomes = new String[]{
@@ -26,8 +26,9 @@ public class TMProcedimentos extends AbstractTableModel {
         this.lstColunas.add("Dentista(s)");
         this.lstColunas.add("Paciente");
         this.lstColunas.add("Preço");
-        
     }
+        
+    
 
     @Override
     public int getRowCount() {

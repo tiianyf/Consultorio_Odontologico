@@ -11,6 +11,7 @@ abstract public class Pessoa {
     protected String telefone;
     protected String email;
     protected String cpf;
+    protected char sexo;
 
     public Pessoa() {
 
@@ -19,6 +20,15 @@ abstract public class Pessoa {
         this.telefone = "";
         this.email = "";
         this.cpf = "";
+        this.sexo = 'F';
+    }
+
+    public char getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(char sexo) {
+        this.sexo = sexo;
     }
 
     public String getNome() {
@@ -62,7 +72,7 @@ abstract public class Pessoa {
     }
 
     public String getCabecalhoCSV() {
-        String info = "NOME;IDADE;TELEFONE;EMAIL;CPF\n";
+        String info = "NOME;IDADE;TELEFONE;EMAIL;CPF";
         return info;
     }
 
@@ -73,7 +83,7 @@ abstract public class Pessoa {
      */
     public String getInfoCSV() {
         String info = this.nome + ";" + this.idade + ";" + this.telefone + ";"
-            + this.email + ";" + this.cpf + ";" + "\n";
+            + this.email + ";" + this.cpf;
         return info;
     }
 
