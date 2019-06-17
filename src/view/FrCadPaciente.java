@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Paciente;
 
-public class FrCadPaciente extends javax.swing.JFrame {
+public class FrCadPaciente extends javax.swing.JFrame implements PatternView {
 
     private final TMPaciente tmPaciente;
     private boolean alteracao;
@@ -601,4 +601,52 @@ public class FrCadPaciente extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdFem;
     private javax.swing.JRadioButton rdMasc;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public boolean loadFile(String caminho) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean saveOnFile(String path) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void enableFields(boolean flag) {
+    }
+
+    @Override
+    public void clearAllFields() {
+    }
+
+    @Override
+    public void showTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isAnyFieldMissing() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isThere(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int search(String term) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void copyFromFieldsToObject(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void copyFromObjectToFields(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

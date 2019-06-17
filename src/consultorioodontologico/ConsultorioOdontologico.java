@@ -1,7 +1,7 @@
 package consultorioodontologico;
 
-import view.FrCadLogin;
-import view.FrRequisicao;
+import javax.swing.JFrame;
+import view.*;
 
 /**
  * Sistema para um consultório odontológico com cadastro de funcionários,
@@ -15,8 +15,12 @@ import view.FrRequisicao;
 public class ConsultorioOdontologico {
 
     public static void main(String[] args) {
-        FrCadLogin login = new FrCadLogin();
-        login.setVisible(true);
+//        FrCadLogin login = new FrCadLogin();
+//        login.setVisible(true);
+//        JFrame view = new FrCadProcedimento();
+//        view.setVisible(true);
+        JFrame view = new FrListaPacientes();
+        view.setVisible(true);
     }
 
 }

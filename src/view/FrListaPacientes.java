@@ -1,8 +1,30 @@
 package view;
+
+import controller.TMPaciente;
+import javax.swing.table.AbstractTableModel;
+
 public class FrListaPacientes extends javax.swing.JFrame {
+
+    private AbstractTableModel tmPacientes;
+
     public FrListaPacientes() {
         initComponents();
+        this.tmPacientes = new TMPaciente();
+        this.tblPacientes.setModel(tmPacientes);
     }
+
+    public AbstractTableModel getTmPacientes() {
+        return tmPacientes;
+    }
+
+    public void setTmPacientes(AbstractTableModel tmPacientes) {
+        this.tmPacientes = tmPacientes;
+    }
+
+    public void atualizarTabela() {
+        this.tmPacientes.fireTableDataChanged();
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -10,7 +32,7 @@ public class FrListaPacientes extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         painel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaListaPacientes = new javax.swing.JTable();
+        tblPacientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -21,8 +43,8 @@ public class FrListaPacientes extends javax.swing.JFrame {
 
         painel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        tabelaListaPacientes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        tabelaListaPacientes.setModel(new javax.swing.table.DefaultTableModel(
+        tblPacientes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tblPacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -30,7 +52,7 @@ public class FrListaPacientes extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tabelaListaPacientes);
+        jScrollPane1.setViewportView(tblPacientes);
 
         javax.swing.GroupLayout painel1Layout = new javax.swing.GroupLayout(painel1);
         painel1.setLayout(painel1Layout);
@@ -65,6 +87,6 @@ public class FrListaPacientes extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel painel1;
-    private javax.swing.JTable tabelaListaPacientes;
+    private javax.swing.JTable tblPacientes;
     // End of variables declaration//GEN-END:variables
 }

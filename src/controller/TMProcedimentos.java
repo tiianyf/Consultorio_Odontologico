@@ -23,6 +23,16 @@ public class TMProcedimentos extends AbstractTableModel {
         this.lstColunas.add("Tempo");
     }
 
+    /**
+     * Retorna um objeto(da Classe Procedimento) na linha index.
+     *
+     * @param index o índice da linha da tabela.
+     * @return um objeto da Classe Procedimento.
+     */
+    public Procedimento getRow(int index) {
+        return this.lstProcedimentos.get(index);
+    }
+
     @Override
     public int getRowCount() {
         return this.lstProcedimentos.size();
@@ -55,6 +65,36 @@ public class TMProcedimentos extends AbstractTableModel {
             System.out.println("Objeto não encontrado");
             return null;
         }
+
+    }
+
+    @Override
+    public String getColumnName(int index) {
+        return this.lstColunas.get(index);
+    }
+
+    /**
+     * Adiciona uma linha (Procedimento) à tabela e atualiza a mesma.
+     *
+     * @param p o procedimento que será adicionado.
+     */
+    public void addLinha(Procedimento p) {
+
+        this.lstProcedimentos.add(p);
+        this.fireTableDataChanged();
+
+    }
+
+    /**
+     * Remove uma linha (Procedimento) da tabela e atualiza a mesma.
+     *
+     * @param linha a linha que será removida.
+     */
+    public void removeLinha(int linha) {
+
+        this.lstProcedimentos.remove(linha);
+        this.fireTableRowsDeleted(linha, linha);
+        this.fireTableDataChanged();
 
     }
 
