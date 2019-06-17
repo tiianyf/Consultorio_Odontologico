@@ -22,53 +22,9 @@ public enum Procedimento {
     private final String descricao;
     private final double valor;
 
-<<<<<<< HEAD
-     public Procedimento(String nome, Dentista dentista, Paciente paciente, double valor, int formaPgto) {
-        this.nome = nome;
-        this.dentista = dentista;
-        this.paciente = paciente;
-        this.preco = valor;
-        this.formaPgto = formaPgto;
-
-        this.nome = "";
-        this.paciente = new Paciente();
-        this.formaPgto = 0;
-        this.nome = "";
-        this.paciente = new Paciente();
-        this.formaPgto = 0;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Dentista getDentista() {
-        return dentista;
-    }
-
-    public void setDentista(Dentista dentista) {
-        this.dentista = dentista;
-    }
-
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
-
-    public double getPreco() {
-        return preco;
-=======
     private Procedimento(String descricao, double valor) {
         this.descricao = descricao;
         this.valor = valor;
->>>>>>> 8c969d7dd847b40823fdd4ccb012d74fe0a18a5e
     }
 
     public double getValor() {
