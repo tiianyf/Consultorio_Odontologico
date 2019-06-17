@@ -159,7 +159,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
             arquivo = new FileReader(caminho);
             Scanner ler = new Scanner(arquivo);
             ler.useDelimiter("\n");
-//            ler.next();
+            ler.next();
             
             while(ler.hasNext()){
                 String linhaCsv = ler.next();
@@ -247,7 +247,6 @@ public class FrCadPaciente extends javax.swing.JFrame {
         edtDoenca = new javax.swing.JTextField();
         btnNovo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         brnExcluir = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
@@ -372,7 +371,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
                         .addComponent(rdDSim)
                         .addGap(20, 20, 20)
                         .addComponent(rdDNao)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 153, Short.MAX_VALUE))
                     .addGroup(painel2Layout.createSequentialGroup()
                         .addComponent(lblAlergia)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -426,10 +425,6 @@ public class FrCadPaciente extends javax.swing.JFrame {
             }
         });
 
-        btnBuscar.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search.png"))); // NOI18N
-        btnBuscar.setText("Buscar");
-
         btnCancelar.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -473,20 +468,6 @@ public class FrCadPaciente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(btnNovo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(brnExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSalvar)
-                        .addGap(0, 31, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -496,6 +477,18 @@ public class FrCadPaciente extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(painel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelar)
+                .addGap(18, 18, 18)
+                .addComponent(brnExcluir)
+                .addGap(18, 18, 18)
+                .addComponent(btnSalvar)
+                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -512,7 +505,6 @@ public class FrCadPaciente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
                     .addComponent(btnEditar)
-                    .addComponent(btnBuscar)
                     .addComponent(btnCancelar)
                     .addComponent(brnExcluir)
                     .addComponent(btnSalvar))
@@ -582,7 +574,6 @@ public class FrCadPaciente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bntGrupoFumante;
     private javax.swing.JButton brnExcluir;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
     private javax.swing.ButtonGroup btnGrupoDiabetico;

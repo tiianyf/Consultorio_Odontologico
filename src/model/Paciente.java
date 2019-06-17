@@ -1,4 +1,5 @@
 package model;
+
 public class Paciente extends Pessoa {
 
     private String tipoSanguineo;
@@ -93,12 +94,7 @@ public class Paciente extends Pessoa {
         super.setInfoCSV(linhaCSV);
         String info[] = linhaCSV.split(";");
 
-
         this.tipoSanguineo = info[6];
-        this.alergia = info[8];
-        this.doencaCronica = info[9];
-
-        this.tipoSanguineo = info[5];
         this.alergia = info[7];
         this.doencaCronica = info[8];
 

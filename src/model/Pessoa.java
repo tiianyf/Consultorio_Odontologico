@@ -72,7 +72,7 @@ abstract public class Pessoa {
     }
 
     public String getCabecalhoCSV() {
-        String info = "NOME;IDADE;TELEFONE;EMAIL;CPF";
+        String info = "NOME;IDADE;TELEFONE;EMAIL;CPF;SEXO";
         return info;
     }
 
@@ -83,7 +83,7 @@ abstract public class Pessoa {
      */
     public String getInfoCSV() {
         String info = this.nome + ";" + this.idade + ";" + this.telefone + ";"
-            + this.email + ";" + this.cpf;
+            + this.email + ";" + this.cpf + ";" + this.sexo;
         return info;
     }
 
@@ -99,5 +99,6 @@ abstract public class Pessoa {
         this.telefone = info[2];
         this.email = info[3];
         this.cpf = info[4];
+        this.sexo = info[5].charAt(0);
     }
 }

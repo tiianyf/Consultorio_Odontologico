@@ -8,7 +8,7 @@ import model.Paciente;
 /**
  *Controlador (Table Model) da classe Paciente. Está é uma tabela contendo todos os
  * pacientes cadastrados no sistema.
- * Contendo: 10 colunas (NOME;IDADE;TELEFONE;EMAIL;CPF;TIPO SANGUINEO;ALERGIA;DOENCA CRONICA;FUMANTE;DIABETES)
+ * Contendo: 11 colunas (NOME;IDADE;TELEFONE;EMAIL;CPF;SEXO;TIPO SANGUINEO;ALERGIA;DOENCA CRONICA;FUMANTE;DIABETES)
  * @author cfreitas
  */
 public class TMPaciente extends AbstractTableModel{
@@ -22,6 +22,7 @@ public class TMPaciente extends AbstractTableModel{
         this.lstColunas.add("Telefone");
         this.lstColunas.add("Email");
         this.lstColunas.add("CPF");
+        this.lstColunas.add("Sexo");
         this.lstColunas.add("TipoSanguineo");
         this.lstColunas.add("Alergia");
         this.lstColunas.add("Doença");
@@ -67,6 +68,9 @@ public class TMPaciente extends AbstractTableModel{
         }
         else if(coluna == this.lstColunas.indexOf("CPF")){
             return this.lstPacientes.get(linha).getCpf();
+        }
+         else if(coluna == this.lstColunas.indexOf("Sexo")){
+            return this.lstPacientes.get(linha).getSexo();
         }
         else if(coluna == this.lstColunas.indexOf("TipoSanguineo")){
             return this.lstPacientes.get(linha).getTipoSanguineo();
