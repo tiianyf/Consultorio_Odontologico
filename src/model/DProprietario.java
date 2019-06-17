@@ -8,7 +8,7 @@
  */
 package model;
 
-public class DProprietario extends Dentista implements Admin, Usuario, Dono {
+public class DProprietario extends Dentista implements Admin, Dono {
 
     public DProprietario() {
 

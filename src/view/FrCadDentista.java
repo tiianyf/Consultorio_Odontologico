@@ -24,8 +24,6 @@ public class FrCadDentista extends javax.swing.JFrame {
         edtEmail = new javax.swing.JTextField();
         lblCro = new javax.swing.JLabel();
         edtCro = new javax.swing.JTextField();
-        lblCargo = new javax.swing.JLabel();
-        edtCargo = new javax.swing.JTextField();
         btnNovo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
@@ -74,9 +72,6 @@ public class FrCadDentista extends javax.swing.JFrame {
         lblCro.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblCro.setText("CRO");
 
-        lblCargo.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
-        lblCargo.setText("Cargo");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -88,11 +83,9 @@ public class FrCadDentista extends javax.swing.JFrame {
                     .addComponent(lblCpf)
                     .addComponent(lblSexo)
                     .addComponent(lblTelefone)
-                    .addComponent(lblEmail)
-                    .addComponent(lblCargo))
+                    .addComponent(lblEmail))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(edtCargo)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(edtTelefone, javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,11 +138,7 @@ public class FrCadDentista extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmail)
                     .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCargo)
-                    .addComponent(edtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         btnNovo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
@@ -235,7 +224,6 @@ public class FrCadDentista extends javax.swing.JFrame {
     private javax.swing.JRadioButton btnMasc;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JTextField edtCargo;
     private javax.swing.JTextField edtCpf;
     private javax.swing.JTextField edtCro;
     private javax.swing.JTextField edtEmail;
@@ -243,7 +231,6 @@ public class FrCadDentista extends javax.swing.JFrame {
     private javax.swing.JTextField edtNome;
     private javax.swing.JTextField edtTelefone;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblCargo;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblCro;
     private javax.swing.JLabel lblEmail;

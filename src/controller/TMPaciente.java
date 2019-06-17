@@ -79,13 +79,13 @@ public class TMPaciente extends AbstractTableModel{
             return this.lstPacientes.get(linha).getAlergia();
         }
         else if(coluna == this.lstColunas.indexOf("Doença")){
-            return this.lstPacientes.get(linha).getDoencaCronica();
+            return this.lstPacientes.get(linha).getDoenca();
         }
         else if(coluna == this.lstColunas.indexOf("Fumante")){
             return this.lstPacientes.get(linha).isFumante();
         }
         else if(coluna == this.lstColunas.indexOf("Diabetes")){
-            return this.lstPacientes.get(linha).isHistoricoDiabetes();
+            return this.lstPacientes.get(linha).isDiabetico();
         }
         System.out.println("Objeto não encontrado");
         return null;

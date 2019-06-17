@@ -13,9 +13,10 @@ import javax.swing.JOptionPane;
 import model.Paciente;
 
 public class FrCadPaciente extends javax.swing.JFrame {
+
     private final TMPaciente tmPaciente;
     private boolean alteracao;
-    
+
     public FrCadPaciente() {
         initComponents();
         this.tmPaciente = new TMPaciente();
@@ -24,8 +25,8 @@ public class FrCadPaciente extends javax.swing.JFrame {
         this.carregarArquivo("src/csv/lst_pacientes.csv");
         this.tmPaciente.fireTableDataChanged();
     }
-    
-    public final void resetarCampos(boolean flag){
+
+    public final void resetarCampos(boolean flag) {
         this.edtNome.setEnabled(flag);
         this.edtCpf.setEnabled(flag);
         this.rdFem.setEnabled(flag);
@@ -40,9 +41,9 @@ public class FrCadPaciente extends javax.swing.JFrame {
         this.rdDNao.setEnabled(flag);
         this.edtAlergia.setEnabled(flag);
         this.edtDoenca.setEnabled(flag);
-        
-        if(!flag){
-            
+
+        if (!flag) {
+
             this.edtNome.setText(null);
             this.edtCpf.setText(null);
             this.rdFem.setSelected(flag);
@@ -59,109 +60,102 @@ public class FrCadPaciente extends javax.swing.JFrame {
             this.edtDoenca.setText(null);
         }
     }
-    
-    public boolean verificaCamposVazio(){
+
+    public boolean verificaCamposVazio() {
         return this.edtNome.getText().isEmpty()
-                || this.edtCpf.getText().isEmpty()
-                || (this.rdFem.isSelected() || this.rdMasc.isSelected())
-                || this.edtIdade.getText().isEmpty()
-                || this.edtTipoSanguineo.getText().isEmpty()
-                || this.edtTelefone.getText().isEmpty()
-                || (this.rdFSim.isSelected() || this.rdFNao.isSelected())
-                || (this.rdDSim.isSelected() || this.rdDNao.isSelected())
-                || this.edtAlergia.getText().isEmpty()
-                || this.edtDoenca.getText().isEmpty();
+            || this.edtCpf.getText().isEmpty()
+            || (this.rdFem.isSelected() || this.rdMasc.isSelected())
+            || this.edtIdade.getText().isEmpty()
+            || this.edtTipoSanguineo.getText().isEmpty()
+            || this.edtTelefone.getText().isEmpty()
+            || (this.rdFSim.isSelected() || this.rdFNao.isSelected())
+            || (this.rdDSim.isSelected() || this.rdDNao.isSelected())
+            || this.edtAlergia.getText().isEmpty()
+            || this.edtDoenca.getText().isEmpty();
     }
-    
-    public void copiarCamposParaClasse(Paciente p){
+
+    public void copiarCamposParaClasse(Paciente p) {
         p.setNome(this.edtNome.getText());
         p.setCpf(this.edtCpf.getText());
-        
-        if(this.rdFem.isSelected()){
+
+        if (this.rdFem.isSelected()) {
             p.setSexo('F');
-        }
-        else if(this.rdMasc.isSelected()){
+        } else if (this.rdMasc.isSelected()) {
             p.setSexo('M');
         }
         p.setIdade(Integer.parseInt(this.edtIdade.getText()));
         p.setTipoSanguineo(this.edtTipoSanguineo.getText());
         p.setTelefone(this.edtTelefone.getText());
         p.setEmail(this.edtEmail.getText());
-        
-        if(this.rdFSim.isSelected()){
+
+        if (this.rdFSim.isSelected()) {
             p.setFumante(true);
-        }
-        else if(this.rdFNao.isSelected()){
+        } else if (this.rdFNao.isSelected()) {
             p.setFumante(false);
-        }
-        else if(this.rdDSim.isSelected()){
-            p.setHistoricoDiabetes(true);
-        }
-        else if(this.rdDNao.isSelected()){
-            p.setHistoricoDiabetes(false);
+        } else if (this.rdDSim.isSelected()) {
+            p.setDiabetico(true);
+        } else if (this.rdDNao.isSelected()) {
+            p.setDiabetico(false);
         }
         p.setAlergia(this.edtAlergia.getText());
-        p.setDoencaCronica(this.edtDoenca.getText());
+        p.setDoenca(this.edtDoenca.getText());
     }
-    
-    public void copiarClasseParaCampos(Paciente p){
+
+    public void copiarClasseParaCampos(Paciente p) {
         this.edtNome.setText(p.getNome());
         this.edtCpf.setText(p.getCpf());
-        
-        if(p.getSexo() == 'F' || p.getSexo() == 'f'){
+
+        if (p.getSexo() == 'F' || p.getSexo() == 'f') {
             this.rdFem.setSelected(true);
-        }
-        else if(p.getSexo() == 'M' || p.getSexo() == 'm'){
+        } else if (p.getSexo() == 'M' || p.getSexo() == 'm') {
             this.rdMasc.setSelected(true);
         }
         this.edtIdade.setText(p.getIdade() + "");
         this.edtTipoSanguineo.setText(p.getTipoSanguineo());
         this.edtTelefone.setText(p.getTelefone());
         this.edtEmail.setText(p.getEmail());
-        
-        if(p.isFumante()){
+
+        if (p.isFumante()) {
             this.rdFSim.setSelected(true);
-        }
-        else if(!p.isFumante()){
+        } else if (!p.isFumante()) {
             this.rdFNao.setSelected(true);
-        }
-        else if(p.isHistoricoDiabetes()){
+        } else if (p.isDiabetico()) {
             this.rdDSim.setSelected(true);
-        }
-        else if(!p.isHistoricoDiabetes()){
+        } else if (!p.isDiabetico()) {
             this.rdDNao.setSelected(true);
         }
         this.edtAlergia.setText(p.getAlergia());
-        this.edtDoenca.setText(p.getDoencaCronica());
+        this.edtDoenca.setText(p.getDoenca());
     }
-    
-    public int buscar(String cpf){
-        for(int i = 0; i < this.tmPaciente.getRowCount(); i++){
-            if(cpf.equals(this.tmPaciente.getLstPacientes().get(i).getCpf())){
+
+    public int buscar(String cpf) {
+        for (int i = 0; i < this.tmPaciente.getRowCount(); i++) {
+            if (cpf.equals(this.tmPaciente.getLstPacientes().get(i).getCpf())) {
                 return i;
             }
         }
         JOptionPane.showMessageDialog(null, "Paciente não cadastrado!");
         return -1;
     }
-    
-    public boolean existe(Paciente paciente){
-        for(Paciente p : this.tmPaciente.getLstPacientes()){
-            if(p.getCpf().equals(paciente.getCpf())){
+
+    public boolean existe(Paciente paciente) {
+        for (Paciente p : this.tmPaciente.getLstPacientes()) {
+            if (p.getCpf().equals(paciente.getCpf())) {
                 return true;
             }
         }
         return false;
     }
-    public final void carregarArquivo(String caminho){
+
+    public final void carregarArquivo(String caminho) {
         FileReader arquivo;
         try {
             arquivo = new FileReader(caminho);
             Scanner ler = new Scanner(arquivo);
             ler.useDelimiter("\n");
             ler.next();
-            
-            while(ler.hasNext()){
+
+            while (ler.hasNext()) {
                 String linhaCsv = ler.next();
                 Paciente p = new Paciente();
                 p.setInfoCSV(linhaCsv);
@@ -169,41 +163,39 @@ public class FrCadPaciente extends javax.swing.JFrame {
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FrCadPaciente.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null,"ERRO! Arquivo não foi carregado.");
+            JOptionPane.showMessageDialog(null, "ERRO! Arquivo não foi carregado.");
         }
     }
-    
-    public void salvarArquivo(String caminho){
+
+    public void salvarArquivo(String caminho) {
         try {
             FileWriter arquivo = new FileWriter(caminho);
-            try (PrintWriter escrita = new PrintWriter(arquivo)){
+            try (PrintWriter escrita = new PrintWriter(arquivo)) {
                 Paciente aux = new Paciente();
                 String info = aux.getCabecalhoCSV();
-                for(Paciente p : this.tmPaciente.getLstPacientes()){
+                for (Paciente p : this.tmPaciente.getLstPacientes()) {
                     info += p.getInfoCSV();
-                  
+
                 }
                 escrita.print(info);
             } catch (Exception e) {
             }
         } catch (IOException ex) {
             Logger.getLogger(FrCadPaciente.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null,"ERRO! Não foi possível salvar o arquivo.");
+            JOptionPane.showMessageDialog(null, "ERRO! Não foi possível salvar o arquivo.");
         }
     }
-    
-    public void salvar(){
+
+    public void salvar() {
         Paciente p = new Paciente();
         this.copiarCamposParaClasse(p);
-        
-        if(this.alteracao){
+
+        if (this.alteracao) {
             this.tmPaciente.getLstPacientes().set(this.buscar(p.getCpf()), p);
-        }
-        else{
-            if(this.existe(p)){
+        } else {
+            if (this.existe(p)) {
                 JOptionPane.showMessageDialog(null, "CPF já existe!");
-            }
-            else{
+            } else {
                 this.tmPaciente.addLinha(p);
             }
         }
@@ -211,6 +203,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
         this.tmPaciente.fireTableDataChanged();
         this.resetarCampos(false);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -532,38 +525,36 @@ public class FrCadPaciente extends javax.swing.JFrame {
         String info = JOptionPane.showInputDialog("Digite o CPF:");
         Paciente p = new Paciente();
         p = this.tmPaciente.getLstPacientes().get(this.buscar(info));
-        
-        int confirm = JOptionPane.showConfirmDialog(null,"Deseja realmente editar os dados?");
-        
-        if(confirm == JOptionPane.YES_OPTION){
+
+        int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente editar os dados?");
+
+        if (confirm == JOptionPane.YES_OPTION) {
             this.alteracao = true;
             this.copiarClasseParaCampos(p);
             this.resetarCampos(true);
-        }
-        else if(confirm == JOptionPane.NO_OPTION){
+        } else if (confirm == JOptionPane.NO_OPTION) {
             this.btnCancelarActionPerformed(evt);
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-       int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente salvar?");
-       if(confirm == JOptionPane.YES_OPTION){
-           if(this.verificaCamposVazio()){
-               this.salvar();
-           }
-           else{
-               JOptionPane.showMessageDialog(null,"Campo vazio!");
-           }
-       }
+        int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente salvar?");
+        if (confirm == JOptionPane.YES_OPTION) {
+            if (this.verificaCamposVazio()) {
+                this.salvar();
+            } else {
+                JOptionPane.showMessageDialog(null, "Campo vazio!");
+            }
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void brnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnExcluirActionPerformed
         String info = JOptionPane.showInputDialog("Digite o CPF");
         Paciente p = new Paciente();
         p = this.tmPaciente.getLstPacientes().get(this.buscar(info));
-        
+
         int confirm = JOptionPane.showConfirmDialog(null, "Realmente deseja excluir?");
-        if(confirm == JOptionPane.YES_OPTION){
+        if (confirm == JOptionPane.YES_OPTION) {
             this.tmPaciente.getLstPacientes().remove(p);
             this.salvarArquivo("src/csv/lst_pacientes.csv");
             JOptionPane.showMessageDialog(null, "Paciente excluído!");

@@ -6,7 +6,7 @@ package model;
  *
  * @author cfreitas
  */
-public class DColaborador extends Dentista implements Usuario {
+public class DColaborador extends Dentista {
 
     protected double taxa;
 

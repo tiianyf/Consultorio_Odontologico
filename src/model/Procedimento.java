@@ -21,10 +21,30 @@ public enum Procedimento {
 
     private final String descricao;
     private final double valor;
+    private double tempo;
+    private Paciente paciente;
 
     private Procedimento(String descricao, double valor) {
         this.descricao = descricao;
         this.valor = valor;
+        this.tempo = -1;
+        this.paciente = new Paciente();
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public double getTempo() {
+        return tempo;
+    }
+
+    public void setTempo(double tempo) {
+        this.tempo = tempo;
     }
 
     public double getValor() {
