@@ -1,6 +1,6 @@
 package view;
 
-import controller.TMMaterial;
+import controller.TMMateriais;
 
 /**
  *
@@ -8,7 +8,7 @@ import controller.TMMaterial;
  */
 public class FrRequisicao extends javax.swing.JFrame {
 
-    private TMMaterial tmMaterial;
+    private TMMateriais tmMaterial;
     /** Creates new form FrRequisicao */
     public FrRequisicao() {
         initComponents();

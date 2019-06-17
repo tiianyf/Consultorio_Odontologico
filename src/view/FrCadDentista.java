@@ -1,8 +1,11 @@
 package view;
+
 public class FrCadDentista extends javax.swing.JFrame {
+
     public FrCadDentista() {
         initComponents();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

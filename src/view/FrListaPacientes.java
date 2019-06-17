@@ -1,6 +1,6 @@
 package view;
 
-import controller.TMPaciente;
+import controller.TMPacientes;
 import javax.swing.table.AbstractTableModel;
 
 public class FrListaPacientes extends javax.swing.JFrame {
@@ -9,7 +9,7 @@ public class FrListaPacientes extends javax.swing.JFrame {
 
     public FrListaPacientes() {
         initComponents();
-        this.tmPacientes = new TMPaciente();
+        this.tmPacientes = new TMPacientes();
         this.tblPacientes.setModel(tmPacientes);
     }
 

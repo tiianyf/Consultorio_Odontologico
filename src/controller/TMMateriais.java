@@ -19,14 +19,14 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.Material;
 
-public class TMMaterial extends AbstractTableModel {
+public class TMMateriais extends AbstractTableModel {
 
     private final String[] lstNomes;
     private final double[] lstPrecos;
     private final List<Material> lstMateriais;
     private final List<String> lstColunas;
 
-    public TMMaterial() {
+    public TMMateriais() {
         this.lstNomes = new String[]{
             "Alginato", "Cera em lâmina", "Gesso", "Guardanapo", "Luva",
             "Máscara", "Sulgador", "Cimento ionômero de vidro",

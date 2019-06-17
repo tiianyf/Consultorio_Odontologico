@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import javax.swing.table.AbstractTableModel;
 import model.Paciente;
 
@@ -13,13 +12,12 @@ import model.Paciente;
  *
  * @author cfreitas
  */
-public class TMPaciente extends AbstractTableModel {
+public class TMPacientes extends AbstractTableModel {
 
-    Scanner input = new Scanner(System.in);
     private final ArrayList<Paciente> lstPacientes = new ArrayList<>();
     private final ArrayList<String> lstColunas = new ArrayList<>();
 
-    public TMPaciente() {
+    public TMPacientes() {
 
         this.lstColunas.add("Nome");
         this.lstColunas.add("CPF");

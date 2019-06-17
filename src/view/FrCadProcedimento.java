@@ -3,7 +3,7 @@ package view;
 import controller.TMProcedimentos;
 import javax.swing.table.AbstractTableModel;
 
-public class FrCadProcedimento extends javax.swing.JFrame implements PatternView {
+public class FrCadProcedimento extends javax.swing.JFrame {
 
     private AbstractTableModel tmProcedimentos;
 
@@ -19,56 +19,6 @@ public class FrCadProcedimento extends javax.swing.JFrame implements PatternView
 
     public void setTmProcedimentos(AbstractTableModel tmProcedimentos) {
         this.tmProcedimentos = tmProcedimentos;
-    }
-
-    @Override
-    public boolean loadFile(String path) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean saveOnFile(String path) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void enableFields(boolean flag) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void clearAllFields() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void showTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isAnyFieldMissing() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isThere(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int search(String term) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void copyFromFieldsToObject(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void copyFromObjectToFields(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @SuppressWarnings("unchecked")
@@ -302,6 +252,5 @@ public class FrCadProcedimento extends javax.swing.JFrame implements PatternView
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
-
 
 }

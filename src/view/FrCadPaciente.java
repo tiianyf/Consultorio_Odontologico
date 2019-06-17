@@ -1,6 +1,6 @@
 package view;
 
-import controller.TMPaciente;
+import controller.TMPacientes;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -12,14 +12,14 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Paciente;
 
-public class FrCadPaciente extends javax.swing.JFrame implements PatternView {
+public class FrCadPaciente extends javax.swing.JFrame {
 
-    private final TMPaciente tmPaciente;
+    private final TMPacientes tmPaciente;
     private boolean alteracao;
 
     public FrCadPaciente() {
         initComponents();
-        this.tmPaciente = new TMPaciente();
+        this.tmPaciente = new TMPacientes();
         this.alteracao = false;
         this.resetarCampos(false);
         this.carregarArquivo("src/csv/lst_pacientes.csv");
@@ -601,52 +601,4 @@ public class FrCadPaciente extends javax.swing.JFrame implements PatternView {
     private javax.swing.JRadioButton rdFem;
     private javax.swing.JRadioButton rdMasc;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public boolean loadFile(String caminho) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean saveOnFile(String path) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void enableFields(boolean flag) {
-    }
-
-    @Override
-    public void clearAllFields() {
-    }
-
-    @Override
-    public void showTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isAnyFieldMissing() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isThere(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int search(String term) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void copyFromFieldsToObject(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void copyFromObjectToFields(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
