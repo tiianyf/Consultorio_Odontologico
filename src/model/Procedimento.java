@@ -9,6 +9,8 @@
  */
 package model;
 
+import java.util.Random;
+
 public enum Procedimento {
 
     CLAREAMENTO("Clareamento dental", 400.00),
@@ -23,12 +25,22 @@ public enum Procedimento {
     private final double valor;
     private double tempo;
     private Paciente paciente;
+    private String id;
 
     private Procedimento(String descricao, double valor) {
         this.descricao = descricao;
         this.valor = valor;
         this.tempo = -1;
         this.paciente = new Paciente();
+        this.id = "-1";
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Paciente getPaciente() {
@@ -55,4 +67,17 @@ public enum Procedimento {
         return descricao;
     }
 
+    /**
+     * Retorna uma string entre 1000 e 9999
+     *
+     * @return
+     */
+    public String idAleatorio() {
+
+        Random r = new Random();
+        int resultado = 1000 + r.nextInt(10000);
+        String aux = Integer.toString(resultado);
+        return aux;
+
+    }
 }

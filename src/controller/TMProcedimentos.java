@@ -16,6 +16,7 @@ public class TMProcedimentos extends AbstractTableModel {
         this.lstColunas = new ArrayList<>();
         this.lstProcedimentos = new ArrayList<>();
 
+        this.lstColunas.add("ID");
         this.lstColunas.add("Tipo");
         this.lstColunas.add("Valor");
         this.lstColunas.add("Paciente");
@@ -46,7 +47,10 @@ public class TMProcedimentos extends AbstractTableModel {
     @Override
     public Object getValueAt(int linha, int coluna) {
 
-        if (coluna == this.lstColunas.indexOf("Tipo")) {
+        if (coluna == this.lstColunas.indexOf("ID")) {
+            return this.lstProcedimentos.get(linha).getId();
+
+        } else if (coluna == this.lstColunas.indexOf("Tipo")) {
             return this.lstProcedimentos.get(linha).getDescricao();
 
         } else if (coluna == this.lstColunas.indexOf("Valor")) {

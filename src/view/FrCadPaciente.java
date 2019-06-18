@@ -21,12 +21,12 @@ public class FrCadPaciente extends javax.swing.JFrame {
         initComponents();
         this.tmPaciente = new TMPacientes();
         this.alteracao = false;
-        this.resetarCampos(false);
+        this.habilitarCampos(false);
         this.carregarArquivo("src/csv/lst_pacientes.csv");
         this.tmPaciente.fireTableDataChanged();
     }
 
-    public final void resetarCampos(boolean flag) {
+    public final void habilitarCampos(boolean flag) {
         this.edtNome.setEnabled(flag);
         this.edtCpf.setEnabled(flag);
         this.rdFem.setEnabled(flag);
@@ -61,7 +61,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
         }
     }
 
-    public boolean verificaCamposVazio() {
+    public boolean verificarCamposVazios() {
         return this.edtNome.getText().isEmpty()
             || this.edtCpf.getText().isEmpty()
             || (this.rdFem.isSelected() || this.rdMasc.isSelected())
@@ -201,7 +201,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
         }
         this.salvarArquivo("src/csv/lst_pacientes.csv");
         this.tmPaciente.fireTableDataChanged();
-        this.resetarCampos(false);
+        this.habilitarCampos(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -509,7 +509,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        this.resetarCampos(true);
+        this.habilitarCampos(true);
         this.alteracao = false;
     }//GEN-LAST:event_btnNovoActionPerformed
 
@@ -518,7 +518,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_rdFemActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.resetarCampos(false);
+        this.habilitarCampos(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -531,7 +531,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
         if (confirm == JOptionPane.YES_OPTION) {
             this.alteracao = true;
             this.copiarClasseParaCampos(p);
-            this.resetarCampos(true);
+            this.habilitarCampos(true);
         } else if (confirm == JOptionPane.NO_OPTION) {
             this.btnCancelarActionPerformed(evt);
         }
@@ -540,7 +540,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente salvar?");
         if (confirm == JOptionPane.YES_OPTION) {
-            if (this.verificaCamposVazio()) {
+            if (this.verificarCamposVazios()) {
                 this.salvar();
             } else {
                 JOptionPane.showMessageDialog(null, "Campo vazio!");

@@ -79,7 +79,7 @@ abstract public class Pessoa {
     /**
      * Salvar (save) informação no arquivo CSV.
      *
-     * @return uma string em linha única contendo as informações da classe.
+     * @return uma string em linha única contendo as informações do objeto.
      */
     public String getInfoCSV() {
         String info = this.nome + ";" + this.idade + ";" + this.telefone + ";"

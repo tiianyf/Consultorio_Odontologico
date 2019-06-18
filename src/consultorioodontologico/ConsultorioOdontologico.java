@@ -19,7 +19,7 @@ public class ConsultorioOdontologico {
 //        login.setVisible(true);
         JFrame view = new FrCadProcedimento();
         view.setVisible(true);
-//        JFrame view = new FrListaPacientes();
+//        JFrame view = new FrCadPaciente();
 //        view.setVisible(true);
     }
 
