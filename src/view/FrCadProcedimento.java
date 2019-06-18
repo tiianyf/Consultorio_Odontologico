@@ -8,7 +8,7 @@ import model.Procedimento;
 public class FrCadProcedimento extends javax.swing.JFrame {
 
     private boolean alteracao;
-    private AbstractTableModel tmProcedimentos;
+    private TMProcedimentos tmProcedimentos;
     private Procedimento aux;
 
     public FrCadProcedimento() {
@@ -20,10 +20,6 @@ public class FrCadProcedimento extends javax.swing.JFrame {
 
     public AbstractTableModel getTmProcedimentos() {
         return tmProcedimentos;
-    }
-
-    public void setTmProcedimentos(AbstractTableModel tmProcedimentos) {
-        this.tmProcedimentos = tmProcedimentos;
     }
 
     /**
@@ -83,9 +79,19 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         // pra mais tarde
     }
 
-//    public int buscar(String termo) {
-//        boolean flag = false;
-//    }
+    public int buscar(String termo) {
+        boolean flag = false;
+        for (int i = 0; i < this.tmProcedimentos.getRowCount(); i++) {
+            if (termo.equals(this.tmProcedimentos.getLstProcedimentos().get(i).getId())) {
+                flag = true;
+                return i;
+            }
+        }
+        if (!flag) {
+            JOptionPane.showMessageDialog(null, "ID [" + termo + "] não encontrado.");
+        }
+        return -1;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

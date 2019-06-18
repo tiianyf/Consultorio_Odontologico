@@ -24,6 +24,10 @@ public class TMProcedimentos extends AbstractTableModel {
         this.lstColunas.add("Tempo");
     }
 
+    public List<Procedimento> getLstProcedimentos() {
+        return lstProcedimentos;
+    }
+
     /**
      * Retorna um objeto(da Classe Procedimento) na linha index.
      *
@@ -31,12 +35,12 @@ public class TMProcedimentos extends AbstractTableModel {
      * @return um objeto da Classe Procedimento.
      */
     public Procedimento getRow(int index) {
-        return this.lstProcedimentos.get(index);
+        return this.getLstProcedimentos().get(index);
     }
 
     @Override
     public int getRowCount() {
-        return this.lstProcedimentos.size();
+        return this.getLstProcedimentos().size();
     }
 
     @Override
@@ -48,22 +52,22 @@ public class TMProcedimentos extends AbstractTableModel {
     public Object getValueAt(int linha, int coluna) {
 
         if (coluna == this.lstColunas.indexOf("ID")) {
-            return this.lstProcedimentos.get(linha).getId();
+            return this.getLstProcedimentos().get(linha).getId();
 
         } else if (coluna == this.lstColunas.indexOf("Tipo")) {
-            return this.lstProcedimentos.get(linha).getDescricao();
+            return this.getLstProcedimentos().get(linha).getDescricao();
 
         } else if (coluna == this.lstColunas.indexOf("Valor")) {
-            return this.lstProcedimentos.get(linha).getValor();
+            return this.getLstProcedimentos().get(linha).getValor();
 
         } else if (coluna == this.lstColunas.indexOf("Paciente")) {
-            return this.lstProcedimentos.get(linha).getPaciente().getNome();
+            return this.getLstProcedimentos().get(linha).getPaciente().getNome();
 
         } else if (coluna == this.lstColunas.indexOf("CPF")) {
-            return this.lstProcedimentos.get(linha).getPaciente().getCpf();
+            return this.getLstProcedimentos().get(linha).getPaciente().getCpf();
 
         } else if (coluna == this.lstColunas.indexOf("Tempo")) {
-            return this.lstProcedimentos.get(linha).getTempo();
+            return this.getLstProcedimentos().get(linha).getTempo();
 
         } else {
             System.out.println("Objeto não encontrado");
@@ -84,7 +88,7 @@ public class TMProcedimentos extends AbstractTableModel {
      */
     public void addLinha(Procedimento p) {
 
-        this.lstProcedimentos.add(p);
+        this.getLstProcedimentos().add(p);
         this.fireTableDataChanged();
 
     }
@@ -96,7 +100,7 @@ public class TMProcedimentos extends AbstractTableModel {
      */
     public void removeLinha(int linha) {
 
-        this.lstProcedimentos.remove(linha);
+        this.getLstProcedimentos().remove(linha);
         this.fireTableRowsDeleted(linha, linha);
         this.fireTableDataChanged();
 
