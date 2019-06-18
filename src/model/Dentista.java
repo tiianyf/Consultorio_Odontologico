@@ -68,7 +68,7 @@ abstract public class Dentista extends Funcionario implements Usuario {
         super.setInfoCSV(linhaCSV);
         String[] temp = linhaCSV.split(";");
 
-        this.cro = temp[9];
+        this.cro = temp[8];
 
     }
 

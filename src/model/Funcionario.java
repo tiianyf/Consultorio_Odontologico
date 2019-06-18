@@ -4,7 +4,7 @@ package model;
  *
  * @author cfreitas
  */
-abstract public class Funcionario extends Pessoa {
+ public class Funcionario extends Pessoa {
 
     protected double salario;
     protected String cargo;
@@ -16,12 +16,12 @@ abstract public class Funcionario extends Pessoa {
         super();
         this.salario = 0.0;
         this.cargo = "";
-        this.valorDia = 60.0;
-        this.diasTrabalhados = 20;
+        this.valorDia = 0; //60
+        this.diasTrabalhados = 0; //20
     }
 
     public double getSalario() {
-        return this.diasTrabalhados * this.valorDia;
+        return this.salario;
     }
 
     public void setSalario(double salario) {
@@ -55,15 +55,14 @@ abstract public class Funcionario extends Pessoa {
     @Override
     public String getCabecalhoCSV() {
         String info = super.getCabecalhoCSV();
-        info += ";SALARIO;CARGO;VALORDIA;DIASTRABALHADOS";
+        info += ";SALARIO;CARGO";
         return info;
     }
 
     @Override
     public String getInfoCSV() {
         String info = super.getInfoCSV();
-        info += ";" + this.salario + ";" + this.cargo + ";" + this.valorDia
-            + ";" + this.diasTrabalhados;
+        info += ";" + this.salario + ";" + this.cargo;
         return info;
     }
 
@@ -73,11 +72,8 @@ abstract public class Funcionario extends Pessoa {
         super.setInfoCSV(linhaCSV);
         String[] info = linhaCSV.split(";");
 
-        this.salario = Double.parseDouble(info[5]);
-        this.cargo = info[6];
-        this.valorDia = Double.parseDouble(info[7]);
-        this.diasTrabalhados = Integer.parseInt(info[8]);
-
+        this.salario = Double.parseDouble(info[6]);
+        this.cargo = info[7];
     
     }
 

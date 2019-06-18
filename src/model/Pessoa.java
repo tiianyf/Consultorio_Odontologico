@@ -82,7 +82,7 @@ abstract public class Pessoa {
      * @return uma string em linha única contendo as informações do objeto.
      */
     public String getInfoCSV() {
-        String info = this.nome + ";" + this.idade + ";" + this.telefone + ";"
+        String info = "\n" + this.nome + ";" + this.idade + ";" + this.telefone + ";"
             + this.email + ";" + this.cpf + ";" + this.sexo;
         return info;
     }

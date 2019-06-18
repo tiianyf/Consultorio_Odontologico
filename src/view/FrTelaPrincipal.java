@@ -26,8 +26,8 @@ public class FrTelaPrincipal extends javax.swing.JFrame {
         menuCadFuncionarios = new javax.swing.JMenuItem();
         menuCadProcedimento = new javax.swing.JMenuItem();
         menuCadUsuarios = new javax.swing.JMenuItem();
-        menuConsulta = new javax.swing.JMenu();
-        menuLstPacientes = new javax.swing.JMenuItem();
+        menuCadDColaborador = new javax.swing.JMenuItem();
+        menuCadProprietario = new javax.swing.JMenuItem();
         menuAgenda = new javax.swing.JMenu();
         menuCaixa = new javax.swing.JMenu();
         menuBoasVindas = new javax.swing.JMenu();
@@ -36,6 +36,7 @@ public class FrTelaPrincipal extends javax.swing.JFrame {
         menuSairSistema = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Consultório Odontológico");
         getContentPane().setLayout(null);
 
         telaInterna.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -76,6 +77,11 @@ public class FrTelaPrincipal extends javax.swing.JFrame {
         btnPainelInternoDColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dcColaborador.png"))); // NOI18N
         btnPainelInternoDColaborador.setToolTipText("Dentista Colaborador");
         btnPainelInternoDColaborador.setContentAreaFilled(false);
+        btnPainelInternoDColaborador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPainelInternoDColaboradorActionPerformed(evt);
+            }
+        });
         painelInterno.add(btnPainelInternoDColaborador);
         btnPainelInternoDColaborador.setBounds(350, 80, 98, 100);
 
@@ -159,21 +165,30 @@ public class FrTelaPrincipal extends javax.swing.JFrame {
         menuCadastro.add(menuCadProcedimento);
 
         menuCadUsuarios.setText("Usuários");
-        menuCadastro.add(menuCadUsuarios);
-
-        menuPrincipal.add(menuCadastro);
-
-        menuConsulta.setText("Consulta");
-
-        menuLstPacientes.setText("Lista Pacientes");
-        menuLstPacientes.addActionListener(new java.awt.event.ActionListener() {
+        menuCadUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuLstPacientesActionPerformed(evt);
+                menuCadUsuariosActionPerformed(evt);
             }
         });
-        menuConsulta.add(menuLstPacientes);
+        menuCadastro.add(menuCadUsuarios);
 
-        menuPrincipal.add(menuConsulta);
+        menuCadDColaborador.setText("Dentista Colaborador");
+        menuCadDColaborador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadDColaboradorActionPerformed(evt);
+            }
+        });
+        menuCadastro.add(menuCadDColaborador);
+
+        menuCadProprietario.setText("Proprietário");
+        menuCadProprietario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCadProprietarioActionPerformed(evt);
+            }
+        });
+        menuCadastro.add(menuCadProprietario);
+
+        menuPrincipal.add(menuCadastro);
 
         menuAgenda.setText("Agenda");
         menuPrincipal.add(menuAgenda);
@@ -255,10 +270,25 @@ public class FrTelaPrincipal extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_menuCadProcedimentoActionPerformed
 
-    private void menuLstPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLstPacientesActionPerformed
-        FrListaPacientes tela = new FrListaPacientes();
+    private void btnPainelInternoDColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPainelInternoDColaboradorActionPerformed
+        FrCadDentistaColaborador tela = new FrCadDentistaColaborador();
         tela.setVisible(true);
-    }//GEN-LAST:event_menuLstPacientesActionPerformed
+    }//GEN-LAST:event_btnPainelInternoDColaboradorActionPerformed
+
+    private void menuCadDColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadDColaboradorActionPerformed
+       FrCadDentistaColaborador tela = new FrCadDentistaColaborador();
+       tela.setVisible(true);
+    }//GEN-LAST:event_menuCadDColaboradorActionPerformed
+
+    private void menuCadProprietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadProprietarioActionPerformed
+        FrCadDentista tela = new FrCadDentista();
+        tela.setVisible(true);
+    }//GEN-LAST:event_menuCadProprietarioActionPerformed
+
+    private void menuCadUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadUsuariosActionPerformed
+        FrCadUsuario tela = new FrCadUsuario();
+        tela.setVisible(true);
+    }//GEN-LAST:event_menuCadUsuariosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPainelInternoDColaborador;
@@ -276,13 +306,13 @@ public class FrTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu menuAgenda;
     private javax.swing.JMenu menuBoasVindas;
     private javax.swing.JMenuItem menuCadCliente;
+    private javax.swing.JMenuItem menuCadDColaborador;
     private javax.swing.JMenuItem menuCadFuncionarios;
     private javax.swing.JMenuItem menuCadProcedimento;
+    private javax.swing.JMenuItem menuCadProprietario;
     private javax.swing.JMenuItem menuCadUsuarios;
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuCaixa;
-    private javax.swing.JMenu menuConsulta;
-    private javax.swing.JMenuItem menuLstPacientes;
     private javax.swing.JMenuBar menuPrincipal;
     private javax.swing.JMenu menuSair;
     private javax.swing.JMenuItem menuSairSistema;

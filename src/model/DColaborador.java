@@ -49,8 +49,6 @@ public class DColaborador extends Dentista {
         super.setInfoCSV(linhaCSV);
         String[] info = linhaCSV.split(";");
 
-        this.taxa = Double.parseDouble(info[10]);
-
     }
 
     @Override

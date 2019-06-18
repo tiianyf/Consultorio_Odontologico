@@ -20,6 +20,7 @@ public class FrCadLogin extends javax.swing.JFrame {
         lblImagem = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Entrar");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

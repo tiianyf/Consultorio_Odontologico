@@ -22,6 +22,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
         this.tmPaciente = new TMPacientes();
         this.alteracao = false;
         this.habilitarCampos(false);
+        this.tblPaciente.setModel(tmPaciente);
         this.carregarArquivo("src/csv/lst_pacientes.csv");
         this.tmPaciente.fireTableDataChanged();
     }
@@ -63,15 +64,15 @@ public class FrCadPaciente extends javax.swing.JFrame {
 
     public boolean verificarCamposVazios() {
         return this.edtNome.getText().isEmpty()
-            || this.edtCpf.getText().isEmpty()
-            || (this.rdFem.isSelected() || this.rdMasc.isSelected())
-            || this.edtIdade.getText().isEmpty()
-            || this.edtTipoSanguineo.getText().isEmpty()
-            || this.edtTelefone.getText().isEmpty()
-            || (this.rdFSim.isSelected() || this.rdFNao.isSelected())
-            || (this.rdDSim.isSelected() || this.rdDNao.isSelected())
-            || this.edtAlergia.getText().isEmpty()
-            || this.edtDoenca.getText().isEmpty();
+                || this.edtCpf.getText().isEmpty()
+                || (this.rdFem.isSelected() || this.rdMasc.isSelected())
+                || this.edtIdade.getText().isEmpty()
+                || this.edtTipoSanguineo.getText().isEmpty()
+                || this.edtTelefone.getText().isEmpty()
+                || (this.rdFSim.isSelected() || this.rdFNao.isSelected())
+                || (this.rdDSim.isSelected() || this.rdDNao.isSelected())
+                || this.edtAlergia.getText().isEmpty()
+                || this.edtDoenca.getText().isEmpty();
     }
 
     public void copiarCamposParaClasse(Paciente p) {
@@ -204,6 +205,13 @@ public class FrCadPaciente extends javax.swing.JFrame {
         this.habilitarCampos(false);
     }
 
+    public void mostrarTabela() {
+        for (Paciente p : this.tmPaciente.getLstPacientes()) {
+            this.tmPaciente.addLinha(p);
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -245,8 +253,11 @@ public class FrCadPaciente extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         lblInfo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblPaciente = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro Paciente");
 
         painel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         painel1.setLayout(null);
@@ -364,7 +375,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
                         .addComponent(rdDSim)
                         .addGap(20, 20, 20)
                         .addComponent(rdDNao)
-                        .addGap(0, 153, Short.MAX_VALUE))
+                        .addGap(0, 152, Short.MAX_VALUE))
                     .addGroup(painel2Layout.createSequentialGroup()
                         .addComponent(lblAlergia)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -396,7 +407,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
                 .addGroup(painel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(edtDoenca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDoenca))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnNovo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
@@ -454,24 +465,33 @@ public class FrCadPaciente extends javax.swing.JFrame {
         lblInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInfo.setText("INFORMAÇÕES COMPLEMENTARES");
 
+        tblPaciente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tblPaciente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tblPaciente);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(painel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(painel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblInfo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(painel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(painel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
                 .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -481,7 +501,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
                 .addComponent(brnExcluir)
                 .addGap(18, 18, 18)
                 .addComponent(btnSalvar)
-                .addGap(51, 51, 51))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -489,22 +509,25 @@ public class FrCadPaciente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(painel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(painel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
                     .addComponent(btnEditar)
                     .addComponent(btnCancelar)
                     .addComponent(brnExcluir)
                     .addComponent(btnSalvar))
-                .addContainerGap())
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(713, 561));
+        setSize(new java.awt.Dimension(1267, 572));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -579,6 +602,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
     private javax.swing.JTextField edtNome;
     private javax.swing.JTextField edtTelefone;
     private javax.swing.JTextField edtTipoSanguineo;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAlergia;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblDiabetico;
@@ -600,5 +624,6 @@ public class FrCadPaciente extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdFSim;
     private javax.swing.JRadioButton rdFem;
     private javax.swing.JRadioButton rdMasc;
+    private javax.swing.JTable tblPaciente;
     // End of variables declaration//GEN-END:variables
 }
