@@ -8,6 +8,7 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
     public void habilitarBotoes(){
         this.btnPainelInternoPaciente.setEnabled(false);
         this.menuCadCliente.setEnabled(false);
+        this.menuAgendar.setEnabled(false);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -35,6 +36,8 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
         menuCadProprietario = new javax.swing.JMenuItem();
         menuAgenda = new javax.swing.JMenu();
         menuAgendar = new javax.swing.JMenuItem();
+        menuConsultar = new javax.swing.JMenu();
+        menuLstPacientes = new javax.swing.JMenuItem();
         menuCaixa = new javax.swing.JMenu();
         menuBoasVindas = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -200,6 +203,18 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
 
         menuPrincipal.add(menuAgenda);
 
+        menuConsultar.setText("Consulta");
+
+        menuLstPacientes.setText("Lista de Pacientes");
+        menuLstPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuLstPacientesActionPerformed(evt);
+            }
+        });
+        menuConsultar.add(menuLstPacientes);
+
+        menuPrincipal.add(menuConsultar);
+
         menuCaixa.setText("Caixa");
         menuPrincipal.add(menuCaixa);
 
@@ -298,6 +313,12 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_menuAgendarActionPerformed
 
+    private void menuLstPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLstPacientesActionPerformed
+        FrListaPacientes tela = new FrListaPacientes();
+        tela.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuLstPacientesActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPainelInternoDColaborador;
     private javax.swing.JButton btnPainelInternoFuncionario;
@@ -321,6 +342,8 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCadProprietario;
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuCaixa;
+    private javax.swing.JMenu menuConsultar;
+    private javax.swing.JMenuItem menuLstPacientes;
     private javax.swing.JMenuBar menuPrincipal;
     private javax.swing.JMenu menuSair;
     private javax.swing.JMenuItem menuSairSistema;
