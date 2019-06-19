@@ -34,6 +34,7 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
         menuCadDColaborador = new javax.swing.JMenuItem();
         menuCadProprietario = new javax.swing.JMenuItem();
         menuAgenda = new javax.swing.JMenu();
+        menuAgendar = new javax.swing.JMenuItem();
         menuCaixa = new javax.swing.JMenu();
         menuBoasVindas = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -188,6 +189,15 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
         menuPrincipal.add(menuCadastro);
 
         menuAgenda.setText("Agenda");
+
+        menuAgendar.setText("Marcar Horário");
+        menuAgendar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAgendarActionPerformed(evt);
+            }
+        });
+        menuAgenda.add(menuAgendar);
+
         menuPrincipal.add(menuAgenda);
 
         menuCaixa.setText("Caixa");
@@ -282,6 +292,12 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_menuCadProprietarioActionPerformed
 
+    private void menuAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAgendarActionPerformed
+        FrAgenda tela = new FrAgenda();
+        tela.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_menuAgendarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPainelInternoDColaborador;
     private javax.swing.JButton btnPainelInternoFuncionario;
@@ -296,6 +312,7 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblTelaDeFundo;
     private javax.swing.JLabel lblTelaInternaAgenda;
     private javax.swing.JMenu menuAgenda;
+    private javax.swing.JMenuItem menuAgendar;
     private javax.swing.JMenu menuBoasVindas;
     private javax.swing.JMenuItem menuCadCliente;
     private javax.swing.JMenuItem menuCadDColaborador;
