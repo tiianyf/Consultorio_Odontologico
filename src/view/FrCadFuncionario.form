@@ -66,7 +66,7 @@
                   <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                   <Component id="jPanel1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="10" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnNovo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnEditar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -102,7 +102,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -132,34 +132,40 @@
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="edtCpf" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="edtCargo" min="-2" pref="246" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="rdDProprietario" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="151" max="32767" attributes="0"/>
                           <Component id="lblSalario" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="edtSalario" min="-2" pref="213" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="edtNome" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="edtTelefone" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="rdFem" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="rdMasc" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="rdDColaborador" min="-2" max="-2" attributes="0"/>
+                              <Component id="rdFaxineira" min="-2" max="-2" attributes="0"/>
+                              <Component id="rdAuxiliar" min="-2" max="-2" attributes="0"/>
+                              <Component id="rdSecretaria" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="edtTelefone" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="rdFem" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="rdMasc" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="lblIdade" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="edtIdade" min="-2" pref="43" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="lblIdade" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="edtIdade" min="-2" pref="43" max="-2" attributes="0"/>
+                                  <Component id="edtEmail" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="edtEmail" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="edtNome" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -199,11 +205,19 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblCargo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="edtCargo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblSalario" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="edtSalario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rdDProprietario" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="131" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="rdSecretaria" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="rdAuxiliar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="rdFaxineira" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="rdDColaborador" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -304,7 +318,30 @@
         </Component>
         <Component class="javax.swing.JTextField" name="edtSalario">
         </Component>
-        <Component class="javax.swing.JTextField" name="edtCargo">
+        <Component class="javax.swing.JRadioButton" name="rdDProprietario">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Propriet&#xe1;rio"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rdSecretaria">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Secret&#xe1;ria"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rdAuxiliar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Auxiliar"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rdFaxineira">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Faxineira"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rdDColaborador">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Dentista Colaborador"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

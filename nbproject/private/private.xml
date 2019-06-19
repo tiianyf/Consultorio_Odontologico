@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/home/ch/Dropbox/Projects/Java/Consultorio_Odontologico/src/consultorioodontologico/ConsultorioOdontologico.java</file>
             <file>file:/home/ch/Dropbox/Projects/Java/Consultorio_Odontologico/src/controller/TMPacientes.java</file>
             <file>file:/home/ch/Dropbox/Projects/Java/Consultorio_Odontologico/src/view/FrCadProcedimento.java</file>
             <file>file:/home/ch/Dropbox/Projects/Java/Consultorio_Odontologico/src/view/FrListaPacientes.java</file>
+=======
+            <file>file:/home/cfreitas/Área%20de%20Trabalho/Consultorio_Odontologico/src/view/FrAgenda.java</file>
+            <file>file:/home/cfreitas/Área%20de%20Trabalho/Consultorio_Odontologico/src/view/FrTelaPrincipal.java</file>
+            <file>file:/home/cfreitas/Área%20de%20Trabalho/Consultorio_Odontologico/src/view/FrCadFuncionario.java</file>
+>>>>>>> 5472d4311c1e614c45f3e9d1ccbe3558f3e0bf5b
         </group>
     </open-files>
 </project-private>

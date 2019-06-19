@@ -33,8 +33,8 @@ public class Secretaria extends Funcionario implements Admin, Usuario {
         this.valorDia = 60.2925;
         this.lstProcedimentos = new ArrayList<>();
         this.saldoTotal = 0.0;
-        this.usuario = "cfreitas";
-        this.senha = "tiiany";
+        this.usuario = "secretaria";
+        this.senha = "123";
 
     }
 
