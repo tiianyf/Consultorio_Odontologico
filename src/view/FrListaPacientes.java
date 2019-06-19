@@ -1,28 +1,53 @@
 package view;
 
 import controller.TMPacientes;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
+import model.Paciente;
 
 public class FrListaPacientes extends javax.swing.JFrame {
 
-    private AbstractTableModel tmPacientes;
+    private TMPacientes tmPacientes;
 
     public FrListaPacientes() {
         initComponents();
         this.tmPacientes = new TMPacientes();
         this.tblPacientes.setModel(tmPacientes);
+        this.carregarArquivo("src/csv/lst_pacientes.csv");
+        this.tmPacientes.fireTableDataChanged();
     }
 
     public AbstractTableModel getTmPacientes() {
         return tmPacientes;
     }
 
-    public void setTmPacientes(AbstractTableModel tmPacientes) {
+    public void setTmPacientes(TMPacientes tmPacientes) {
         this.tmPacientes = tmPacientes;
     }
 
-    public void atualizarTabela() {
-        this.tmPacientes.fireTableDataChanged();
+    public final void carregarArquivo(String caminho) {
+        FileReader arquivo;
+        try {
+            arquivo = new FileReader(caminho);
+            Scanner ler = new Scanner(arquivo);
+            ler.useDelimiter("\n");
+            ler.next();
+
+            while (ler.hasNext()) {
+                String linhaCsv = ler.next();
+                Paciente p = new Paciente();
+                p.setInfoCSV(linhaCsv);
+                this.tmPacientes.addLinha(p);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FrCadPaciente.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "ERRO! Arquivo não foi carregado.");
+        }
     }
 
     @SuppressWarnings("unchecked")

@@ -1,6 +1,7 @@
 package view;
 
 import controller.TMProcedimentos;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 import model.Procedimento;
@@ -16,6 +17,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         this.tmProcedimentos = new TMProcedimentos();
         this.tblProcedimento.setModel(tmProcedimentos);
         this.alteracao = false;
+        this.habilitarCampos(false);
     }
 
     public AbstractTableModel getTmProcedimentos() {
@@ -104,7 +106,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         lblTempo = new javax.swing.JLabel();
         edtTempo = new javax.swing.JTextField();
         lblValor = new javax.swing.JLabel();
-        boxTipos = new javax.swing.JComboBox<String>();
+        boxTipos = new javax.swing.JComboBox<>();
         btnBuscaPaciente = new javax.swing.JButton();
         txtNome = new javax.swing.JTextField();
         lblCpf = new javax.swing.JLabel();
@@ -120,6 +122,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Procedimento");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblTitulo.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -143,7 +146,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         lblValor.setText("Valor:");
 
         boxTipos.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
-        boxTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Clareamento dental", "Tratamento ortodôntico", "Implante", "Próteses fixas", "Enxerto gengival", "Periodontia", "Endodontia" }));
+        boxTipos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Clareamento dental", "Tratamento ortodôntico", "Implante", "Próteses fixas", "Enxerto gengival", "Periodontia", "Endodontia" }));
         boxTipos.setToolTipText("Veja os procedimentos disponíveis");
         boxTipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +156,11 @@ public class FrCadProcedimento extends javax.swing.JFrame {
 
         btnBuscaPaciente.setText("Buscar...");
         btnBuscaPaciente.setToolTipText("Abre a lista de pacientes");
+        btnBuscaPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaPacienteActionPerformed(evt);
+            }
+        });
 
         txtNome.setEditable(false);
         txtNome.setToolTipText("Dados do paciente não podem ser alterados!");
@@ -320,7 +328,8 @@ public class FrCadProcedimento extends javax.swing.JFrame {
                 .addGap(0, 6, Short.MAX_VALUE))
         );
 
-        setBounds(0, 0, 722, 547);
+        setSize(new java.awt.Dimension(722, 547));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -382,6 +391,11 @@ public class FrCadProcedimento extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnBuscaPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaPacienteActionPerformed
+        JFrame lista = new FrListaPacientes();
+        lista.setVisible(true);
+    }//GEN-LAST:event_btnBuscaPacienteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxTipos;
