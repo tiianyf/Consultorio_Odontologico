@@ -35,7 +35,11 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         this.edtIdade.setEnabled(flag);
         this.edtTelefone.setEnabled(flag);
         this.edtEmail.setEnabled(flag);
-        this.edtCargo.setEnabled(flag);
+        this.rdDProprietario.setEnabled(flag);
+        this.rdSecretaria.setEnabled(flag);
+        this.rdAuxiliar.setEnabled(flag);
+        this.rdFaxineira.setEnabled(flag);
+        this.rdDColaborador.setEnabled(flag);
         this.edtSalario.setEnabled(flag);
 
         if (!flag) {
@@ -51,7 +55,11 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         this.edtIdade.setText(null);
         this.edtTelefone.setText(null);
         this.edtEmail.setText(null);
-        this.edtCargo.setText(null);
+        this.rdDProprietario.setSelected(false);
+        this.rdSecretaria.setSelected(false);
+        this.rdAuxiliar.setSelected(false);
+        this.rdFaxineira.setSelected(false);
+        this.rdDColaborador.setSelected(false);
         this.edtSalario.setText(null);
     }
 
@@ -62,7 +70,7 @@ public class FrCadFuncionario extends javax.swing.JFrame {
                 || this.edtIdade.getText().isEmpty()
                 || this.edtTelefone.getText().isEmpty()
                 || this.edtEmail.getText().isEmpty()
-                || this.edtCargo.getText().isEmpty()
+                || (this.rdDProprietario.isSelected() || this.rdSecretaria.isSelected() || this.rdAuxiliar.isSelected() || this.rdFaxineira.isSelected() || this.rdDColaborador.isSelected())
                 || this.edtSalario.getText().isEmpty();
 
     }
@@ -80,7 +88,23 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         f.setIdade(Integer.parseInt(this.edtIdade.getText()));
         f.setTelefone(this.edtTelefone.getText());
         f.setEmail(this.edtEmail.getText());
-        f.setCargo(this.edtCargo.getText());
+        
+        if(this.rdDProprietario.isSelected()){
+            f.setCargo("Proprietário");
+        }
+        else if(this.rdSecretaria.isSelected()){
+            f.setCargo("Secretária");
+        }
+        else if(this.rdAuxiliar.isSelected()){
+            f.setCargo("Auxiliar");
+        }
+        else if(this.rdFaxineira.isSelected()){
+            f.setCargo("Faxineira");
+        }
+        else if(this.rdDColaborador.isSelected()){
+            f.setCargo("Dentista Colaborador");
+        }
+        
         f.setSalario(Double.parseDouble(this.edtSalario.getText()));
     }
 
@@ -97,7 +121,25 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         this.edtIdade.setText(f.getIdade() + "");
         this.edtTelefone.setText(f.getTelefone());
         this.edtEmail.setText(f.getEmail());
-        this.edtCargo.setText(f.getCargo());
+        
+        switch (f.getCargo()) {
+            case "Proprietário":
+                this.rdDProprietario.isSelected();
+                break;
+            case "Secretária":
+                this.rdSecretaria.isSelected();
+                break;
+            case "Auxiliar":
+                this.rdAuxiliar.isSelected();
+                break;
+            case "Faxineira":
+                this.rdFaxineira.isSelected();
+                break;
+            case "Dentista Colaborador":
+                this.rdDColaborador.isSelected();
+                break;
+        }
+        
         this.edtSalario.setText(f.getSalario() + "");
 
     }
@@ -207,7 +249,11 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         lblCargo = new javax.swing.JLabel();
         lblSalario = new javax.swing.JLabel();
         edtSalario = new javax.swing.JTextField();
-        edtCargo = new javax.swing.JTextField();
+        rdDProprietario = new javax.swing.JRadioButton();
+        rdSecretaria = new javax.swing.JRadioButton();
+        rdAuxiliar = new javax.swing.JRadioButton();
+        rdFaxineira = new javax.swing.JRadioButton();
+        rdDColaborador = new javax.swing.JRadioButton();
         btnNovo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
@@ -261,6 +307,16 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         lblSalario.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblSalario.setText("Salário");
 
+        rdDProprietario.setText("Proprietário");
+
+        rdSecretaria.setText("Secretária");
+
+        rdAuxiliar.setText("Auxiliar");
+
+        rdFaxineira.setText("Faxineira");
+
+        rdDColaborador.setText("Dentista Colaborador");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -289,27 +345,32 @@ public class FrCadFuncionario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(edtCpf)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(edtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rdDProprietario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
                         .addComponent(lblSalario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(edtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edtNome)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(edtTelefone, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(rdFem)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rdMasc)))
-                                .addGap(18, 18, 18)
-                                .addComponent(lblIdade)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(edtEmail))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(edtNome))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdDColaborador)
+                            .addComponent(rdFaxineira)
+                            .addComponent(rdAuxiliar)
+                            .addComponent(rdSecretaria)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(edtTelefone, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(rdFem)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(rdMasc)))
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lblIdade)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(edtEmail)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -341,10 +402,18 @@ public class FrCadFuncionario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCargo)
-                    .addComponent(edtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSalario)
-                    .addComponent(edtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(131, Short.MAX_VALUE))
+                    .addComponent(edtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rdDProprietario))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rdSecretaria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rdAuxiliar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rdFaxineira)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rdDColaborador)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         btnNovo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
@@ -441,7 +510,7 @@ public class FrCadFuncionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
                     .addComponent(btnEditar)
@@ -521,7 +590,6 @@ public class FrCadFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JTextField edtCargo;
     private javax.swing.JTextField edtCpf;
     private javax.swing.JTextField edtEmail;
     private javax.swing.JTextField edtIdade;
@@ -539,8 +607,13 @@ public class FrCadFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel lblSexo;
     private javax.swing.JLabel lblTelefone;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JRadioButton rdAuxiliar;
+    private javax.swing.JRadioButton rdDColaborador;
+    private javax.swing.JRadioButton rdDProprietario;
+    private javax.swing.JRadioButton rdFaxineira;
     private javax.swing.JRadioButton rdFem;
     private javax.swing.JRadioButton rdMasc;
+    private javax.swing.JRadioButton rdSecretaria;
     private javax.swing.JTable tblFuncionarios;
     // End of variables declaration//GEN-END:variables
 }

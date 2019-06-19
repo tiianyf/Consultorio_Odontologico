@@ -15,6 +15,7 @@ public enum Pagamento {
     CREDITO("2x sem juros no cartão de crédito");
 
     private final String descricao;
+    private Paciente paciente;
 
     private Pagamento(String descricao) {
         this.descricao = descricao;

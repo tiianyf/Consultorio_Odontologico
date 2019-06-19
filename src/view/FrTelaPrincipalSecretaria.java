@@ -1,13 +1,18 @@
 package view;
-public final class FrTelaPrincipal extends javax.swing.JFrame {
-    public FrTelaPrincipal() {
+public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
+    public FrTelaPrincipalSecretaria() {
         initComponents();
         this.habilitarBotoes();
     }
     
     public void habilitarBotoes(){
-        this.btnPainelInternoPaciente.setEnabled(false);
-        this.menuCadCliente.setEnabled(false);
+        this.btnPainelInternoDColaborador.setEnabled(false);
+        this.btnPainelInternoProcedimento.setEnabled(false);
+        this.btnPainelInternoFuncionario.setEnabled(false);
+        this.menuCadDColaborador.setEnabled(false);
+        this.menuCadFuncionarios.setEnabled(false);
+        this.menuCadProprietario.setEnabled(false);
+        this.menuCadFuncionarios.setEnabled(false);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -232,7 +237,7 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTelaInternaSairActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        FrTelaPrincipal tela = new FrTelaPrincipal();
+        FrTelaPrincipalSecretaria tela = new FrTelaPrincipalSecretaria();
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -253,13 +258,9 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuCadFuncionariosActionPerformed
 
     private void btnPainelInternoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPainelInternoFuncionarioActionPerformed
-        FrCadFuncionario tela = new FrCadFuncionario();
-        tela.setVisible(true);
     }//GEN-LAST:event_btnPainelInternoFuncionarioActionPerformed
 
     private void btnPainelInternoProcedimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPainelInternoProcedimentoActionPerformed
-        FrCadProcedimento tela = new FrCadProcedimento();
-        tela.setVisible(true);
     }//GEN-LAST:event_btnPainelInternoProcedimentoActionPerformed
 
     private void menuCadProcedimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadProcedimentoActionPerformed
@@ -268,8 +269,6 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuCadProcedimentoActionPerformed
 
     private void btnPainelInternoDColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPainelInternoDColaboradorActionPerformed
-        FrCadDentistaColaborador tela = new FrCadDentistaColaborador();
-        tela.setVisible(true);
     }//GEN-LAST:event_btnPainelInternoDColaboradorActionPerformed
 
     private void menuCadDColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadDColaboradorActionPerformed
