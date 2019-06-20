@@ -11,7 +11,7 @@ package model;
 
 import java.util.Random;
 
-public enum Procedimento {
+public enum Procedimento implements DadosCSV {
 
     CLAREAMENTO("Clareamento dental", 400.00),
     TRATAMENTO("Tratamento ortodôntico", 500.00),
@@ -21,8 +21,8 @@ public enum Procedimento {
     RASPAGEM("Periodontia", 250.00),
     ENDODONTIA("Endodontia", 432.00);
 
-    private final String descricao;
-    private final double valor;
+    private String descricao;
+    private double valor;
     private int tempo;
     private Paciente paciente;
     private String id;
@@ -74,12 +74,46 @@ public enum Procedimento {
      */
     public String idAleatorio() {
 
-        System.out.println("oi");
         Random r = new Random();
-        int resultado = 1000 + r.nextInt(10000);
+        int resultado = 1000 + r.nextInt(9000);
         String aux = Integer.toString(resultado);
 
         return aux;
 
     }
+
+    @Override
+    public String getCabecalhoCSV() {
+
+        String info = "ID;TIPO;VALOR;PACIENTE;CPF;TEMPO";
+        return info;
+
+    }
+
+    @Override
+    public String getInfoCSV() {
+
+        String info
+                = "\n" + this.id + ";" + this.descricao + ";" + this.valor + ";"
+                + this.paciente.getNome() + ";" + this.paciente.getCpf() + ";"
+                + this.tempo;
+
+        return info;
+
+    }
+
+    @Override
+    public void setInfoCSV(String linhaCSV) {
+
+        String[] info = linhaCSV.split(";");
+
+        this.id = info[0];
+        this.descricao = info[1];
+        this.valor = Double.parseDouble(info[2]);
+        this.paciente.setNome(info[3]);
+        this.paciente.setCpf(info[4]);
+        this.tempo = Integer.parseInt(info[5]);
+
+    }
+
 }

@@ -1,6 +1,7 @@
 package consultorioodontologico;
 
 import javax.swing.JFrame;
+import model.Procedimento;
 import view.*;
 
 /**

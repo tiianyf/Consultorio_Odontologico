@@ -168,8 +168,10 @@ public class FrCadPaciente extends javax.swing.JFrame {
     }
 
     public void salvarArquivo(String caminho) {
+
         try {
             FileWriter arquivo = new FileWriter(caminho);
+
             try (PrintWriter escrita = new PrintWriter(arquivo)) {
                 Paciente aux = new Paciente();
                 String info = aux.getCabecalhoCSV();
@@ -180,10 +182,12 @@ public class FrCadPaciente extends javax.swing.JFrame {
                 escrita.print(info);
             } catch (Exception e) {
             }
+
         } catch (IOException ex) {
             Logger.getLogger(FrCadPaciente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "ERRO! Não foi possível salvar o arquivo.");
         }
+
     }
 
     public void salvar() {

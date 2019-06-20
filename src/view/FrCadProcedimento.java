@@ -1,18 +1,22 @@
 package view;
 
 import controller.TMProcedimentos;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.AbstractTableModel;
 import model.Paciente;
 import model.Procedimento;
 
 public class FrCadProcedimento extends javax.swing.JFrame {
 
-    private boolean alteracao;
     private TMProcedimentos tmProcedimentos;
     private Procedimento aux;
     private Paciente paciente;
@@ -25,13 +29,90 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         this.paciente = new Paciente();
         this.tmProcedimentos = new TMProcedimentos();
         this.tblProcedimento.setModel(tmProcedimentos);
-        this.alteracao = false;
         this.habilitarCampos(false);
         this.btnNovo.requestFocus();
+
+        this.carregarArquivo("src/csv/lst_procedimentos.csv");
+        this.tmProcedimentos.fireTableDataChanged();
     }
 
-    public AbstractTableModel getTmProcedimentos() {
+    /**
+     * @return the lstProcedimentos
+     */
+    public List<Procedimento> getLstProcedimentos() {
+        return lstProcedimentos;
+    }
+
+    /**
+     * @param lstProcedimentos the lstProcedimentos to set
+     */
+    public void setLstProcedimentos(List<Procedimento> lstProcedimentos) {
+        this.lstProcedimentos = lstProcedimentos;
+    }
+
+    /**
+     * @param tmProcedimentos the tmProcedimentos to set
+     */
+    public void setTmProcedimentos(TMProcedimentos tmProcedimentos) {
+        this.tmProcedimentos = tmProcedimentos;
+    }
+
+    public TMProcedimentos getTmProcedimentos() {
         return tmProcedimentos;
+    }
+
+    public final void carregarArquivo(String caminho) {
+
+        FileReader arquivo;
+
+        try {
+
+            arquivo = new FileReader(caminho);
+            Scanner ler = new Scanner(arquivo);
+            ler.useDelimiter("\n");
+            ler.next(); // pulando linha do cabeçalho
+
+            while (ler.hasNext()) {
+
+                String linhaCSV = ler.next();
+                Procedimento p = Procedimento.CLAREAMENTO;//isso tá errado
+                p.setInfoCSV(linhaCSV);
+                this.tmProcedimentos.addLinha(p);
+                System.out.println(linhaCSV);
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FrCadProcedimento.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "ERRO! Arquivo não foi carregado.");
+        }
+
+    }
+
+    public void salvarArquivo(String caminho) {
+        try {
+
+            FileWriter arquivo = new FileWriter(caminho);
+
+            try (PrintWriter escrita = new PrintWriter(arquivo)) {
+
+                String info = this.aux.getCabecalhoCSV();
+
+                for (Procedimento p : this.tmProcedimentos.getLstProcedimentos()) {
+                    info += p.getInfoCSV();
+                }
+
+                escrita.print(info);
+
+            } catch (Exception e) {
+            }
+
+        } catch (IOException ex) {
+
+            Logger.getLogger(FrCadProcedimento.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "ERRO! Não foi possível salvar o arquivo.");
+
+        }
+
     }
 
     /**
@@ -39,7 +120,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
      *
      * @param flag caso true, ativa, caso contrário, desativa.
      */
-    public void habilitarCampos(boolean flag) {
+    private void habilitarCampos(boolean flag) {
 
         this.boxTipos.setEnabled(flag);
         this.btnBuscaPaciente.setEnabled(flag);
@@ -48,7 +129,15 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         this.edtTempo.setEnabled(flag);
 
         if (!flag) {
+
             this.limparTodosCampos();
+
+        } else {
+
+            /* forçando a seleção do primeiro tipo de procedimento para que não
+            ocorra erro se o usuário clicar primeiro no botão de Buscar Paciente,
+            pois caso isso ocorra, o ID aleatório não é carregado */
+            boxTipos.setSelectedItem(Procedimento.CLAREAMENTO.getDescricao());
         }
 
     }
@@ -84,10 +173,18 @@ public class FrCadProcedimento extends javax.swing.JFrame {
      * @param p o objeto que receberá os dados contidos nos campos da GUI.
      */
     public void copiarCamposParaObjeto(Procedimento p) {
-        // pra mais tarde
+
+        p.setId(this.txtId.getText());
+        p.setPaciente(this.paciente);
+        p.setTempo(Integer.parseInt((this.edtTempo.getText())));
 
     }
 
+    /**
+     * Copia os atributos do objeto para os campos da GUI.
+     *
+     * @param p o objeto cujos atributos serão copiados para os campos da GUI.
+     */
     public void copiarObjetoParaCampos(Procedimento p) {
 
         this.txtNome.setText(this.paciente.getNome());
@@ -97,6 +194,14 @@ public class FrCadProcedimento extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Confirma de o ID do procedimento em questão não está sendo utilizado por
+     * outro procedimento dentro da lista (já que o ID é aleatório). Basicamente
+     * o método consiste em gerar um novo ID caso ele já tenha sido usado em
+     * outro procedimento salvo na lista.
+     *
+     * @return o procedimento com ID único.
+     */
     public Procedimento confirmarId() {
 
         do {
@@ -111,31 +216,41 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     }
 
     /**
+     * Verifica se o procedimento em questão já existe dentro da lista.
+     * Basicamente verifica se o ID do procedimeto é igual a um outro já
+     * existente dentro da lista.
      *
-     * @param p
-     * @return
+     * @param p o procedimento cuja existência está sendo verificada.
+     * @return true caso o ID do procedimento já exista, e false caso contrário.
      */
     public boolean existe(Procedimento p) {
-        for (Procedimento proc : this.lstProcedimentos) {
+
+        for (Procedimento proc : this.getLstProcedimentos()) {
             if (proc.getId().equals(p.getId())) {
                 return true;
             }
         }
         return false;
+
     }
 
+    /**
+     * Procura o procedimento dentro da lista de procedimentos salvos.
+     *
+     * @param termo
+     * @return o índice (dentro da lista) do procedimento buscado.
+     */
     public int buscar(String termo) {
-        boolean flag = false;
-        for (int i = 0; i < this.tmProcedimentos.getRowCount(); i++) {
-            if (termo.equals(this.tmProcedimentos.getLstProcedimentos().get(i).getId())) {
-                flag = true;
+
+        for (int i = 0; i < this.getTmProcedimentos().getRowCount(); i++) {
+            if (termo.equals(this.getTmProcedimentos().getLstProcedimentos().get(i).getId())) {
                 return i;
             }
         }
-        if (!flag) {
-            JOptionPane.showMessageDialog(null, "ID [" + termo + "] não encontrado.");
-        }
+
+        JOptionPane.showMessageDialog(null, "ID [" + termo + "] não encontrado.");
         return -1;
+
     }
 
     @SuppressWarnings("unchecked")
@@ -159,9 +274,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProcedimento = new javax.swing.JTable();
         btnNovo = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        brnExcluir = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -304,15 +417,6 @@ public class FrCadProcedimento extends javax.swing.JFrame {
             }
         });
 
-        btnEditar.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-
         btnCancelar.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -321,10 +425,6 @@ public class FrCadProcedimento extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-
-        brnExcluir.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        brnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete.png"))); // NOI18N
-        brnExcluir.setText("Excluir");
 
         btnSalvar.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/save2.png"))); // NOI18N
@@ -340,28 +440,20 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
-                        .addGap(51, 51, 51))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(painelDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addGap(186, 186, 186)
                 .addComponent(btnNovo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(brnExcluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnSalvar)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(painelDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,13 +465,12 @@ public class FrCadProcedimento extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNovo)
-                    .addComponent(btnEditar)
-                    .addComponent(btnCancelar)
-                    .addComponent(brnExcluir)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnNovo)
+                        .addComponent(btnCancelar))
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(722, 547));
@@ -387,7 +478,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * O tipo de procedimento (do atributo dessa classe) será definido aqui.
+     * O tipo de procedimento será definido aqui.
      */
     private void boxTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTiposActionPerformed
 
@@ -429,17 +520,24 @@ public class FrCadProcedimento extends javax.swing.JFrame {
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         this.habilitarCampos(true);
-        this.alteracao = false;
+        this.boxTipos.requestFocus();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+
         if (this.verificarCamposVazios()) {
             JOptionPane.showMessageDialog(null, "Favor preencher todos os dados");
 
         } else {
             int confirmacao = JOptionPane.showConfirmDialog(null, "Deseja realmente salvar?");
-            if (confirmacao == 0) { // 0 é sim, 1 é não
+
+            if (confirmacao == JOptionPane.YES_OPTION) { // 0 é sim, 1 é não
+
                 this.copiarCamposParaObjeto(this.aux);
+                this.tmProcedimentos.addLinha(this.aux);
+
+                this.habilitarCampos(false);
+                this.salvarArquivo("src/csv/lst_procedimentos.csv");
 
             }
 
@@ -447,7 +545,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnBuscaPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaPacienteActionPerformed
-        
+
         ListaPacientes lista = new ListaPacientes(this, true);
         lista.setVisible(true);
         this.paciente = lista.getPacienteSelecionado();
@@ -455,20 +553,10 @@ public class FrCadProcedimento extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnBuscaPacienteActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        this.alteracao = true;
-    }//GEN-LAST:event_btnEditarActionPerformed
-
-    public void buscaPaciente(Paciente p) {
-        this.paciente = p;
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxTipos;
-    private javax.swing.JButton brnExcluir;
     private javax.swing.JButton btnBuscaPaciente;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JTextField edtTempo;

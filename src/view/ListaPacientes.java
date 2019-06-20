@@ -117,6 +117,7 @@ public class ListaPacientes extends javax.swing.JDialog {
 
             }
         ));
+        tblPacientes.setToolTipText("Clique duas vezes no paciente desejado para selecioná-lo!");
         tblPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tblPacientesMouseReleased(evt);

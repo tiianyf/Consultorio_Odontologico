@@ -64,7 +64,7 @@ public class Paciente extends Pessoa {
         String info = super.getInfoCSV();
 
         info += ";" + this.tipoSanguineo + ";" + this.alergia + ";" + this.doenca + ";" + this.fumante
-                + ";" + this.diabetico + "\n";
+                + ";" + this.diabetico;
 
         return info;
     }
@@ -89,7 +89,7 @@ public class Paciente extends Pessoa {
     public String getCabecalhoCSV() {
 
         String info = super.getCabecalhoCSV();
-        info += ";TIPOSANGUINEO;ALERGIA;DOENCACRONICA;FUMANTE;DIABETES\n";
+        info += ";TIPOSANGUINEO;ALERGIA;DOENCACRONICA;FUMANTE;DIABETES";
         return info;
 
     }

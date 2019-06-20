@@ -4,7 +4,7 @@ package model;
  *
  * @author cfreitas
  */
-abstract public class Pessoa {
+abstract public class Pessoa implements DadosCSV {
 
     protected String nome;
     protected int idade;
@@ -71,6 +71,13 @@ abstract public class Pessoa {
         this.cpf = cpf;
     }
 
+    /**
+     * Cabeçalho dos atributos da classe em maiúsculas separados por
+     * ponto-e-vírgula.
+     *
+     * @return a linha contendo os atributos.
+     */
+    @Override
     public String getCabecalhoCSV() {
         String info = "NOME;IDADE;TELEFONE;EMAIL;CPF;SEXO";
         return info;
@@ -81,6 +88,7 @@ abstract public class Pessoa {
      *
      * @return uma string em linha única contendo as informações do objeto.
      */
+    @Override
     public String getInfoCSV() {
         String info = "\n" + this.nome + ";" + this.idade + ";" + this.telefone + ";"
                 + this.email + ";" + this.cpf + ";" + this.sexo;
@@ -92,6 +100,7 @@ abstract public class Pessoa {
      *
      * @param linhaCSV
      */
+    @Override
     public void setInfoCSV(String linhaCSV) {
         String[] info = linhaCSV.split(";");
         this.nome = info[0];
