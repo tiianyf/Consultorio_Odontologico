@@ -13,14 +13,17 @@ import view.*;
  * <https://github.com/01ch01>
  */
 public class ConsultorioOdontologico {
-
+    
     public static void main(String[] args) {
-        FrCadLogin login = new FrCadLogin();
-        login.setVisible(true);
-//        JFrame view = new FrCadProcedimento();
-//        view.setVisible(true);
+//        FrCadLogin login = new FrCadLogin();
+//        login.setVisible(true);
+        JFrame view = new FrCadProcedimento();
+        view.setVisible(true);
 //        JFrame view = new FrCadPaciente();
 //        view.setVisible(true);
+//        FrListaPacientes view = new FrListaPacientes();
+//        view.setVisible(true);
+        
     }
-
+    
 }

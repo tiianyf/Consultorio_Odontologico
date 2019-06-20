@@ -48,7 +48,7 @@ public class TMPacientes extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return this.lstPacientes.size();
+        return this.getLstPacientes().size();
     }
 
     @Override
@@ -59,27 +59,27 @@ public class TMPacientes extends AbstractTableModel {
     @Override
     public Object getValueAt(int linha, int coluna) {
         if (coluna == this.lstColunas.indexOf("Nome")) {
-            return this.lstPacientes.get(linha).getNome();
+            return this.getLstPacientes().get(linha).getNome();
         } else if (coluna == this.lstColunas.indexOf("Idade")) {
-            return this.lstPacientes.get(linha).getIdade();
+            return this.getLstPacientes().get(linha).getIdade();
         } else if (coluna == this.lstColunas.indexOf("Telefone")) {
-            return this.lstPacientes.get(linha).getTelefone();
+            return this.getLstPacientes().get(linha).getTelefone();
         } else if (coluna == this.lstColunas.indexOf("Email")) {
-            return this.lstPacientes.get(linha).getEmail();
+            return this.getLstPacientes().get(linha).getEmail();
         } else if (coluna == this.lstColunas.indexOf("CPF")) {
-            return this.lstPacientes.get(linha).getCpf();
+            return this.getLstPacientes().get(linha).getCpf();
         } else if (coluna == this.lstColunas.indexOf("Sexo")) {
-            return this.lstPacientes.get(linha).getSexo();
+            return this.getLstPacientes().get(linha).getSexo();
         } else if (coluna == this.lstColunas.indexOf("Tipo Sanguíneo")) {
-            return this.lstPacientes.get(linha).getTipoSanguineo();
+            return this.getLstPacientes().get(linha).getTipoSanguineo();
         } else if (coluna == this.lstColunas.indexOf("Alergia")) {
-            return this.lstPacientes.get(linha).getAlergia();
+            return this.getLstPacientes().get(linha).getAlergia();
         } else if (coluna == this.lstColunas.indexOf("Doença")) {
-            return this.lstPacientes.get(linha).getDoenca();
+            return this.getLstPacientes().get(linha).getDoenca();
         } else if (coluna == this.lstColunas.indexOf("Fumante")) {
-            return this.lstPacientes.get(linha).isFumante();
+            return this.getLstPacientes().get(linha).isFumante();
         } else if (coluna == this.lstColunas.indexOf("Diabético")) {
-            return this.lstPacientes.get(linha).isDiabetico();
+            return this.getLstPacientes().get(linha).isDiabetico();
         }
         System.out.println("Objeto não encontrado");
         return null;
@@ -91,7 +91,7 @@ public class TMPacientes extends AbstractTableModel {
     }
 
     public void removerLinha(int linha) {
-        this.lstPacientes.remove(linha);
+        this.getLstPacientes().remove(linha);
         this.fireTableRowsDeleted(linha, linha);
         this.fireTableDataChanged();
     }
@@ -99,4 +99,5 @@ public class TMPacientes extends AbstractTableModel {
     public Paciente getLinha(int indice) {
         return this.getLstPacientes().get(indice);
     }
+
 }

@@ -1,9 +1,13 @@
 package view;
 
 import controller.TMProcedimentos;
-import javax.swing.JFrame;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
+import model.Paciente;
 import model.Procedimento;
 
 public class FrCadProcedimento extends javax.swing.JFrame {
@@ -11,9 +15,14 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     private boolean alteracao;
     private TMProcedimentos tmProcedimentos;
     private Procedimento aux;
+    private Paciente paciente;
+    private List<Procedimento> lstProcedimentos;
 
     public FrCadProcedimento() {
         initComponents();
+
+        this.lstProcedimentos = new ArrayList<>();
+        this.paciente = new Paciente();
         this.tmProcedimentos = new TMProcedimentos();
         this.tblProcedimento.setModel(tmProcedimentos);
         this.alteracao = false;
@@ -51,6 +60,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         this.txtNome.setText(null);
         this.txtCpf.setText(null);
         this.edtTempo.setText(null);
+        this.txtId.setText(null);
 
     }
 
@@ -62,8 +72,8 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     public boolean verificarCamposVazios() {
 
         return this.txtNome.getText().isEmpty()
-            || this.txtCpf.getText().isEmpty()
-            || this.edtTempo.getText().isEmpty();
+                || this.txtCpf.getText().isEmpty()
+                || this.edtTempo.getText().isEmpty();
 
     }
 
@@ -78,7 +88,38 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     }
 
     public void copiarObjetoParaCampos(Procedimento p) {
-        // pra mais tarde
+
+        this.txtNome.setText(this.paciente.getNome());
+        this.txtCpf.setText(this.paciente.getCpf());
+        this.txtId.setText(this.confirmarId().getId());
+        this.edtTempo.setText(Integer.toString(this.aux.getTempo()));
+
+    }
+
+    public Procedimento confirmarId() {
+
+        do {
+
+            this.aux.setId(aux.idAleatorio());
+
+        } while (this.existe(this.aux));
+
+        return this.aux;
+
+    }
+
+    /**
+     *
+     * @param p
+     * @return
+     */
+    public boolean existe(Procedimento p) {
+        for (Procedimento proc : this.lstProcedimentos) {
+            if (proc.getId().equals(p.getId())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int buscar(String termo) {
@@ -112,6 +153,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         lblCpf = new javax.swing.JLabel();
         txtCpf = new javax.swing.JTextField();
         lblId = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProcedimento = new javax.swing.JTable();
         btnNovo = new javax.swing.JButton();
@@ -174,6 +216,9 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         lblId.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblId.setText("ID:");
 
+        txtId.setEditable(false);
+        txtId.setToolTipText("ID do procedimento é aleatório e inalterável!");
+
         javax.swing.GroupLayout painelDadosLayout = new javax.swing.GroupLayout(painelDados);
         painelDados.setLayout(painelDadosLayout);
         painelDadosLayout.setHorizontalGroup(
@@ -207,7 +252,8 @@ public class FrCadProcedimento extends javax.swing.JFrame {
                         .addComponent(edtTempo, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblId)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         painelDadosLayout.setVerticalGroup(
@@ -229,7 +275,8 @@ public class FrCadProcedimento extends javax.swing.JFrame {
                 .addGroup(painelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTempo)
                     .addComponent(edtTempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblId))
+                    .addComponent(lblId)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -393,9 +440,17 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnBuscaPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaPacienteActionPerformed
-        JFrame lista = new FrListaPacientes();
+
+        ListaPacientes lista = new ListaPacientes(this, true);
         lista.setVisible(true);
+        this.paciente = lista.getPacienteSelecionado();
+        this.copiarObjetoParaCampos(this.aux); // parâmetro indiferente
+
     }//GEN-LAST:event_btnBuscaPacienteActionPerformed
+
+    public void buscaPaciente(Paciente p) {
+        this.paciente = p;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxTipos;
@@ -417,6 +472,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     private javax.swing.JPanel painelDados;
     private javax.swing.JTable tblProcedimento;
     private javax.swing.JTextField txtCpf;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 

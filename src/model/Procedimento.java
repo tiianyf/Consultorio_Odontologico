@@ -23,14 +23,14 @@ public enum Procedimento {
 
     private final String descricao;
     private final double valor;
-    private double tempo;
+    private int tempo;
     private Paciente paciente;
     private String id;
 
     private Procedimento(String descricao, double valor) {
         this.descricao = descricao;
         this.valor = valor;
-        this.tempo = -1;
+        this.tempo = 0;
         this.paciente = new Paciente();
         this.id = "-1";
     }
@@ -51,11 +51,11 @@ public enum Procedimento {
         this.paciente = paciente;
     }
 
-    public double getTempo() {
+    public int getTempo() {
         return tempo;
     }
 
-    public void setTempo(double tempo) {
+    public void setTempo(int tempo) {
         this.tempo = tempo;
     }
 

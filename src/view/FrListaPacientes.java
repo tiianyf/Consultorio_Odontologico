@@ -1,18 +1,23 @@
 package view;
 
 import controller.TMPacientes;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.AbstractTableModel;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import model.Paciente;
 
 public class FrListaPacientes extends javax.swing.JFrame {
 
     private TMPacientes tmPacientes;
+    private Paciente paciente;
 
     public FrListaPacientes() {
         initComponents();
@@ -20,9 +25,24 @@ public class FrListaPacientes extends javax.swing.JFrame {
         this.tblPacientes.setModel(tmPacientes);
         this.carregarArquivo("src/csv/lst_pacientes.csv");
         this.tmPacientes.fireTableDataChanged();
+        this.paciente = new Paciente();
     }
 
-    public AbstractTableModel getTmPacientes() {
+    /**
+     * @return the paciente
+     */
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    /**
+     * @param paciente the paciente to set
+     */
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public TMPacientes getTmPacientes() {
         return tmPacientes;
     }
 
@@ -50,9 +70,15 @@ public class FrListaPacientes extends javax.swing.JFrame {
         }
     }
 
+    public Paciente getSelectedObject(int linha) {
+        return this.tmPacientes.getLstPacientes().get(linha);
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         lblTitulo = new javax.swing.JLabel();
         painel1 = new javax.swing.JPanel();
@@ -77,6 +103,15 @@ public class FrListaPacientes extends javax.swing.JFrame {
 
             }
         ));
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tblPacientes, org.jdesktop.beansbinding.ELProperty.create("${selectedElement}"), tblPacientes, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
+        bindingGroup.addBinding(binding);
+
+        tblPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tblPacientesMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPacientes);
 
         javax.swing.GroupLayout painel1Layout = new javax.swing.GroupLayout(painel1);
@@ -105,13 +140,25 @@ public class FrListaPacientes extends javax.swing.JFrame {
                 .addComponent(painel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        bindingGroup.bind();
+
         setSize(new java.awt.Dimension(779, 532));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblPacientesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPacientesMouseReleased
+        // TODO add your handling code here:
+       Paciente p = this.tmPacientes.getLstPacientes().get(tblPacientes.getSelectedRow());
+       FrCadProcedimento view = new FrCadProcedimento();
+       view.buscaPaciente(p);
+       view.dispose();
+    }//GEN-LAST:event_tblPacientesMouseReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel painel1;
     private javax.swing.JTable tblPacientes;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
