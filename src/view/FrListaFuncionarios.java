@@ -1,6 +1,7 @@
+
 package view;
 
-import controller.TMPacientes;
+import controller.TMFuncionarios;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
@@ -8,29 +9,32 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
-import model.Paciente;
+import model.Funcionario;
 
-public class FrListaPacientes extends javax.swing.JFrame {
+/**
+ *
+ * @author cfreitas
+ */
+public class FrListaFuncionarios extends javax.swing.JFrame {
+    private TMFuncionarios tmFuncionario;
 
-    private TMPacientes tmPacientes;
-
-    public FrListaPacientes() {
+    public FrListaFuncionarios() {
         initComponents();
-        this.tmPacientes = new TMPacientes();
-        this.tblPacientes.setModel(tmPacientes);
-        this.carregarArquivo("src/csv/lst_pacientes.csv");
-        this.tmPacientes.fireTableDataChanged();
+        this.tmFuncionario = new TMFuncionarios();
+        this.tblFuncionarios.setModel(tmFuncionario);
+        this.carregarArquivo("src/csv/lst_funcionarios.csv");
+        this.tmFuncionario.fireTableDataChanged();
+    }
+    
+    public AbstractTableModel getTmFuncionarios(){
+        return tmFuncionario;
+    }
+    
+    public void setTmPacientes(TMFuncionarios tMFuncionarios) {
+        this.tmFuncionario = tMFuncionarios;
     }
 
-    public AbstractTableModel getTmPacientes() {
-        return tmPacientes;
-    }
-
-    public void setTmPacientes(TMPacientes tmPacientes) {
-        this.tmPacientes = tmPacientes;
-    }
-
-    public final void carregarArquivo(String caminho) {
+     public final void carregarArquivo(String caminho) {
         FileReader arquivo;
         try {
             arquivo = new FileReader(caminho);
@@ -40,33 +44,32 @@ public class FrListaPacientes extends javax.swing.JFrame {
 
             while (ler.hasNext()) {
                 String linhaCsv = ler.next();
-                Paciente p = new Paciente();
-                p.setInfoCSV(linhaCsv);
-                this.tmPacientes.addLinha(p);
+                Funcionario f = new Funcionario();
+                f.setInfoCSV(linhaCsv);
+                this.tmFuncionario.addLinha(f);
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(FrCadPaciente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrListaFuncionarios.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "ERRO! Arquivo não foi carregado.");
         }
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblPacientes = new javax.swing.JTable();
+        tblFuncionarios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTitulo.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("LISTA DE PACIENTES");
+        lblTitulo.setText("LISTA DE FUNCIONÁRIOS");
         lblTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        tblPacientes.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        tblPacientes.setModel(new javax.swing.table.DefaultTableModel(
+        tblFuncionarios.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tblFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -74,33 +77,30 @@ public class FrListaPacientes extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tblPacientes);
+        jScrollPane1.setViewportView(tblFuncionarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(454, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 49, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         setSize(new java.awt.Dimension(779, 532));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTable tblPacientes;
+    private javax.swing.JTable tblFuncionarios;
     // End of variables declaration//GEN-END:variables
 }

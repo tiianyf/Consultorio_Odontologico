@@ -94,6 +94,7 @@ public class FrAgenda extends javax.swing.JFrame {
         edtCpf1 = new javax.swing.JTextField();
         btnBuscarDentista = new javax.swing.JButton();
         btnBuscarPaciente = new javax.swing.JButton();
+        jDate = new com.toedter.calendar.JDateChooser();
         btnNovo = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
@@ -163,6 +164,8 @@ public class FrAgenda extends javax.swing.JFrame {
         });
         painel1.add(btnBuscarPaciente);
         btnBuscarPaciente.setBounds(580, 20, 90, 20);
+        painel1.add(jDate);
+        jDate.setBounds(90, 80, 94, 19);
 
         btnNovo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
@@ -309,6 +312,7 @@ public class FrAgenda extends javax.swing.JFrame {
     private javax.swing.JTextField edtCpf1;
     private javax.swing.JTextField edtHorario;
     private javax.swing.JTextField edtNome;
+    private com.toedter.calendar.JDateChooser jDate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCpf2;
     private javax.swing.JLabel lblData1;

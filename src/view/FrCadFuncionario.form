@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="btnGrupoCargos">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Cadastro de Funcion&#xe1;rio"/>
@@ -240,8 +244,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="edtNome">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edtNomeKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="edtCpf">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edtCpfKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblSexo">
           <Properties>
@@ -260,6 +270,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdFemActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rdFemKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rdMasc">
@@ -279,6 +290,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="edtIdade">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edtIdadeKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTelefone">
           <Properties>
@@ -289,6 +303,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="edtTelefone">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edtTelefoneKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblEmail">
           <Properties>
@@ -299,6 +316,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="edtEmail">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edtEmailKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCargo">
           <Properties>
@@ -317,29 +337,50 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="edtSalario">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edtSalarioKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rdDProprietario">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="btnGrupoCargos"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Propriet&#xe1;rio"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rdDProprietarioKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rdSecretaria">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="btnGrupoCargos"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Secret&#xe1;ria"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rdAuxiliar">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="btnGrupoCargos"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Auxiliar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rdFaxineira">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="btnGrupoCargos"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Faxineira"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rdDColaborador">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="btnGrupoCargos"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Dentista Colaborador"/>
           </Properties>
         </Component>

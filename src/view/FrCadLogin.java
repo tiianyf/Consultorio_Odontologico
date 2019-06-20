@@ -33,6 +33,12 @@ public class FrCadLogin extends javax.swing.JFrame {
 
         lblSenha.setText("Senha");
 
+        edtLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtLoginKeyReleased(evt);
+            }
+        });
+
         edtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 edtSenhaKeyReleased(evt);
@@ -145,8 +151,16 @@ public class FrCadLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void edtSenhaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtSenhaKeyReleased
-        
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.btnEntrar.requestFocus();
+        }
     }//GEN-LAST:event_edtSenhaKeyReleased
+
+    private void edtLoginKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtLoginKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtSenha.requestFocus();
+        }
+    }//GEN-LAST:event_edtLoginKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
