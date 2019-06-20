@@ -224,6 +224,18 @@ public class FrCadDentista extends javax.swing.JFrame {
         lblCpf.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblCpf.setText("CPF");
 
+        edtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtNomeKeyReleased(evt);
+            }
+        });
+
+        edtCpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtCpfKeyReleased(evt);
+            }
+        });
+
         lblSexo.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblSexo.setText("Sexo");
 
@@ -234,6 +246,11 @@ public class FrCadDentista extends javax.swing.JFrame {
                 rdFemActionPerformed(evt);
             }
         });
+        rdFem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                rdFemKeyReleased(evt);
+            }
+        });
 
         rdMasc.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
         rdMasc.setText("Masculino");
@@ -241,14 +258,38 @@ public class FrCadDentista extends javax.swing.JFrame {
         lblIdade.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblIdade.setText("Idade");
 
+        edtIdade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtIdadeKeyReleased(evt);
+            }
+        });
+
         lblTelefone.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblTelefone.setText("Telefone");
+
+        edtTelefone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtTelefoneKeyReleased(evt);
+            }
+        });
 
         lblEmail.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblEmail.setText("Email");
 
+        edtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtEmailKeyReleased(evt);
+            }
+        });
+
         lblCro.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblCro.setText("CRO");
+
+        edtCro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtCroKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -428,6 +469,7 @@ public class FrCadDentista extends javax.swing.JFrame {
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         this.habilitarCampos(true);
+        this.edtNome.requestFocus();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -435,7 +477,7 @@ public class FrCadDentista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-         String info = JOptionPane.showInputDialog("Digite o CRO:");
+        String info = JOptionPane.showInputDialog("Digite o CRO:");
         DProprietario d = new DProprietario();
         d = this.tmDProprietario.getLstDProprietario().get(this.buscar(info));
 
@@ -466,7 +508,7 @@ public class FrCadDentista extends javax.swing.JFrame {
     }//GEN-LAST:event_brnExcluirActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-         int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente salvar?");
+        int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente salvar?");
 
         if (confirm == JOptionPane.YES_OPTION) {
             if (this.verificarCamposVazios()) {
@@ -481,6 +523,48 @@ public class FrCadDentista extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void edtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtNomeKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtCpf.requestFocus();
+        }
+    }//GEN-LAST:event_edtNomeKeyReleased
+
+    private void edtCpfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtCpfKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.rdFem.requestFocus();
+        }
+    }//GEN-LAST:event_edtCpfKeyReleased
+
+    private void rdFemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rdFemKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtCro.requestFocus();
+        }
+    }//GEN-LAST:event_rdFemKeyReleased
+
+    private void edtCroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtCroKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtTelefone.requestFocus();
+        }
+    }//GEN-LAST:event_edtCroKeyReleased
+
+    private void edtTelefoneKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtTelefoneKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtIdade.requestFocus();
+        }
+    }//GEN-LAST:event_edtTelefoneKeyReleased
+
+    private void edtIdadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtIdadeKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtEmail.requestFocus();
+        }
+    }//GEN-LAST:event_edtIdadeKeyReleased
+
+    private void edtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtEmailKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.btnSalvar.requestFocus();
+        }
+    }//GEN-LAST:event_edtEmailKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnExcluir;

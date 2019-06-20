@@ -22,7 +22,6 @@ public class FrCadPaciente extends javax.swing.JFrame {
         this.tmPaciente = new TMPacientes();
         this.alteracao = false;
         this.habilitarCampos(false);
-        this.tblPaciente.setModel(tmPaciente);
         this.carregarArquivo("src/csv/lst_pacientes.csv");
         this.tmPaciente.fireTableDataChanged();
     }
@@ -253,8 +252,6 @@ public class FrCadPaciente extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         lblInfo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblPaciente = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro Paciente");
@@ -271,8 +268,25 @@ public class FrCadPaciente extends javax.swing.JFrame {
         lblCpf.setText("CPF");
         painel1.add(lblCpf);
         lblCpf.setBounds(17, 49, 26, 17);
+
+        edtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtNomeActionPerformed(evt);
+            }
+        });
+        edtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtNomeKeyReleased(evt);
+            }
+        });
         painel1.add(edtNome);
         edtNome.setBounds(92, 23, 559, 19);
+
+        edtCpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtCpfKeyReleased(evt);
+            }
+        });
         painel1.add(edtCpf);
         edtCpf.setBounds(92, 48, 559, 19);
 
@@ -302,6 +316,17 @@ public class FrCadPaciente extends javax.swing.JFrame {
         lblIdade.setText("Idade");
         painel1.add(lblIdade);
         lblIdade.setBounds(291, 82, 40, 17);
+
+        edtIdade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtIdadeActionPerformed(evt);
+            }
+        });
+        edtIdade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtIdadeKeyReleased(evt);
+            }
+        });
         painel1.add(edtIdade);
         edtIdade.setBounds(343, 81, 43, 19);
 
@@ -309,6 +334,17 @@ public class FrCadPaciente extends javax.swing.JFrame {
         lblTipoSanguineo.setText("Tipo Sanguíneo");
         painel1.add(lblTipoSanguineo);
         lblTipoSanguineo.setBounds(404, 80, 111, 17);
+
+        edtTipoSanguineo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtTipoSanguineoActionPerformed(evt);
+            }
+        });
+        edtTipoSanguineo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtTipoSanguineoKeyReleased(evt);
+            }
+        });
         painel1.add(edtTipoSanguineo);
         edtTipoSanguineo.setBounds(527, 79, 124, 19);
 
@@ -316,6 +352,12 @@ public class FrCadPaciente extends javax.swing.JFrame {
         lblTelefone.setText("Telefone");
         painel1.add(lblTelefone);
         lblTelefone.setBounds(17, 113, 63, 17);
+
+        edtTelefone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtTelefoneKeyReleased(evt);
+            }
+        });
         painel1.add(edtTelefone);
         edtTelefone.setBounds(92, 112, 181, 19);
 
@@ -323,6 +365,12 @@ public class FrCadPaciente extends javax.swing.JFrame {
         lblEmail.setText("Email");
         painel1.add(lblEmail);
         lblEmail.setBounds(17, 150, 40, 17);
+
+        edtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtEmailKeyReleased(evt);
+            }
+        });
         painel1.add(edtEmail);
         edtEmail.setBounds(92, 149, 559, 19);
 
@@ -353,8 +401,20 @@ public class FrCadPaciente extends javax.swing.JFrame {
         lblAlergia.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblAlergia.setText("Alergia");
 
+        edtAlergia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtAlergiaKeyReleased(evt);
+            }
+        });
+
         lblDoenca.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblDoenca.setText("Doença");
+
+        edtDoenca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtDoencaKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout painel2Layout = new javax.swing.GroupLayout(painel2);
         painel2.setLayout(painel2Layout);
@@ -363,6 +423,10 @@ public class FrCadPaciente extends javax.swing.JFrame {
             .addGroup(painel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painel2Layout.createSequentialGroup()
+                        .addComponent(lblAlergia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(edtAlergia))
                     .addGroup(painel2Layout.createSequentialGroup()
                         .addComponent(lblFumante)
                         .addGap(18, 18, 18)
@@ -377,12 +441,8 @@ public class FrCadPaciente extends javax.swing.JFrame {
                         .addComponent(rdDNao)
                         .addGap(0, 152, Short.MAX_VALUE))
                     .addGroup(painel2Layout.createSequentialGroup()
-                        .addComponent(lblAlergia)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(edtAlergia))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painel2Layout.createSequentialGroup()
                         .addComponent(lblDoenca)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(edtDoenca)))
                 .addContainerGap())
         );
@@ -407,7 +467,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
                 .addGroup(painel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(edtDoenca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDoenca))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         btnNovo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
@@ -465,42 +525,30 @@ public class FrCadPaciente extends javax.swing.JFrame {
         lblInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInfo.setText("INFORMAÇÕES COMPLEMENTARES");
 
-        tblPaciente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        tblPaciente.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(tblPaciente);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblInfo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(painel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(painel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCancelar)
-                .addGap(18, 18, 18)
-                .addComponent(brnExcluir)
-                .addGap(18, 18, 18)
-                .addComponent(btnSalvar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblInfo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(painel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(painel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelar)
+                        .addGap(18, 18, 18)
+                        .addComponent(brnExcluir)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSalvar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -509,14 +557,11 @@ public class FrCadPaciente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(painel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(painel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(painel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(painel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
@@ -527,13 +572,14 @@ public class FrCadPaciente extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(1267, 572));
+        setSize(new java.awt.Dimension(712, 572));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         this.habilitarCampos(true);
         this.alteracao = false;
+        this.edtNome.requestFocus();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void rdFemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdFemActionPerformed
@@ -585,6 +631,66 @@ public class FrCadPaciente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_brnExcluirActionPerformed
 
+    private void edtCpfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtCpfKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.rdFem.requestFocus();
+        }
+    }//GEN-LAST:event_edtCpfKeyReleased
+
+    private void edtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtNomeActionPerformed
+
+    private void edtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtNomeKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtCpf.requestFocus();
+        }
+    }//GEN-LAST:event_edtNomeKeyReleased
+
+    private void edtIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtIdadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtIdadeActionPerformed
+
+    private void edtIdadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtIdadeKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtTipoSanguineo.requestFocus();
+        }
+    }//GEN-LAST:event_edtIdadeKeyReleased
+
+    private void edtTipoSanguineoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtTipoSanguineoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtTipoSanguineoActionPerformed
+
+    private void edtTipoSanguineoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtTipoSanguineoKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtTelefone.requestFocus();
+        }
+    }//GEN-LAST:event_edtTipoSanguineoKeyReleased
+
+    private void edtTelefoneKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtTelefoneKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtEmail.requestFocus();
+        }
+    }//GEN-LAST:event_edtTelefoneKeyReleased
+
+    private void edtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtEmailKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.rdFSim.requestFocus();
+        }
+    }//GEN-LAST:event_edtEmailKeyReleased
+
+    private void edtAlergiaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtAlergiaKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtDoenca.requestFocus();
+        }
+    }//GEN-LAST:event_edtAlergiaKeyReleased
+
+    private void edtDoencaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtDoencaKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.btnSalvar.requestFocus();
+        }
+    }//GEN-LAST:event_edtDoencaKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bntGrupoFumante;
     private javax.swing.JButton brnExcluir;
@@ -602,7 +708,6 @@ public class FrCadPaciente extends javax.swing.JFrame {
     private javax.swing.JTextField edtNome;
     private javax.swing.JTextField edtTelefone;
     private javax.swing.JTextField edtTipoSanguineo;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAlergia;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblDiabetico;
@@ -624,6 +729,5 @@ public class FrCadPaciente extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdFSim;
     private javax.swing.JRadioButton rdFem;
     private javax.swing.JRadioButton rdMasc;
-    private javax.swing.JTable tblPaciente;
     // End of variables declaration//GEN-END:variables
 }

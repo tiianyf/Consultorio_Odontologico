@@ -13,7 +13,7 @@ import view.*;
  * <https://github.com/01ch01>
  */
 public class ConsultorioOdontologico {
-    
+
     public static void main(String[] args) {
 //        FrCadLogin login = new FrCadLogin();
 //        login.setVisible(true);
@@ -23,7 +23,7 @@ public class ConsultorioOdontologico {
 //        view.setVisible(true);
 //        FrListaPacientes view = new FrListaPacientes();
 //        view.setVisible(true);
-        
+
     }
-    
+
 }

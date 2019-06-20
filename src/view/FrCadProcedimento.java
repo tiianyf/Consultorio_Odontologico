@@ -305,6 +305,11 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         btnEditar.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel.png"))); // NOI18N
@@ -422,7 +427,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         this.habilitarCampos(true);
-
+        this.alteracao = false;
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -447,6 +452,10 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         this.copiarObjetoParaCampos(this.aux); // parâmetro indiferente
 
     }//GEN-LAST:event_btnBuscaPacienteActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        this.alteracao = true;
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     public void buscaPaciente(Paciente p) {
         this.paciente = p;

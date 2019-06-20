@@ -159,7 +159,6 @@ public class ListaPacientes extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tblPacientesMouseReleased
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -43,5 +43,5 @@ public class Caixa {
     public void setaReceber(double aReceber) {
         this.aReceber = aReceber;
     }
-    
+
 }

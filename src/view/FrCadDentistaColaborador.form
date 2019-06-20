@@ -212,8 +212,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="edtNome">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edtNomeKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="edtCpf">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edtCpfKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblSexo">
           <Properties>
@@ -235,6 +241,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdFemActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rdFemKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rdMasc">
@@ -257,6 +264,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="edtIdade">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edtIdadeKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTelefone">
           <Properties>
@@ -267,6 +277,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="edtTelefone">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edtTelefoneKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblEmail">
           <Properties>
@@ -277,6 +290,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="edtEmail">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edtEmailKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCro">
           <Properties>
@@ -287,6 +303,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="edtCro">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="edtCroKeyReleased"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

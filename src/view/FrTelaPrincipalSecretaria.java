@@ -315,7 +315,7 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
     }//GEN-LAST:event_menuAgendarActionPerformed
 
     private void menuLstPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLstPacientesActionPerformed
-        FrListaPacientes tela = new FrListaPacientes();
+        ListaPacientes tela = new ListaPacientes(this, true);
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_menuLstPacientesActionPerformed

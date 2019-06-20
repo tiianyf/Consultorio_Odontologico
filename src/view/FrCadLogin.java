@@ -5,12 +5,14 @@ import model.DProprietario;
 import model.Secretaria;
 
 public class FrCadLogin extends javax.swing.JFrame {
+
     DProprietario d = new DProprietario();
     Secretaria s = new Secretaria();
+
     public FrCadLogin() {
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -32,6 +34,12 @@ public class FrCadLogin extends javax.swing.JFrame {
         lblLogin.setText("Login");
 
         lblSenha.setText("Senha");
+
+        edtLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtLoginKeyReleased(evt);
+            }
+        });
 
         edtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -124,20 +132,18 @@ public class FrCadLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        if(edtLogin.getText().equalsIgnoreCase(d.getUsuario()) && edtSenha.getText().equals(d.getSenha())){
+        if (edtLogin.getText().equalsIgnoreCase(d.getUsuario()) && edtSenha.getText().equals(d.getSenha())) {
             FrTelaPrincipal tela = new FrTelaPrincipal();
             tela.setVisible(true);
             dispose();
-        }
-        else if (edtLogin.getText().equalsIgnoreCase(s.getUsuario()) && edtSenha.getText().equals(s.getSenha())){
+        } else if (edtLogin.getText().equalsIgnoreCase(s.getUsuario()) && edtSenha.getText().equals(s.getSenha())) {
             FrTelaPrincipalSecretaria tela = new FrTelaPrincipalSecretaria();
             tela.setVisible(true);
             dispose();
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Senha ou Usuário Inválidos!");
         }
-        
+
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
@@ -145,8 +151,16 @@ public class FrCadLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void edtSenhaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtSenhaKeyReleased
-        
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.btnEntrar.requestFocus();
+        }
     }//GEN-LAST:event_edtSenhaKeyReleased
+
+    private void edtLoginKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtLoginKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtSenha.requestFocus();
+        }
+    }//GEN-LAST:event_edtLoginKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;

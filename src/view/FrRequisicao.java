@@ -9,7 +9,10 @@ import controller.TMMateriais;
 public class FrRequisicao extends javax.swing.JFrame {
 
     private TMMateriais tmMaterial;
-    /** Creates new form FrRequisicao */
+
+    /**
+     * Creates new form FrRequisicao
+     */
     public FrRequisicao() {
         initComponents();
         this.tblRequisicoes.setModel(tmMaterial);
@@ -101,7 +104,6 @@ public class FrRequisicao extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox jCheckBox1;

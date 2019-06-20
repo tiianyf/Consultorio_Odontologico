@@ -83,7 +83,7 @@ abstract public class Pessoa {
      */
     public String getInfoCSV() {
         String info = "\n" + this.nome + ";" + this.idade + ";" + this.telefone + ";"
-            + this.email + ";" + this.cpf + ";" + this.sexo;
+                + this.email + ";" + this.cpf + ";" + this.sexo;
         return info;
     }
 

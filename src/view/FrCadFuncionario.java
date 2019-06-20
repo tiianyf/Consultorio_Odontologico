@@ -88,23 +88,19 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         f.setIdade(Integer.parseInt(this.edtIdade.getText()));
         f.setTelefone(this.edtTelefone.getText());
         f.setEmail(this.edtEmail.getText());
-        
-        if(this.rdDProprietario.isSelected()){
+
+        if (this.rdDProprietario.isSelected()) {
             f.setCargo("Proprietário");
-        }
-        else if(this.rdSecretaria.isSelected()){
+        } else if (this.rdSecretaria.isSelected()) {
             f.setCargo("Secretária");
-        }
-        else if(this.rdAuxiliar.isSelected()){
+        } else if (this.rdAuxiliar.isSelected()) {
             f.setCargo("Auxiliar");
-        }
-        else if(this.rdFaxineira.isSelected()){
+        } else if (this.rdFaxineira.isSelected()) {
             f.setCargo("Faxineira");
-        }
-        else if(this.rdDColaborador.isSelected()){
+        } else if (this.rdDColaborador.isSelected()) {
             f.setCargo("Dentista Colaborador");
         }
-        
+
         f.setSalario(Double.parseDouble(this.edtSalario.getText()));
     }
 
@@ -121,25 +117,24 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         this.edtIdade.setText(f.getIdade() + "");
         this.edtTelefone.setText(f.getTelefone());
         this.edtEmail.setText(f.getEmail());
-        
+
         switch (f.getCargo()) {
             case "Proprietário":
-                this.rdDProprietario.isSelected();
+                this.rdDProprietario.setSelected(true);
                 break;
             case "Secretária":
-                this.rdSecretaria.isSelected();
+                this.rdSecretaria.setSelected(true);
                 break;
             case "Auxiliar":
-                this.rdAuxiliar.isSelected();
+                this.rdAuxiliar.setSelected(true);
                 break;
             case "Faxineira":
-                this.rdFaxineira.isSelected();
+                this.rdFaxineira.setSelected(true);
                 break;
             case "Dentista Colaborador":
-                this.rdDColaborador.isSelected();
+                this.rdDColaborador.setSelected(true);
                 break;
         }
-        
         this.edtSalario.setText(f.getSalario() + "");
 
     }
@@ -231,6 +226,7 @@ public class FrCadFuncionario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGrupoCargos = new javax.swing.ButtonGroup();
         lblTitulo = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
@@ -278,6 +274,18 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         lblCpf.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblCpf.setText("CPF");
 
+        edtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtNomeKeyReleased(evt);
+            }
+        });
+
+        edtCpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtCpfKeyReleased(evt);
+            }
+        });
+
         lblSexo.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblSexo.setText("Sexo");
 
@@ -288,6 +296,11 @@ public class FrCadFuncionario extends javax.swing.JFrame {
                 rdFemActionPerformed(evt);
             }
         });
+        rdFem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                rdFemKeyReleased(evt);
+            }
+        });
 
         rdMasc.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
         rdMasc.setText("Masculino");
@@ -295,11 +308,29 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         lblIdade.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblIdade.setText("Idade");
 
+        edtIdade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtIdadeKeyReleased(evt);
+            }
+        });
+
         lblTelefone.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblTelefone.setText("Telefone");
 
+        edtTelefone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtTelefoneKeyReleased(evt);
+            }
+        });
+
         lblEmail.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblEmail.setText("Email");
+
+        edtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtEmailKeyReleased(evt);
+            }
+        });
 
         lblCargo.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblCargo.setText("Cargo");
@@ -307,14 +338,30 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         lblSalario.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblSalario.setText("Salário");
 
-        rdDProprietario.setText("Proprietário");
+        edtSalario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtSalarioKeyReleased(evt);
+            }
+        });
 
+        btnGrupoCargos.add(rdDProprietario);
+        rdDProprietario.setText("Proprietário");
+        rdDProprietario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                rdDProprietarioKeyReleased(evt);
+            }
+        });
+
+        btnGrupoCargos.add(rdSecretaria);
         rdSecretaria.setText("Secretária");
 
+        btnGrupoCargos.add(rdAuxiliar);
         rdAuxiliar.setText("Auxiliar");
 
+        btnGrupoCargos.add(rdFaxineira);
         rdFaxineira.setText("Faxineira");
 
+        btnGrupoCargos.add(rdDColaborador);
         rdDColaborador.setText("Dentista Colaborador");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -530,6 +577,7 @@ public class FrCadFuncionario extends javax.swing.JFrame {
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         this.habilitarCampos(true);
+        this.edtNome.requestFocus();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -582,12 +630,62 @@ public class FrCadFuncionario extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Campo Vazio!");
             }
         }
+        this.habilitarCampos(false);
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void edtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtNomeKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtCpf.requestFocus();
+        }
+    }//GEN-LAST:event_edtNomeKeyReleased
+
+    private void edtCpfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtCpfKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.rdFem.requestFocus();
+        }
+    }//GEN-LAST:event_edtCpfKeyReleased
+
+    private void rdFemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rdFemKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtTelefone.requestFocus();
+        }
+    }//GEN-LAST:event_rdFemKeyReleased
+
+    private void edtTelefoneKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtTelefoneKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtIdade.requestFocus();
+        }
+    }//GEN-LAST:event_edtTelefoneKeyReleased
+
+    private void edtIdadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtIdadeKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtEmail.requestFocus();
+        }
+    }//GEN-LAST:event_edtIdadeKeyReleased
+
+    private void edtEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtEmailKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.rdDProprietario.requestFocus();
+        }
+    }//GEN-LAST:event_edtEmailKeyReleased
+
+    private void rdDProprietarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rdDProprietarioKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.edtSalario.requestFocus();
+        }
+    }//GEN-LAST:event_rdDProprietarioKeyReleased
+
+    private void edtSalarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtSalarioKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            this.btnSalvar.requestFocus();
+        }
+    }//GEN-LAST:event_edtSalarioKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnExcluir;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
+    private javax.swing.ButtonGroup btnGrupoCargos;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JTextField edtCpf;

@@ -64,7 +64,7 @@ public class Paciente extends Pessoa {
         String info = super.getInfoCSV();
 
         info += ";" + this.tipoSanguineo + ";" + this.alergia + ";" + this.doenca + ";" + this.fumante
-            + ";" + this.diabetico + "\n";
+                + ";" + this.diabetico + "\n";
 
         return info;
     }
@@ -84,7 +84,7 @@ public class Paciente extends Pessoa {
         aux = Boolean.toString(this.diabetico);
         aux = info[10];
     }
-    
+
     @Override
     public String getCabecalhoCSV() {
 

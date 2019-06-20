@@ -4,7 +4,7 @@ package model;
  *
  * @author cfreitas
  */
- public class Funcionario extends Pessoa {
+public class Funcionario extends Pessoa {
 
     protected double salario;
     protected String cargo;
@@ -68,13 +68,13 @@ package model;
 
     @Override
     public void setInfoCSV(String linhaCSV) {
-        
+
         super.setInfoCSV(linhaCSV);
         String[] info = linhaCSV.split(";");
 
         this.salario = Double.parseDouble(info[6]);
         this.cargo = info[7];
-    
+
     }
 
 }
