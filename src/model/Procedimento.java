@@ -74,9 +74,11 @@ public enum Procedimento {
      */
     public String idAleatorio() {
 
+        System.out.println("oi");
         Random r = new Random();
         int resultado = 1000 + r.nextInt(10000);
         String aux = Integer.toString(resultado);
+
         return aux;
 
     }

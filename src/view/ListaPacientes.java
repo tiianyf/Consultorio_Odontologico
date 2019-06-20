@@ -31,7 +31,9 @@ public class ListaPacientes extends javax.swing.JDialog {
      */
     public ListaPacientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        
         initComponents();
+        
         this.tmPacientes = new TMPacientes();
         this.tblPacientes.setModel(tmPacientes);
         this.carregarArquivo("src/csv/lst_pacientes.csv");
@@ -81,6 +83,7 @@ public class ListaPacientes extends javax.swing.JDialog {
                 p.setInfoCSV(linhaCsv);
                 this.getTmPacientes().addLinha(p);
             }
+            
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FrCadPaciente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "ERRO! Arquivo não foi carregado.");

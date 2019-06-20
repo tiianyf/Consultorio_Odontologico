@@ -27,6 +27,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         this.tblProcedimento.setModel(tmProcedimentos);
         this.alteracao = false;
         this.habilitarCampos(false);
+        this.btnNovo.requestFocus();
     }
 
     public AbstractTableModel getTmProcedimentos() {
@@ -100,7 +101,8 @@ public class FrCadProcedimento extends javax.swing.JFrame {
 
         do {
 
-            this.aux.setId(aux.idAleatorio());
+            String resultado = aux.idAleatorio();
+            this.aux.setId(resultado);
 
         } while (this.existe(this.aux));
 
@@ -445,7 +447,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnBuscaPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaPacienteActionPerformed
-
+        
         ListaPacientes lista = new ListaPacientes(this, true);
         lista.setVisible(true);
         this.paciente = lista.getPacienteSelecionado();
