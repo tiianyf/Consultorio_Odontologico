@@ -75,10 +75,13 @@ public class FrCadProcedimento extends javax.swing.JFrame {
             while (ler.hasNext()) {
 
                 String linhaCSV = ler.next();
-                Procedimento p = Procedimento.CLAREAMENTO;//isso tá errado
+                String[] tipo = linhaCSV.split(";");
+
+                Procedimento p = this.conferirTipo(tipo);
+
                 p.setInfoCSV(linhaCSV);
                 this.tmProcedimentos.addLinha(p);
-                System.out.println(linhaCSV);
+
             }
 
         } catch (FileNotFoundException ex) {
@@ -86,6 +89,49 @@ public class FrCadProcedimento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ERRO! Arquivo não foi carregado.");
         }
 
+    }
+
+    /**
+     * Foi-se necessário criar este método pois ao ler e obter as informações do
+     * arquivo em CSV, notou-se que ext
+     *
+     * @param tipo
+     * @return
+     */
+    public Procedimento conferirTipo(String[] tipo) {
+
+        Procedimento p = null;
+
+        if (tipo[1].equals(Procedimento.CLAREAMENTO.getDescricao())) {
+
+            p = Procedimento.CLAREAMENTO;
+
+        } else if (tipo[1].equals(Procedimento.ENDODONTIA.getDescricao())) {
+
+            p = Procedimento.ENDODONTIA;
+
+        } else if (tipo[1].equals(Procedimento.ENXERTO.getDescricao())) {
+
+            p = Procedimento.ENXERTO;
+
+        } else if (tipo[1].equals(Procedimento.IMPLANTE.getDescricao())) {
+
+            p = Procedimento.IMPLANTE;
+
+        } else if (tipo[1].equals(Procedimento.PROTESE.getDescricao())) {
+
+            p = Procedimento.PROTESE;
+
+        } else if (tipo[1].equals(Procedimento.RASPAGEM.getDescricao())) {
+
+            p = Procedimento.RASPAGEM;
+
+        } else if (tipo[1].equals(Procedimento.TRATAMENTO.getDescricao())) {
+
+            p = Procedimento.TRATAMENTO;
+
+        }
+        return p;
     }
 
     public void salvarArquivo(String caminho) {
