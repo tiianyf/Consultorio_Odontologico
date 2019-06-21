@@ -75,9 +75,9 @@ public class FrCadProcedimento extends javax.swing.JFrame {
             while (ler.hasNext()) {
 
                 String linhaCSV = ler.next();
-                String[] tipo = linhaCSV.split(";");
+                String[] linha = linhaCSV.split(";");
 
-                Procedimento p = this.conferirTipo(tipo);
+                Procedimento p = this.conferirTipo(linha);
 
                 p.setInfoCSV(linhaCSV);
                 this.tmProcedimentos.addLinha(p);
@@ -92,41 +92,52 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     }
 
     /**
-     * Foi-se necessário criar este método pois ao ler e obter as informações do
-     * arquivo em CSV, notou-se que ext
+     * Foi-se necessário criar este método pois normalmente, ao ler e obter as
+     * informações do arquivo em CSV, instanciamos um objeto auxiliar que lê o
+     * arquivo linha a linha (objeto por objeto). Porém, Procedimento é uma
+     * classe enum, e não pode ser instanciado sem uma contante (neste caso em
+     * específico, um tipo de procedimento), e o nosso objeto auxiliar precisa
+     * "mudar de tipo" cada vez que ele lê o arquivo. Então, para cada vez que
+     * uma linha do arquivo for lida, o objeto auxiliar será instanciado
+     * novamente com um novo tipo, de acordo com o tipo de procedimento salvo no
+     * arquivo.
      *
-     * @param tipo
-     * @return
+     * @param linha a linha do arquivo que está sendo lida no momento,
+     * tranformada em um vetor, em que cada posição representa um atributo da
+     * classe Procedimento. O atributo "tipo" está guardado na segunda posição
+     * do vetor (índice 1).
+     * @return o objeto Procedimento instanciado com o tipo referente ao da
+     * linha do arquivo em questão.
      */
-    public Procedimento conferirTipo(String[] tipo) {
+    public Procedimento conferirTipo(String[] linha) {
 
         Procedimento p = null;
 
-        if (tipo[1].equals(Procedimento.CLAREAMENTO.getDescricao())) {
+        if (linha[1].equals(Procedimento.CLAREAMENTO.getDescricao())) {
 
             p = Procedimento.CLAREAMENTO;
 
-        } else if (tipo[1].equals(Procedimento.ENDODONTIA.getDescricao())) {
+        } else if (linha[1].equals(Procedimento.ENDODONTIA.getDescricao())) {
 
             p = Procedimento.ENDODONTIA;
 
-        } else if (tipo[1].equals(Procedimento.ENXERTO.getDescricao())) {
+        } else if (linha[1].equals(Procedimento.ENXERTO.getDescricao())) {
 
             p = Procedimento.ENXERTO;
 
-        } else if (tipo[1].equals(Procedimento.IMPLANTE.getDescricao())) {
+        } else if (linha[1].equals(Procedimento.IMPLANTE.getDescricao())) {
 
             p = Procedimento.IMPLANTE;
 
-        } else if (tipo[1].equals(Procedimento.PROTESE.getDescricao())) {
+        } else if (linha[1].equals(Procedimento.PROTESE.getDescricao())) {
 
             p = Procedimento.PROTESE;
 
-        } else if (tipo[1].equals(Procedimento.RASPAGEM.getDescricao())) {
+        } else if (linha[1].equals(Procedimento.RASPAGEM.getDescricao())) {
 
             p = Procedimento.RASPAGEM;
 
-        } else if (tipo[1].equals(Procedimento.TRATAMENTO.getDescricao())) {
+        } else if (linha[1].equals(Procedimento.TRATAMENTO.getDescricao())) {
 
             p = Procedimento.TRATAMENTO;
 
