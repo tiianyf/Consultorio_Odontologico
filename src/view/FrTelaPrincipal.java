@@ -11,6 +11,7 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
         this.btnPainelInternoPaciente.setEnabled(false);
         this.menuCadCliente.setEnabled(false);
         this.menuAgendar.setEnabled(false);
+        this.btnTelaInternaAgenda.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -84,10 +85,15 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
         btnTelaInternaAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/agenda.png"))); // NOI18N
         btnTelaInternaAgenda.setToolTipText("Agenda");
         btnTelaInternaAgenda.setContentAreaFilled(false);
+        btnTelaInternaAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTelaInternaAgendaActionPerformed(evt);
+            }
+        });
         painelInterno.add(btnTelaInternaAgenda);
         btnTelaInternaAgenda.setBounds(670, 80, 98, 100);
 
-        btnPainelInternoDColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dcColaborador.png"))); // NOI18N
+        btnPainelInternoDColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/avatar.png"))); // NOI18N
         btnPainelInternoDColaborador.setToolTipText("Dentista Colaborador");
         btnPainelInternoDColaborador.setContentAreaFilled(false);
         btnPainelInternoDColaborador.addActionListener(new java.awt.event.ActionListener() {
@@ -96,9 +102,9 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
             }
         });
         painelInterno.add(btnPainelInternoDColaborador);
-        btnPainelInternoDColaborador.setBounds(350, 80, 98, 100);
+        btnPainelInternoDColaborador.setBounds(240, 80, 98, 100);
 
-        btnPainelInternoProcedimento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/procedimento.png"))); // NOI18N
+        btnPainelInternoProcedimento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/health-report2.png"))); // NOI18N
         btnPainelInternoProcedimento.setToolTipText("Procedimento");
         btnPainelInternoProcedimento.setContentAreaFilled(false);
         btnPainelInternoProcedimento.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +113,7 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
             }
         });
         painelInterno.add(btnPainelInternoProcedimento);
-        btnPainelInternoProcedimento.setBounds(240, 80, 98, 100);
+        btnPainelInternoProcedimento.setBounds(350, 80, 98, 100);
 
         btnPainelInternoFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/funcionario.png"))); // NOI18N
         btnPainelInternoFuncionario.setToolTipText("Funcionário");
@@ -334,6 +340,10 @@ public final class FrTelaPrincipal extends javax.swing.JFrame {
         FrListaFuncionarios tela = new FrListaFuncionarios();
         tela.setVisible(true);
     }//GEN-LAST:event_menuLstFuncionariosActionPerformed
+
+    private void btnTelaInternaAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTelaInternaAgendaActionPerformed
+        
+    }//GEN-LAST:event_btnTelaInternaAgendaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPainelInternoDColaborador;

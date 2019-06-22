@@ -15,6 +15,7 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
         this.menuCadFuncionarios.setEnabled(false);
         this.menuCadProprietario.setEnabled(false);
         this.menuCadFuncionarios.setEnabled(false);
+        this.menuCadProcedimento.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -45,6 +46,7 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
         menuAgendar = new javax.swing.JMenuItem();
         menuConsultar = new javax.swing.JMenu();
         menuLstPacientes = new javax.swing.JMenuItem();
+        menuLstFuncionarios = new javax.swing.JMenuItem();
         menuCaixa = new javax.swing.JMenu();
         menuBoasVindas = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -87,10 +89,15 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
         btnTelaInternaAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/agenda.png"))); // NOI18N
         btnTelaInternaAgenda.setToolTipText("Agenda");
         btnTelaInternaAgenda.setContentAreaFilled(false);
+        btnTelaInternaAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTelaInternaAgendaActionPerformed(evt);
+            }
+        });
         painelInterno.add(btnTelaInternaAgenda);
         btnTelaInternaAgenda.setBounds(670, 80, 98, 100);
 
-        btnPainelInternoDColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dcColaborador.png"))); // NOI18N
+        btnPainelInternoDColaborador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/avatar.png"))); // NOI18N
         btnPainelInternoDColaborador.setToolTipText("Dentista Colaborador");
         btnPainelInternoDColaborador.setContentAreaFilled(false);
         btnPainelInternoDColaborador.addActionListener(new java.awt.event.ActionListener() {
@@ -99,9 +106,9 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
             }
         });
         painelInterno.add(btnPainelInternoDColaborador);
-        btnPainelInternoDColaborador.setBounds(350, 80, 98, 100);
+        btnPainelInternoDColaborador.setBounds(240, 80, 98, 100);
 
-        btnPainelInternoProcedimento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/procedimento.png"))); // NOI18N
+        btnPainelInternoProcedimento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/health-report2.png"))); // NOI18N
         btnPainelInternoProcedimento.setToolTipText("Procedimento");
         btnPainelInternoProcedimento.setContentAreaFilled(false);
         btnPainelInternoProcedimento.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +117,7 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
             }
         });
         painelInterno.add(btnPainelInternoProcedimento);
-        btnPainelInternoProcedimento.setBounds(240, 80, 98, 100);
+        btnPainelInternoProcedimento.setBounds(350, 80, 98, 100);
 
         btnPainelInternoFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/funcionario.png"))); // NOI18N
         btnPainelInternoFuncionario.setToolTipText("Funcionário");
@@ -220,6 +227,9 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
         });
         menuConsultar.add(menuLstPacientes);
 
+        menuLstFuncionarios.setText("Lista de Funcionários");
+        menuConsultar.add(menuLstFuncionarios);
+
         menuPrincipal.add(menuConsultar);
 
         menuCaixa.setText("Caixa");
@@ -318,6 +328,11 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_menuLstPacientesActionPerformed
 
+    private void btnTelaInternaAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTelaInternaAgendaActionPerformed
+        FrAgenda tela = new FrAgenda();
+        tela.setVisible(true);
+    }//GEN-LAST:event_btnTelaInternaAgendaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPainelInternoDColaborador;
     private javax.swing.JButton btnPainelInternoFuncionario;
@@ -342,6 +357,7 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuCaixa;
     private javax.swing.JMenu menuConsultar;
+    private javax.swing.JMenuItem menuLstFuncionarios;
     private javax.swing.JMenuItem menuLstPacientes;
     private javax.swing.JMenuBar menuPrincipal;
     private javax.swing.JMenu menuSair;

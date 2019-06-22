@@ -5,7 +5,6 @@
  */
 package view;
 
-import controller.TMDProprietario;
 import controller.TMPacientes;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -168,7 +167,7 @@ public class FrAgenda extends javax.swing.JFrame {
         jDate.setBounds(90, 80, 94, 19);
 
         btnNovo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
+        btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
         btnNovo.setText("Novo");
         btnNovo.setAutoscrolls(true);
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -187,7 +186,7 @@ public class FrAgenda extends javax.swing.JFrame {
         });
 
         btnSalvar.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/btnSave.png"))); // NOI18N
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,7 +204,7 @@ public class FrAgenda extends javax.swing.JFrame {
         });
 
         btnEditar.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/btnEdit.png"))); // NOI18N
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,7 +236,7 @@ public class FrAgenda extends javax.swing.JFrame {
                         .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnCancelar)
                         .addGap(18, 18, 18)
                         .addComponent(brnExcluir)
@@ -260,9 +259,9 @@ public class FrAgenda extends javax.swing.JFrame {
                     .addComponent(btnNovo)
                     .addComponent(btnEditar)
                     .addComponent(btnCancelar)
-                    .addComponent(brnExcluir)
-                    .addComponent(btnSalvar))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(brnExcluir))
+                .addGap(30, 30, 30))
         );
 
         setSize(new java.awt.Dimension(723, 442));

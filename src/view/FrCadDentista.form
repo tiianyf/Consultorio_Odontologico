@@ -46,7 +46,7 @@
               <Component id="brnExcluir" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="61" max="32767" attributes="0"/>
+              <EmptySpace pref="63" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -291,7 +291,7 @@
           <Font name="DejaVu Sans" size="12" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icons/user.png"/>
+          <Image iconType="3" name="/icons/new.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Novo"/>
         <Property name="autoscrolls" type="boolean" value="true"/>
@@ -306,7 +306,7 @@
           <Font name="DejaVu Sans" size="12" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icons/btnEdit.png"/>
+          <Image iconType="3" name="/icons/edit.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
@@ -348,7 +348,7 @@
           <Font name="DejaVu Sans" size="12" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icons/btnSave.png"/>
+          <Image iconType="3" name="/icons/save.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>

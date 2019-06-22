@@ -253,7 +253,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     }
 
     /**
-     * Confirma de o ID do procedimento em questão não está sendo utilizado por
+     * Confirma se o ID do procedimento em questão não está sendo utilizado por
      * outro procedimento dentro da lista (já que o ID é aleatório). Basicamente
      * o método consiste em gerar um novo ID caso ele já tenha sido usado em
      * outro procedimento salvo na lista.
@@ -322,7 +322,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         lblTempo = new javax.swing.JLabel();
         edtTempo = new javax.swing.JTextField();
         lblValor = new javax.swing.JLabel();
-        boxTipos = new javax.swing.JComboBox<>();
+        boxTipos = new javax.swing.JComboBox<String>();
         btnBuscaPaciente = new javax.swing.JButton();
         txtNome = new javax.swing.JTextField();
         lblCpf = new javax.swing.JLabel();
@@ -361,7 +361,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         lblValor.setText("Valor:");
 
         boxTipos.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
-        boxTipos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Clareamento dental", "Tratamento ortodôntico", "Implante", "Próteses fixas", "Enxerto gengival", "Periodontia", "Endodontia" }));
+        boxTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Clareamento dental", "Tratamento ortodôntico", "Implante", "Próteses fixas", "Enxerto gengival", "Periodontia", "Endodontia" }));
         boxTipos.setToolTipText("Veja os procedimentos disponíveis");
         boxTipos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -490,7 +490,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         });
 
         btnSalvar.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/save2.png"))); // NOI18N
+        btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/save.png"))); // NOI18N
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
