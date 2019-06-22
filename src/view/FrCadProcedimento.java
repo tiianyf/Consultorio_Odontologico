@@ -30,10 +30,11 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         this.tmProcedimentos = new TMProcedimentos();
         this.tblProcedimento.setModel(tmProcedimentos);
         this.habilitarCampos(false);
-        this.btnNovo.requestFocus();
 
         this.carregarArquivo("src/csv/lst_procedimentos.csv");
         this.tmProcedimentos.fireTableDataChanged();
+
+        this.btnNovo.requestFocus();
     }
 
     /**
@@ -247,7 +248,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         this.txtNome.setText(this.paciente.getNome());
         this.txtCpf.setText(this.paciente.getCpf());
         this.txtId.setText(this.confirmarId().getId());
-        this.edtTempo.setText(Integer.toString(this.aux.getTempo()));
+//        this.edtTempo.setText(Integer.toString(this.aux.getTempo()));
 
     }
 
@@ -468,6 +469,11 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         btnNovo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
         btnNovo.setText("Novo");
+        btnNovo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                btnNovoFocusGained(evt);
+            }
+        });
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovoActionPerformed(evt);
@@ -523,11 +529,10 @@ public class FrCadProcedimento extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnNovo)
-                        .addComponent(btnCancelar))
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 12, Short.MAX_VALUE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnNovo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(722, 547));
@@ -606,9 +611,15 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         ListaPacientes lista = new ListaPacientes(this, true);
         lista.setVisible(true);
         this.paciente = lista.getPacienteSelecionado();
-        this.copiarObjetoParaCampos(this.aux); // parâmetro indiferente
+
+        this.copiarObjetoParaCampos(this.aux);
+        this.edtTempo.requestFocus();
 
     }//GEN-LAST:event_btnBuscaPacienteActionPerformed
+
+    private void btnNovoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnNovoFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNovoFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxTipos;

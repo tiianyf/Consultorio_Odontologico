@@ -595,19 +595,25 @@ public class FrCadPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        String info = JOptionPane.showInputDialog("Digite o CPF:");
-        Paciente p = new Paciente();
-        p = this.tmPaciente.getLstPacientes().get(this.buscar(info));
 
         int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente editar os dados?");
 
         if (confirm == JOptionPane.YES_OPTION) {
+
+            ListaPacientes lista = new ListaPacientes(this, true);
+            lista.setVisible(true);
+            Paciente p = lista.getPacienteSelecionado();
+
             this.alteracao = true;
             this.copiarClasseParaCampos(p);
             this.habilitarCampos(true);
+
         } else if (confirm == JOptionPane.NO_OPTION) {
+
             this.btnCancelarActionPerformed(evt);
         }
+
+
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -622,16 +628,24 @@ public class FrCadPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void brnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnExcluirActionPerformed
-        String info = JOptionPane.showInputDialog("Digite o CPF");
-        Paciente p = new Paciente();
-        p = this.tmPaciente.getLstPacientes().get(this.buscar(info));
 
-        int confirm = JOptionPane.showConfirmDialog(null, "Realmente deseja excluir?");
+        int confirm = JOptionPane.showConfirmDialog(this, "Realmente deseja excluir?");
+
         if (confirm == JOptionPane.YES_OPTION) {
+
+            ListaPacientes lista = new ListaPacientes(this, true);
+            lista.setVisible(true);
+            Paciente p = lista.getPacienteSelecionado();
+            
             this.tmPaciente.getLstPacientes().remove(p);
             this.salvarArquivo("src/csv/lst_pacientes.csv");
-            JOptionPane.showMessageDialog(null, "Paciente excluído!");
+            JOptionPane.showMessageDialog(this, "Paciente excluído!");
             this.tmPaciente.fireTableDataChanged();
+            
+        } else {
+            
+            this.btnCancelarActionPerformed(evt);
+            
         }
     }//GEN-LAST:event_brnExcluirActionPerformed
 

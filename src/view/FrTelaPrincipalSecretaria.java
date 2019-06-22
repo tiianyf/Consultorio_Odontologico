@@ -311,13 +311,11 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
     private void menuAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAgendarActionPerformed
         FrAgenda tela = new FrAgenda();
         tela.setVisible(true);
-        dispose();
     }//GEN-LAST:event_menuAgendarActionPerformed
 
     private void menuLstPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLstPacientesActionPerformed
         ListaPacientes tela = new ListaPacientes(this, true);
         tela.setVisible(true);
-        dispose();
     }//GEN-LAST:event_menuLstPacientesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

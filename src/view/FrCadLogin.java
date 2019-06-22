@@ -132,14 +132,19 @@ public class FrCadLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+
         if (edtLogin.getText().equalsIgnoreCase(d.getUsuario()) && edtSenha.getText().equals(d.getSenha())) {
+
             FrTelaPrincipal tela = new FrTelaPrincipal();
             tela.setVisible(true);
             dispose();
+
         } else if (edtLogin.getText().equalsIgnoreCase(s.getUsuario()) && edtSenha.getText().equals(s.getSenha())) {
+
             FrTelaPrincipalSecretaria tela = new FrTelaPrincipalSecretaria();
             tela.setVisible(true);
             dispose();
+
         } else {
             JOptionPane.showMessageDialog(rootPane, "Senha ou Usuário Inválidos!");
         }

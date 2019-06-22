@@ -31,14 +31,15 @@ public class ListaPacientes extends javax.swing.JDialog {
      */
     public ListaPacientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        
+
         initComponents();
-        
+
         this.tmPacientes = new TMPacientes();
         this.tblPacientes.setModel(tmPacientes);
         this.carregarArquivo("src/csv/lst_pacientes.csv");
         this.tmPacientes.fireTableDataChanged();
         this.pacienteSelecionado = new Paciente();
+
     }
 
     /**
@@ -83,7 +84,7 @@ public class ListaPacientes extends javax.swing.JDialog {
                 p.setInfoCSV(linhaCsv);
                 this.getTmPacientes().addLinha(p);
             }
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FrCadPaciente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "ERRO! Arquivo não foi carregado.");
@@ -105,6 +106,7 @@ public class ListaPacientes extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lista de Pacientes Cadastrados");
+        setModal(true);
 
         tblPacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -159,6 +161,7 @@ public class ListaPacientes extends javax.swing.JDialog {
         if (evt.getClickCount() == 2) {
             int linha = this.tblPacientes.getSelectedRow();
             this.pacienteSelecionado = this.getTmPacientes().getLstPacientes().get(linha);
+//            System.out.println(this.pacienteSelecionado.getNome());
             dispose();
         }
     }//GEN-LAST:event_tblPacientesMouseReleased
