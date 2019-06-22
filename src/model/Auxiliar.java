@@ -16,6 +16,7 @@ public class Auxiliar extends Funcionario {
         super();
         this.valorDia = 62.6355;
         this.lstMateriais = new ArrayList<>();
+        this.cargo = "Auxiliar";
 
     }
 
@@ -36,4 +37,5 @@ public class Auxiliar extends Funcionario {
         return valorTotal;
 
     }
+
 }

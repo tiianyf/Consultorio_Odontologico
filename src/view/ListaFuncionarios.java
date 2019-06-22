@@ -5,20 +5,71 @@
  */
 package view;
 
+import controller.TMFuncionarios;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.Funcionario;
+import model.Paciente;
+
 /**
  *
  * @author ch
  */
 public class ListaFuncionarios extends javax.swing.JDialog {
 
+    private TMFuncionarios tmfuncionarios;
+    private Funcionario funcionario;
+    
     /**
      * Creates new form ListaFuncionarios
+     * @param parent
+     * @param modal
      */
     public ListaFuncionarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.tmfuncionarios = new TMFuncionarios();
+        this.tblFuncionarios.setModel(tmfuncionarios);
+//        this.carregarArquivo("src/csv/lst_funcionarios.csv");
+        this.funcionario = new Funcionario();
     }
 
+    /**
+     * @return the tmfuncionarios
+     */
+    public TMFuncionarios getTmfuncionarios() {
+        return tmfuncionarios;
+    }
+
+    /**
+     * @param tmfuncionarios the tmfuncionarios to set
+     */
+    public void setTmfuncionarios(TMFuncionarios tmfuncionarios) {
+        this.tmfuncionarios = tmfuncionarios;
+    }
+
+    /**
+     * @return the funcionario
+     */
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    /**
+     * @param funcionario the funcionario to set
+     */
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,64 +79,69 @@ public class ListaFuncionarios extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblTitulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblFuncionarios = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        lblTitulo.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("LISTA DE FUNCIONÁRIOS CADASTRADOS NO SISTEMA");
+
+        tblFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tblFuncionarios.setToolTipText("Clique duas vezes no paciente desejado para selecioná-lo!");
+        tblFuncionarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tblFuncionariosMouseReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblFuncionarios);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 976, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitulo)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListaFuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListaFuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListaFuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaFuncionarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void tblFuncionariosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFuncionariosMouseReleased
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ListaFuncionarios dialog = new ListaFuncionarios(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+        if (evt.getClickCount() == 2) {
+            dispose();
+        }
+    }//GEN-LAST:event_tblFuncionariosMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTable tblFuncionarios;
     // End of variables declaration//GEN-END:variables
 }

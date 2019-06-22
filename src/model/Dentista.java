@@ -17,6 +17,7 @@ abstract public class Dentista extends Funcionario implements Usuario {
 
         super();
         this.cro = "";
+        this.cargo = "Dentista";
 
     }
 

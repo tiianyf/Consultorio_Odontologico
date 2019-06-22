@@ -11,6 +11,7 @@ public class Faxineira extends Funcionario {
         super();
         this.diasTrabalhados = 8;
         this.valorDia = 100;
+        this.cargo = "Faxineira";
 
     }
 }
