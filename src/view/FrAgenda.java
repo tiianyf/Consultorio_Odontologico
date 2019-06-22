@@ -5,72 +5,140 @@
  */
 package view;
 
+import controller.TMAgenda;
 import controller.TMPacientes;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Agenda;
 import model.Paciente;
 
 /**
  *
  * @author cfreitas
  */
-public class FrAgenda extends javax.swing.JFrame {
+public final class FrAgenda extends javax.swing.JFrame {
+    private TMAgenda tmAgendamentos;
+    private Agenda aux;
+    private Paciente paciente;
+    private ArrayList<Agenda> lstAgendamentos;
 
-    private final TMPacientes tmPaciente;
 
     /**
      * Creates new form FrAgenda
      */
     public FrAgenda() {
         initComponents();
-        this.tmPaciente = new TMPacientes();
-        this.tblAgenda.setModel(tmPaciente);
-        this.carregarArquivo("src/csv/lst_pacientes.csv");
+        
+        this.lstAgendamentos = new ArrayList<>();
+        this.paciente = new Paciente();
+        this.tmAgendamentos = new TMAgenda();
+        this.tblAgenda.setModel(tmAgendamentos);
+        this.habilitarCampos(false);
+        
+        this.carregarArquivo("src/csv/lst_agendamentos.csv");
+        this.tmAgendamentos.fireTableDataChanged();
+        
+        this.btnNovo.requestFocus();
     }
 
-    public void mostrarTabela() {
-        for (Paciente p : this.tmPaciente.getLstPacientes()) {
-            this.tmPaciente.addLinha(p);
+    public void habilitarCampos(boolean flag){
+        this.edtNome.setEnabled(flag);
+        this.edtDentista.setEnabled(flag);
+        this.edtCalendario.setEnabled(flag);
+        this.edtHorario.setEnabled(flag);
+        
+        if(!flag){
+            this.limparTodosCampos();
         }
     }
-
-    public final void carregarArquivo(String caminho) {
+    
+    public void limparTodosCampos(){
+        this.edtNome.setText(null);
+        this.edtDentista.setText(null);
+        this.edtCalendario.setCalendar(null);
+        this.edtHorario.setText(null);
+    }
+    /**
+     * 
+     * @deprecated  
+     */
+    public boolean verificarCamposVazios(){
+        return false;
+    }
+    
+    public void copiarCamposParaObjeto(Agenda a){
+        a.setPaciente(this.paciente);
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        a.setHorario(formato.format(this.edtCalendario.getDate()));
+        System.out.println(edtCalendario.getDate());
+        a.setHorario(this.edtHorario.getText());
+    }
+    
+    public void copiarObjetoParaCampos(Agenda a){
+        this.edtNome.setText(this.paciente.getNome());
+//        this.edtCalendario.setDateFormatString(a.getData());
+        this.edtHorario.setText(a.getHorario());
+        
+    }
+    
+    public void carregarArquivo(String caminho){
         FileReader arquivo;
         try {
             arquivo = new FileReader(caminho);
             Scanner ler = new Scanner(arquivo);
             ler.useDelimiter("\n");
-            ler.next();
-
-            while (ler.hasNext()) {
+//            ler.next();
+            
+            while(ler.hasNext()){
                 String linhaCsv = ler.next();
-                Paciente p = new Paciente();
-                p.setInfoCSV(linhaCsv);
-                this.tmPaciente.addLinha(p);
+                Agenda a = new Agenda();
+                a.setInfoCSV(linhaCsv);
+                this.tmAgendamentos.addLinha(a);
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FrAgenda.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "ERRO! Arquivo não foi carregado.");
         }
     }
-
-    public int buscar(String termo) {
-        for (int i = 0; i < this.tmPaciente.getRowCount(); i++) {
-            if (termo.equals(this.tmPaciente.getLstPacientes().get(i).getCpf())) {
-                return i;
+    
+    public void salvarNoArquivo(String caminho){
+        try {
+            FileWriter arquivo = new FileWriter(caminho);
+            
+            try(PrintWriter escrita = new PrintWriter(arquivo)){
+                Agenda aux = new Agenda();
+                String info = aux.getCabecalhoCSV();
+                
+                for(Agenda a : this.tmAgendamentos.getLstAgendamentos()){
+                    info += a.getInfoCSV();
+                }
+                escrita.print(info);
             }
+            catch(Exception e){
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FrAgenda.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "ERRO! Não foi possível salvar no arquivo.");
         }
-        JOptionPane.showMessageDialog(null, "Funcionário não cadastrado!");
-        return -1;
     }
-
-    public void copiarObjetoParaCampos(Paciente p) {
-        this.edtNome.setText(p.getNome());
+    
+    public void salvar(){
+        Agenda a = new Agenda();
+        this.tmAgendamentos.addLinha(a);
+        this.salvarNoArquivo("src/csv/lst_agendamentos.csv");
+        this.tmAgendamentos.fireTableDataChanged();
+        this.habilitarCampos(false);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,10 +158,10 @@ public class FrAgenda extends javax.swing.JFrame {
         lblDentista = new javax.swing.JLabel();
         lblCpf2 = new javax.swing.JLabel();
         lblData1 = new javax.swing.JLabel();
-        edtCpf1 = new javax.swing.JTextField();
+        edtDentista = new javax.swing.JTextField();
         btnBuscarDentista = new javax.swing.JButton();
         btnBuscarPaciente = new javax.swing.JButton();
-        jDate = new com.toedter.calendar.JDateChooser();
+        edtCalendario = new com.toedter.calendar.JDateChooser();
         btnNovo = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
@@ -141,8 +209,8 @@ public class FrAgenda extends javax.swing.JFrame {
         lblData1.setText("Data ");
         painel1.add(lblData1);
         lblData1.setBounds(20, 80, 38, 17);
-        painel1.add(edtCpf1);
-        edtCpf1.setBounds(90, 50, 480, 19);
+        painel1.add(edtDentista);
+        edtDentista.setBounds(90, 50, 480, 19);
 
         btnBuscarDentista.setText("Buscar");
         btnBuscarDentista.setContentAreaFilled(false);
@@ -163,8 +231,8 @@ public class FrAgenda extends javax.swing.JFrame {
         });
         painel1.add(btnBuscarPaciente);
         btnBuscarPaciente.setBounds(580, 20, 90, 20);
-        painel1.add(jDate);
-        jDate.setBounds(90, 80, 94, 19);
+        painel1.add(edtCalendario);
+        edtCalendario.setBounds(90, 80, 170, 19);
 
         btnNovo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
@@ -255,12 +323,13 @@ public class FrAgenda extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNovo)
-                    .addComponent(btnEditar)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(brnExcluir))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnNovo)
+                        .addComponent(btnEditar)
+                        .addComponent(btnCancelar)
+                        .addComponent(brnExcluir)))
                 .addGap(30, 30, 30))
         );
 
@@ -269,7 +338,8 @@ public class FrAgenda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-
+        this.habilitarCampos(true);
+        this.btnBuscarDentista.requestFocus();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -277,7 +347,16 @@ public class FrAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-
+        int confirmacao = JOptionPane.showConfirmDialog(null, "Deseja realmente salvar?");
+        
+        if(confirmacao == JOptionPane.YES_OPTION){
+            this.copiarCamposParaObjeto(this.aux);
+            this.tmAgendamentos.addLinha(this.aux);
+        }
+        else {
+            this.btnCancelar.requestFocus();
+        }
+        this.habilitarCampos(false);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void brnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnExcluirActionPerformed
@@ -293,10 +372,12 @@ public class FrAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarDentistaActionPerformed
 
     private void btnBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPacienteActionPerformed
-        String temo = JOptionPane.showInputDialog("Insira o CPF do Paciente");
-        Paciente p = new Paciente();
-        p = this.tmPaciente.getLstPacientes().get(this.buscar(temo));
-        this.copiarObjetoParaCampos(p);
+        ListaPacientes lst = new ListaPacientes(this, true);
+        lst.setVisible(true);
+        this.paciente = lst.getPacienteSelecionado();
+        
+        this.copiarObjetoParaCampos(this.aux);
+        this.btnBuscarDentista.requestFocus();
     }//GEN-LAST:event_btnBuscarPacienteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -307,10 +388,10 @@ public class FrAgenda extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JTextField edtCpf1;
+    private com.toedter.calendar.JDateChooser edtCalendario;
+    private javax.swing.JTextField edtDentista;
     private javax.swing.JTextField edtHorario;
     private javax.swing.JTextField edtNome;
-    private com.toedter.calendar.JDateChooser jDate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCpf2;
     private javax.swing.JLabel lblData1;
