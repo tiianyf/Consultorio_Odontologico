@@ -66,8 +66,30 @@ public class ListaFuncionarios extends javax.swing.JDialog {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-
     
+//    public final void carregarArquivo(String caminho) {
+//        
+//        FileReader arquivo;
+//        
+//        try {
+//        
+//            arquivo = new FileReader(caminho);
+//            Scanner ler = new Scanner(arquivo);
+//            ler.useDelimiter("\n");
+//            ler.next();
+//
+//            while (ler.hasNext()) {
+//                String linhaCsv = ler.next();
+//                Paciente p = new Paciente();
+//                p.setInfoCSV(linhaCsv);
+//                this.getTmPacientes().addLinha(p);
+//            }
+//
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(FrCadPaciente.class.getName()).log(Level.SEVERE, null, ex);
+//            JOptionPane.showMessageDialog(null, "ERRO! Arquivo não foi carregado.");
+//        }
+//    }
     
     
     /**

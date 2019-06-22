@@ -10,7 +10,10 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Auxiliar;
+import model.Faxineira;
 import model.Funcionario;
+import model.Secretaria;
 
 public class FrCadFuncionario extends javax.swing.JFrame {
 
@@ -85,7 +88,7 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         } else if (this.boxCargos.getSelectedItem().equals("Faxineira")) {
             f.setCargo("Faxineira");
         }
-        
+
         f.setSalario(Double.parseDouble(this.edtSalario.getText()));
     }
 
@@ -128,9 +131,9 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         return -1;
     }
 
-    public boolean existe(Funcionario funcionario) {
+    public boolean existe(String termo) {
         for (Funcionario f : this.tmFuncionario.getLstFuncionarios()) {
-            if (f.getCpf().equals(funcionario.getCpf())) {
+            if (f.getCpf().equals(termo)) {
                 return true;
             }
         }
@@ -147,7 +150,10 @@ public class FrCadFuncionario extends javax.swing.JFrame {
 
             while (ler.hasNext()) {
                 String linhaCsv = ler.next();
-                Funcionario f = new Funcionario();
+                String[] info = linhaCsv.split(";");
+
+                Funcionario f = this.confereCargo(info);
+
                 f.setInfoCSV(linhaCsv);
                 this.tmFuncionario.addLinha(f);
             }
@@ -157,41 +163,91 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         }
     }
 
+    public Funcionario confereCargo(String[] info) {
+
+        Funcionario f = null;
+
+        switch (info[7]) {
+
+            case "Secretária":
+                f = new Secretaria();
+                break;
+
+            case "Auxiliar":
+                f = new Auxiliar();
+                break;
+
+            case "Faxineira":
+                f = new Faxineira();
+                break;
+
+            default:
+                break;
+        }
+        return f;
+    }
+
     public void salvarNoArquivo(String caminho) {
+
         try {
+
             FileWriter arquivo = new FileWriter(caminho);
+
             try (PrintWriter escrita = new PrintWriter(arquivo)) {
                 Funcionario aux = new Funcionario();
                 String info = aux.getCabecalhoCSV();
+
                 for (Funcionario f : this.tmFuncionario.getLstFuncionarios()) {
                     info += f.getInfoCSV();
                 }
+
                 escrita.print(info);
+
             } catch (Exception e) {
             }
+
         } catch (IOException ex) {
+
             Logger.getLogger(FrCadFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "ERRO! Não foi possível salvar o arquivo.");
+
         }
 
     }
 
     public void salvar() {
-        Funcionario f = new Funcionario();
-        this.copiarCamposParaObjeto(f);
 
-        if (this.alteracao) {
-            this.tmFuncionario.getLstFuncionarios().set(this.buscar(f.getCpf()), f);
+        if (this.existe(this.edtCpf.getText())) {
+
+            JOptionPane.showMessageDialog(this, "CPF já existe!");
+
         } else {
-            if (this.existe(f)) {
-                JOptionPane.showMessageDialog(null, "CPF já existe!");
-            } else {
-                this.tmFuncionario.addLinha(f);
+
+            Funcionario f = null;
+
+            if (this.boxCargos.getSelectedItem().equals("Secretária")) {
+
+                f = new Secretaria();
+                this.copiarCamposParaObjeto(f);
+
+            } else if (this.boxCargos.getSelectedItem().equals("Auxiliar")) {
+
+                f = new Auxiliar();
+                this.copiarCamposParaObjeto(f);
+
+            } else if (this.boxCargos.getSelectedItem().equals("Faxineira")) {
+
+                f = new Faxineira();
+                this.copiarCamposParaObjeto(f);
+
             }
+
+            this.tmFuncionario.addLinha(f);
         }
+
         this.salvarNoArquivo("src/csv/lst_funcionarios.csv");
         this.tmFuncionario.fireTableDataChanged();
-        this.habilitarCampos(false);
+
     }
 
     public void mostrarTabela() {
@@ -512,8 +568,11 @@ public class FrCadFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+
         String info = JOptionPane.showInputDialog("Digite o CPF:");
+
         Funcionario f = new Funcionario();
+
         f = this.tmFuncionario.getLstFuncionarios().get(this.buscar(info));
 
         int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente editar?");
@@ -525,6 +584,8 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         } else if (confirm == JOptionPane.NO_OPTION) {
             this.btnCancelarActionPerformed(evt);
         }
+
+
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void brnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnExcluirActionPerformed
@@ -547,17 +608,24 @@ public class FrCadFuncionario extends javax.swing.JFrame {
 
         if (confirm == JOptionPane.YES_OPTION) {
             if (this.verificarCamposVazios()) {
+
                 this.salvar();
-                if (alteracao) {
-                    JOptionPane.showMessageDialog(null, "Cadastro alterado!");
+
+                if (this.alteracao) {
+
+                    JOptionPane.showMessageDialog(this, "Cadastro alterado!");
+
                 } else {
-                    JOptionPane.showMessageDialog(null, "Cadastro salvo!");
+
+                    JOptionPane.showMessageDialog(this, "Cadastro salvo!");
+
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Campo Vazio!");
+
+                JOptionPane.showMessageDialog(this, "Campo Vazio!");
             }
         }
-        this.habilitarCampos(false);
+        this.btnCancelarActionPerformed(evt);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void edtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtNomeKeyReleased
