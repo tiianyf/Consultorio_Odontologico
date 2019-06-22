@@ -13,7 +13,7 @@ Sistema para um consultório odontológico com cadastro de funcionários, dentis
   * Acesso parcial ao Caixa (somente ver o saldo, sem poder realizar alterações
 
 ### TODO:
-- Alterar atributos das classes `Secretaria`
+- Alterar atributos das classes `Secretaria` - provavelmente retirar as listas de procedimentos, pacientes e dentistas, porque isso não deve ser tratado como atributo, e sim como questão de acesso permitido ou não;
 - Arrumar os botões da Tela Principal de acordo com os poderes de acesso permitidos anteriormente;
 - criar atributo *cargo* na classe`Funcionario`, pois será necessário para a GUI de Cadastro de Funcionários;
 - implementar tabela em `JDialog` no Cadastro de Funcionários e de Dentistas Colaboradores;
