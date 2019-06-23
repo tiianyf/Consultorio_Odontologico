@@ -16,6 +16,7 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
         this.menuCadProprietario.setEnabled(false);
         this.menuCadFuncionarios.setEnabled(false);
         this.menuCadProcedimento.setEnabled(false);
+        this.subMenuLstProcedimentos.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -47,6 +48,7 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
         menuConsultar = new javax.swing.JMenu();
         menuLstPacientes = new javax.swing.JMenuItem();
         menuLstFuncionarios = new javax.swing.JMenuItem();
+        subMenuLstProcedimentos = new javax.swing.JMenuItem();
         menuCaixa = new javax.swing.JMenu();
         menuBoasVindas = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -230,6 +232,9 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
         menuLstFuncionarios.setText("Lista de Funcionários");
         menuConsultar.add(menuLstFuncionarios);
 
+        subMenuLstProcedimentos.setText("Lista de Procedimentos");
+        menuConsultar.add(subMenuLstProcedimentos);
+
         menuPrincipal.add(menuConsultar);
 
         menuCaixa.setText("Caixa");
@@ -363,6 +368,7 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
     private javax.swing.JMenu menuSair;
     private javax.swing.JMenuItem menuSairSistema;
     private javax.swing.JPanel painelInterno;
+    private javax.swing.JMenuItem subMenuLstProcedimentos;
     private javax.swing.JInternalFrame telaInterna;
     // End of variables declaration//GEN-END:variables
 }
