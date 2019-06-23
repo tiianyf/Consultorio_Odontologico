@@ -16,14 +16,31 @@ public class FrCadPaciente extends javax.swing.JFrame {
 
     private final TMPacientes tmPaciente;
     private boolean alteracao;
+    private int indiceSelecionado;
 
     public FrCadPaciente() {
         initComponents();
+        
+        this.indiceSelecionado = -1;
         this.tmPaciente = new TMPacientes();
         this.alteracao = false;
         this.habilitarCampos(false);
         this.carregarArquivo("src/csv/lst_pacientes.csv");
         this.tmPaciente.fireTableDataChanged();
+    }
+
+    /**
+     * @return the indiceSelecionado
+     */
+    public int getIndiceSelecionado() {
+        return indiceSelecionado;
+    }
+
+    /**
+     * @param indiceSelecionado the indiceSelecionado to set
+     */
+    public void setIndiceSelecionado(int indiceSelecionado) {
+        this.indiceSelecionado = indiceSelecionado;
     }
 
     public final void habilitarCampos(boolean flag) {
@@ -622,7 +639,7 @@ public class FrCadPaciente extends javax.swing.JFrame {
             if (this.verificarCamposVazios()) {
                 this.salvar();
             } else {
-                JOptionPane.showMessageDialog(null, "Campo vazio!");
+                JOptionPane.showMessageDialog(this, "Campo vazio!");
             }
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -636,8 +653,9 @@ public class FrCadPaciente extends javax.swing.JFrame {
             ListaPacientes lista = new ListaPacientes(this, true);
             lista.setVisible(true);
             Paciente p = lista.getPacienteSelecionado();
+            int i = lista.getIndiceSelecionado();
             
-            this.tmPaciente.getLstPacientes().remove(p);
+            this.tmPaciente.getLstPacientes().remove(i);
             this.salvarArquivo("src/csv/lst_pacientes.csv");
             JOptionPane.showMessageDialog(this, "Paciente excluído!");
             this.tmPaciente.fireTableDataChanged();

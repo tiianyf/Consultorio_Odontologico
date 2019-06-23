@@ -22,6 +22,7 @@ public class ListaPacientes extends javax.swing.JDialog {
 
     private TMPacientes tmPacientes;
     private Paciente pacienteSelecionado;
+    private int indiceSelecionado;
 
     /**
      * Creates new form TesteLista
@@ -39,33 +40,30 @@ public class ListaPacientes extends javax.swing.JDialog {
         this.carregarArquivo("src/csv/lst_pacientes.csv");
         this.tmPacientes.fireTableDataChanged();
         this.pacienteSelecionado = new Paciente();
+        this.indiceSelecionado = -1;
 
     }
 
-    /**
-     * @return the tmPacientes
-     */
+    public int getIndiceSelecionado() {
+        return indiceSelecionado;
+    }
+
+    public void setIndiceSelecionado(int indiceSelecionado) {
+        this.indiceSelecionado = indiceSelecionado;
+    }
+
     public TMPacientes getTmPacientes() {
         return tmPacientes;
     }
 
-    /**
-     * @param tmPacientes the tmPacientes to set
-     */
     public void setTmPacientes(TMPacientes tmPacientes) {
         this.tmPacientes = tmPacientes;
     }
 
-    /**
-     * @return the pacienteSelecionado
-     */
     public Paciente getPacienteSelecionado() {
         return pacienteSelecionado;
     }
 
-    /**
-     * @param pacienteSelecionado the pacienteSelecionado to set
-     */
     public void setPacienteSelecionado(Paciente pacienteSelecionado) {
         this.pacienteSelecionado = pacienteSelecionado;
     }
@@ -159,8 +157,8 @@ public class ListaPacientes extends javax.swing.JDialog {
     private void tblPacientesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPacientesMouseReleased
 
         if (evt.getClickCount() == 2) {
-            int linha = this.tblPacientes.getSelectedRow();
-            this.pacienteSelecionado = this.getTmPacientes().getLstPacientes().get(linha);
+            this.indiceSelecionado = this.tblPacientes.getSelectedRow();
+            this.pacienteSelecionado = this.getTmPacientes().getLstPacientes().get(this.indiceSelecionado);
             dispose();
         }
     }//GEN-LAST:event_tblPacientesMouseReleased

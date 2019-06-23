@@ -30,6 +30,10 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         this.habilitarCampos(false);
         this.carregarArquivo("src/csv/lst_funcionarios.csv");
         this.tmFuncionario.fireTableDataChanged();
+
+        for (int i = 0; i < this.tmFuncionario.getLstFuncionarios().size(); i++) {
+            System.out.println(this.tmFuncionario.getLstFuncionarios().get(i));
+        }
     }
 
     public final void habilitarCampos(boolean flag) {
@@ -89,10 +93,10 @@ public class FrCadFuncionario extends javax.swing.JFrame {
 
         if (this.boxCargos.getSelectedItem().equals("Secretária")) {
             f.setCargo("Secretária");
-            
+
         } else if (this.boxCargos.getSelectedItem().equals("Auxiliar")) {
             f.setCargo("Auxiliar");
-            
+
         } else if (this.boxCargos.getSelectedItem().equals("Faxineira")) {
             f.setCargo("Faxineira");
         }
@@ -232,30 +236,35 @@ public class FrCadFuncionario extends javax.swing.JFrame {
 
     public void salvar() {
 
-        if (!this.alteracao && this.existe(this.edtCpf.getText())) {
+        if (this.boxCargos.getSelectedItem().equals("Secretária")) {
+
+            this.aux = new Secretaria();
+            this.copiarCamposParaObjeto(this.aux);
+
+        } else if (this.boxCargos.getSelectedItem().equals("Auxiliar")) {
+
+            this.aux = new Auxiliar();
+            this.copiarCamposParaObjeto(this.aux);
+
+        } else if (this.boxCargos.getSelectedItem().equals("Faxineira")) {
+
+            this.aux = new Faxineira();
+            this.copiarCamposParaObjeto(this.aux);
+
+        }
+
+        if (this.alteracao) {
+
+            this.tmFuncionario.getLstFuncionarios().set(this.buscar(this.aux.getCpf()), this.aux);
+
+        } else if (this.existe(this.aux.getCpf())) {
 
             JOptionPane.showMessageDialog(this, "CPF já existe!");
 
         } else {
 
-            if (this.boxCargos.getSelectedItem().equals("Secretária")) {
-
-                this.aux = new Secretaria();
-                this.copiarCamposParaObjeto(this.aux);
-
-            } else if (this.boxCargos.getSelectedItem().equals("Auxiliar")) {
-
-                this.aux = new Auxiliar();
-                this.copiarCamposParaObjeto(this.aux);
-
-            } else if (this.boxCargos.getSelectedItem().equals("Faxineira")) {
-
-                this.aux = new Faxineira();
-                this.copiarCamposParaObjeto(this.aux);
-
-            }
-
             this.tmFuncionario.addLinha(this.aux);
+
         }
 
         this.salvarNoArquivo("src/csv/lst_funcionarios.csv");
@@ -590,6 +599,7 @@ public class FrCadFuncionario extends javax.swing.JFrame {
             ListaFuncionarios lista = new ListaFuncionarios(this, true);
             lista.setVisible(true);
             Funcionario f = lista.getAux();
+            System.out.println("Estão editando: " + f);
 
             this.copiarObjetoParaCampos(f);
             this.habilitarCampos(true);
@@ -610,8 +620,9 @@ public class FrCadFuncionario extends javax.swing.JFrame {
             ListaFuncionarios lista = new ListaFuncionarios(this, true);
             lista.setVisible(true);
             Funcionario f = lista.getAux();
+            int i = lista.getIndiceSelecionado();
 
-            this.tmFuncionario.getLstFuncionarios().remove(f);
+            this.tmFuncionario.getLstFuncionarios().remove(i);
             this.salvarNoArquivo("src/csv/lst_funcionarios.csv");
             JOptionPane.showMessageDialog(this, "Funcionário excluído!");
             this.tmFuncionario.fireTableDataChanged();

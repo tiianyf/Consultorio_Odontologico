@@ -25,6 +25,7 @@ public class ListaFuncionarios extends javax.swing.JDialog {
 
     private TMFuncionarios tmFuncionario;
     private Funcionario aux;
+    private int indiceSelecionado;
 
     /**
      * Creates new form ListaFuncionarios
@@ -40,6 +41,15 @@ public class ListaFuncionarios extends javax.swing.JDialog {
         this.tblFuncionarios.setModel(tmFuncionario);
         this.carregarArquivo("src/csv/lst_funcionarios.csv");
         this.aux = new Funcionario();
+        this.indiceSelecionado = -1;
+    }
+
+    public int getIndiceSelecionado() {
+        return indiceSelecionado;
+    }
+
+    public void setIndiceSelecionado(int indiceSelecionado) {
+        this.indiceSelecionado = indiceSelecionado;
     }
 
     public TMFuncionarios getTmFuncionario() {
@@ -170,8 +180,8 @@ public class ListaFuncionarios extends javax.swing.JDialog {
     private void tblFuncionariosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFuncionariosMouseReleased
 
         if (evt.getClickCount() == 2) {
-            int linha = this.tblFuncionarios.getSelectedRow();
-            this.aux = this.confereTipo(linha);
+            this.indiceSelecionado = this.tblFuncionarios.getSelectedRow();
+            this.aux = this.confereTipo(this.indiceSelecionado);
             dispose();
         }
     }//GEN-LAST:event_tblFuncionariosMouseReleased

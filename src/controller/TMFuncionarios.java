@@ -5,7 +5,7 @@ import javax.swing.table.AbstractTableModel;
 import model.Funcionario;
 
 /**
- * Controlador (Table Model) da classe Funcionário. Está é uma tabela contendo
+ * Controlador (Table Model) da classe Funcionário. Esta é uma tabela contendo
  * todos os funcionários cadastrados no sistema, contendo 8 colunas:
  * (NOME;CPF;SEXO;IDADE;TELEFONE;EMAIL;CARGO;SALARIO)
  *
@@ -15,8 +15,11 @@ public class TMFuncionarios extends AbstractTableModel {
 
     private final ArrayList<Funcionario> lstFuncionarios = new ArrayList<>();
     private final ArrayList<String> lstColunas = new ArrayList<>();
+    private int indiceSelecionado;
 
     public TMFuncionarios() {
+        this.indiceSelecionado = -1;
+        
         this.lstColunas.add("Nome");
         this.lstColunas.add("CPF");
         this.lstColunas.add("Sexo");
@@ -25,6 +28,20 @@ public class TMFuncionarios extends AbstractTableModel {
         this.lstColunas.add("Email");
         this.lstColunas.add("Cargo");
         this.lstColunas.add("Salário");
+    }
+
+    /**
+     * @return the indiceSelecionado
+     */
+    public int getIndiceSelecionado() {
+        return indiceSelecionado;
+    }
+
+    /**
+     * @param indiceSelecionado the indiceSelecionado to set
+     */
+    public void setIndiceSelecionado(int indiceSelecionado) {
+        this.indiceSelecionado = indiceSelecionado;
     }
 
     public ArrayList<Funcionario> getLstFuncionarios() {
