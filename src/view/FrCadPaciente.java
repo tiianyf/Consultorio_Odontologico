@@ -652,7 +652,6 @@ public class FrCadPaciente extends javax.swing.JFrame {
 
             ListaPacientes lista = new ListaPacientes(this, true);
             lista.setVisible(true);
-            Paciente p = lista.getPacienteSelecionado();
             int i = lista.getIndiceSelecionado();
             
             this.tmPaciente.getLstPacientes().remove(i);

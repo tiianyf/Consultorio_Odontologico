@@ -8,10 +8,12 @@ package view;
 import controller.TMProcedimentos;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.DColaborador;
 import model.Procedimento;
 
 /**
@@ -23,6 +25,7 @@ public class ListaProcedimentos extends javax.swing.JDialog {
     private TMProcedimentos tmProcedimentos;
     private Procedimento procedimentoSelecionado;
     private int indiceSelecionado;
+    private DColaborador usuarioLogado;
 
     /**
      * Creates new form TesteLista
@@ -35,12 +38,26 @@ public class ListaProcedimentos extends javax.swing.JDialog {
 
         initComponents();
 
+        this.usuarioLogado = new DColaborador();
         this.tmProcedimentos = new TMProcedimentos();
         this.tblProcedimentos.setModel(tmProcedimentos);
-        this.carregarArquivo("src/csv/lst_procedimentos.csv");
+
+//        String usuario = this.usuarioLogado.getUsuario();
+//        String caminho = "src/csv/lst_procedimentos_" + usuario + ".csv";
+//        this.carregarArquivo(caminho);
+
         this.tmProcedimentos.fireTableDataChanged();
         this.indiceSelecionado = -1;
+        System.out.println(this.usuarioLogado.getUsuario());
 
+    }
+
+    public DColaborador getUsuarioLogado() {
+        return usuarioLogado;
+    }
+
+    public void setUsuarioLogado(DColaborador usuarioLogado) {
+        this.usuarioLogado = usuarioLogado;
     }
 
     public TMProcedimentos getTmProcedimentos() {
@@ -68,11 +85,11 @@ public class ListaProcedimentos extends javax.swing.JDialog {
     }
 
     public final void carregarArquivo(String caminho) {
-        FileReader arquivo;
+        
 
         try {
 
-            arquivo = new FileReader(caminho);
+            FileReader arquivo = new FileReader(caminho);
             Scanner ler = new Scanner(arquivo);
             ler.useDelimiter("\n");
             ler.next(); // pulando linha do cabeçalho
@@ -90,8 +107,15 @@ public class ListaProcedimentos extends javax.swing.JDialog {
             }
 
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(FrCadProcedimento.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "ERRO! Arquivo não foi carregado.");
+//            FileWriter arquivo;
+            /*
+            arquivo = new FileWriter(new File("Arquivo.txt"));
+		arquivo.write(textoQueSeraEscrito);
+		arquivo.close();
+            */
+//            arquivo = new
+            
+            
         }
     }
 
@@ -147,6 +171,11 @@ public class ListaProcedimentos extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lista de Pacientes Cadastrados");
         setModal(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         tblProcedimentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -204,6 +233,12 @@ public class ListaProcedimentos extends javax.swing.JDialog {
             dispose();
         }
     }//GEN-LAST:event_tblProcedimentosMouseReleased
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        String usuario = this.usuarioLogado.getUsuario();
+        String caminho = "src/csv/lst_procedimentos_" + usuario + ".csv";
+        this.carregarArquivo(caminho);
+    }//GEN-LAST:event_formWindowActivated
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

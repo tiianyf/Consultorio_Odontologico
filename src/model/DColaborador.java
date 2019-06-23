@@ -42,7 +42,7 @@ public class DColaborador extends Dentista {
     public String getCabecalhoCSV() {
 
         String info = super.getCabecalhoCSV();
-        info += ";taxa;dias da semana";
+        info += ";TAXA;DIAS DA SEMANA";
         return info;
 
     }
@@ -62,10 +62,10 @@ public class DColaborador extends Dentista {
         super.setInfoCSV(linhaCSV);
         String[] info = linhaCSV.split(";");
 
-        this.taxa = Double.parseDouble(info[9]);
+        this.taxa = Double.parseDouble(info[11]);
 
         // manipulação complexa de Strings
-        String aux = info[10];
+        String aux = info[12];
         aux = aux.replace("[", "");
         aux = aux.replace("]", "");
         String[] vetor = aux.split(", ");

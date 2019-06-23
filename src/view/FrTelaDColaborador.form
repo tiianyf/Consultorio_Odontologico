@@ -107,12 +107,12 @@
             <Property name="text" type="java.lang.String" value="Ferramentas"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="subMenuBoasVindas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tela Bem Vindo"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuBoasVindasActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -122,12 +122,12 @@
             <Property name="text" type="java.lang.String" value="Sair"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuSairSistema">
+            <MenuItem class="javax.swing.JMenuItem" name="subMenuSairSistema">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sair do Sistema"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuSairSistemaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuSairSistemaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

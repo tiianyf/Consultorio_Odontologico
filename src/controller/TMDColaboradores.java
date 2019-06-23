@@ -24,6 +24,9 @@ public class TMDColaboradores extends AbstractTableModel {
         this.lstColunas.add("Telefone");
         this.lstColunas.add("Idade");
         this.lstColunas.add("Email");
+        this.lstColunas.add("Dias");
+        this.lstColunas.add("Usuário");
+        this.lstColunas.add("Senha");
     }
 
     public ArrayList<DColaborador> getLstDColaboradores() {
@@ -53,19 +56,35 @@ public class TMDColaboradores extends AbstractTableModel {
     public Object getValueAt(int linha, int coluna) {
         if (coluna == this.lstColunas.indexOf("Nome")) {
             return this.lstDColaboradores.get(linha).getNome();
+
         } else if (coluna == this.lstColunas.indexOf("CPF")) {
             return this.lstDColaboradores.get(linha).getCpf();
+
         } else if (coluna == this.lstColunas.indexOf("Sexo")) {
             return this.lstDColaboradores.get(linha).getSexo();
+
         } else if (coluna == this.lstColunas.indexOf("CRO")) {
             return this.lstDColaboradores.get(linha).getCro();
+
         } else if (coluna == this.lstColunas.indexOf("Telefone")) {
             return this.lstDColaboradores.get(linha).getTelefone();
+
         } else if (coluna == this.lstColunas.indexOf("Idade")) {
             return this.lstDColaboradores.get(linha).getIdade();
+
         } else if (coluna == this.lstColunas.indexOf("Email")) {
             return this.lstDColaboradores.get(linha).getEmail();
+
+        } else if (coluna == this.lstColunas.indexOf("Dias")) {
+            return this.lstDColaboradores.get(linha).getDias().toString();
+
+        } else if (coluna == this.lstColunas.indexOf("Usuário")) {
+            return this.lstDColaboradores.get(linha).getUsuario();
+
+        } else if (coluna == this.lstColunas.indexOf("Senha")) {
+            return this.lstDColaboradores.get(linha).getSenha();
         }
+
         System.out.println("Objeto não encontrado!");
         return null;
     }

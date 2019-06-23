@@ -1,16 +1,62 @@
 package view;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.DColaborador;
 import model.DProprietario;
 import model.Secretaria;
 
 public class FrCadLogin extends javax.swing.JFrame {
 
-    DProprietario d = new DProprietario();
-    Secretaria s = new Secretaria();
+    DProprietario prop = new DProprietario();
+    Secretaria sec = new Secretaria();
+    private List<DColaborador> usuarios;
 
     public FrCadLogin() {
         initComponents();
+
+        this.usuarios = new ArrayList<>();
+        this.carregarArquivo("src/csv/lst_dcolaboradores.csv");
+    }
+
+    public List<DColaborador> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<DColaborador> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public final void carregarArquivo(String caminho) {
+
+        FileReader arquivo;
+
+        try {
+
+            arquivo = new FileReader(caminho);
+            Scanner ler = new Scanner(arquivo);
+            ler.useDelimiter("\n");
+            ler.next();
+
+            while (ler.hasNext()) {
+
+                String linhaCsv = ler.next();
+                DColaborador usuario = new DColaborador();
+                usuario.setInfoCSV(linhaCsv);
+                this.usuarios.add(usuario);
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FrCadFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "ERRO! Arquivo não foi carregado.");
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -133,20 +179,37 @@ public class FrCadLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
 
-        if (edtLogin.getText().equalsIgnoreCase(d.getUsuario()) && edtSenha.getText().equals(d.getSenha())) {
+        if (edtLogin.getText().equalsIgnoreCase(prop.getUsuario()) && edtSenha.getText().equals(prop.getSenha())) {
 
-            FrTelaPrincipal tela = new FrTelaPrincipal();
+            JFrame tela = new FrTelaPrincipal();
             tela.setVisible(true);
             dispose();
 
-        } else if (edtLogin.getText().equalsIgnoreCase(s.getUsuario()) && edtSenha.getText().equals(s.getSenha())) {
+        } else if (edtLogin.getText().equalsIgnoreCase(sec.getUsuario()) && edtSenha.getText().equals(sec.getSenha())) {
 
-            FrTelaPrincipalSecretaria tela = new FrTelaPrincipalSecretaria();
+            JFrame tela = new FrTelaPrincipalSecretaria();
             tela.setVisible(true);
             dispose();
 
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Senha ou Usuário Inválidos!");
+
+            boolean flag = false;
+
+            for (DColaborador i : this.usuarios) {
+
+                if (this.edtLogin.getText().equals(i.getUsuario()) && this.edtSenha.getText().equals(i.getSenha())) {
+
+                    flag = true;
+                    FrTelaDColaborador tela = new FrTelaDColaborador();
+                    tela.setDentista(i); // informando qual dentista acessou o sistema
+                    System.out.println(i.getUsuario());
+                    tela.setVisible(flag);
+                }
+            }
+
+            if (!flag) {
+                JOptionPane.showMessageDialog(this, "Senha ou Usuário Inválidos!");
+            }
         }
 
     }//GEN-LAST:event_btnEntrarActionPerformed

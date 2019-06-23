@@ -49,7 +49,7 @@ abstract public class Dentista extends Funcionario implements Usuario {
     public String getCabecalhoCSV() {
 
         String info = super.getCabecalhoCSV();
-        info += ";CRO";
+        info += ";CRO;USUARIO;SENHA";
         return info;
 
     }
@@ -58,7 +58,7 @@ abstract public class Dentista extends Funcionario implements Usuario {
     public String getInfoCSV() {
 
         String info = super.getInfoCSV();
-        info += ";" + this.cro;
+        info += ";" + this.cro + ";" + this.usuario + ";" + this.senha;
         return info;
 
     }
@@ -67,9 +67,11 @@ abstract public class Dentista extends Funcionario implements Usuario {
     public void setInfoCSV(String linhaCSV) {
 
         super.setInfoCSV(linhaCSV);
-        String[] temp = linhaCSV.split(";");
+        String[] info = linhaCSV.split(";");
 
-        this.cro = temp[8];
+        this.cro = info[8];
+        this.usuario = info[9];
+        this.senha = info[10];
 
     }
 

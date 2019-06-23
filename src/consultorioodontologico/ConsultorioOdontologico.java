@@ -18,5 +18,6 @@ public class ConsultorioOdontologico {
 
         JFrame login = new FrCadLogin();
         login.setVisible(true);
+
     }
 }
