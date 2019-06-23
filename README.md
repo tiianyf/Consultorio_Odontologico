@@ -13,7 +13,7 @@ Sistema para um consultório odontológico com cadastro de funcionários, dentis
   * Acesso parcial ao Caixa (somente ver o saldo, sem poder realizar alterações
 
 ### TODO:
-- Criar classe _enum_ `DiasSemana`, para que uma lista da mesma seja implementada na Classe `DColaborador`;
+- arrumar eventos dos botões de Cadastro de Dentista (cancelar, salvar etc);
 - implementar tabela em `JDialog` no Cadastro ~~de Funcionários~~ e de Dentistas Colaboradores;
 - alterar interface `Pattern View` - retirar os métodos `copyFromFieldsToObject` e `copyFromObjectToFields` e traduzir os métodos;
 - alterar os botões de rádio da classe `FrCad` para `JList`
