@@ -13,9 +13,9 @@ Sistema para um consultório odontológico com cadastro de funcionários, dentis
   * Acesso parcial ao Caixa (somente ver o saldo, sem poder realizar alterações
 
 ### TODO:
-- Arrumar os botões e abas da Tela Principal de acordo com os poderes de acesso permitidos anteriormente;
-- criar atributo *cargo* na classe`Funcionario`, pois será necessário para a GUI de Cadastro de Funcionários;
-- implementar tabela em `JDialog` no Cadastro de Funcionários e de Dentistas Colaboradores;
+- ~~Arrumar os botões e abas da Tela Principal de acordo com os poderes de acesso permitidos anteriormente;
+- ~~criar atributo *cargo* na classe`Funcionario`, pois será necessário para a GUI de Cadastro de Funcionários;
+- implementar tabela em `JDialog` no Cadastro ~~de Funcionários~~ e de Dentistas Colaboradores;
 - alterar interface `Pattern View` - retirar os métodos `copyFromFieldsToObject` e `copyFromObjectToFields` e traduzir os métodos;
 - alterar os botões de rádio da classe `FrCad` para `JList`
 - fazer o diagrama UML e subir pra pasta raiz do projeto;
