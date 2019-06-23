@@ -593,7 +593,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         } else {
             int confirmacao = JOptionPane.showConfirmDialog(null, "Deseja realmente salvar?");
 
-            if (confirmacao == JOptionPane.YES_OPTION) { // 0 é sim, 1 é não
+            if (confirmacao == JOptionPane.YES_OPTION) {
 
                 this.copiarCamposParaObjeto(this.aux);
                 this.tmProcedimentos.addLinha(this.aux);

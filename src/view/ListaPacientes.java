@@ -161,7 +161,6 @@ public class ListaPacientes extends javax.swing.JDialog {
         if (evt.getClickCount() == 2) {
             int linha = this.tblPacientes.getSelectedRow();
             this.pacienteSelecionado = this.getTmPacientes().getLstPacientes().get(linha);
-//            System.out.println(this.pacienteSelecionado.getNome());
             dispose();
         }
     }//GEN-LAST:event_tblPacientesMouseReleased

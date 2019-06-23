@@ -19,9 +19,12 @@ public class FrCadFuncionario extends javax.swing.JFrame {
 
     private final TMFuncionarios tmFuncionario;
     private boolean alteracao;
+    private Funcionario aux;
 
     public FrCadFuncionario() {
         initComponents();
+
+        this.aux = new Funcionario();
         this.tmFuncionario = new TMFuncionarios();
         this.alteracao = false;
         this.habilitarCampos(false);
@@ -46,6 +49,7 @@ public class FrCadFuncionario extends javax.swing.JFrame {
     }
 
     public void limparTodosCampos() {
+
         this.edtNome.setText(null);
         this.edtCpf.setText(null);
         this.rdFem.setSelected(false);
@@ -54,9 +58,11 @@ public class FrCadFuncionario extends javax.swing.JFrame {
         this.edtTelefone.setText(null);
         this.edtEmail.setText(null);
         this.edtSalario.setText(null);
+
     }
 
     public boolean verificarCamposVazios() {
+
         return this.edtNome.getText().isEmpty()
                 || this.edtCpf.getText().isEmpty()
                 || (this.rdFem.isSelected() || this.rdMasc.isSelected())
@@ -83,8 +89,10 @@ public class FrCadFuncionario extends javax.swing.JFrame {
 
         if (this.boxCargos.getSelectedItem().equals("Secretária")) {
             f.setCargo("Secretária");
+            
         } else if (this.boxCargos.getSelectedItem().equals("Auxiliar")) {
             f.setCargo("Auxiliar");
+            
         } else if (this.boxCargos.getSelectedItem().equals("Faxineira")) {
             f.setCargo("Faxineira");
         }
@@ -141,8 +149,11 @@ public class FrCadFuncionario extends javax.swing.JFrame {
     }
 
     public final void carregarArquivo(String caminho) {
+
         FileReader arquivo;
+
         try {
+
             arquivo = new FileReader(caminho);
             Scanner ler = new Scanner(arquivo);
             ler.useDelimiter("\n");
@@ -194,11 +205,15 @@ public class FrCadFuncionario extends javax.swing.JFrame {
             FileWriter arquivo = new FileWriter(caminho);
 
             try (PrintWriter escrita = new PrintWriter(arquivo)) {
-                Funcionario aux = new Funcionario();
-                String info = aux.getCabecalhoCSV();
 
-                for (Funcionario f : this.tmFuncionario.getLstFuncionarios()) {
+                String info = this.aux.getCabecalhoCSV();
+
+                for (int i = 0; i < this.tmFuncionario.getRowCount(); i++) {
+
+                    // espero que aqui ele faça polimorfismo. Ver método getLinha()
+                    Funcionario f = this.tmFuncionario.getLinha(i);
                     info += f.getInfoCSV();
+
                 }
 
                 escrita.print(info);
@@ -217,32 +232,30 @@ public class FrCadFuncionario extends javax.swing.JFrame {
 
     public void salvar() {
 
-        if (this.existe(this.edtCpf.getText())) {
+        if (!this.alteracao && this.existe(this.edtCpf.getText())) {
 
             JOptionPane.showMessageDialog(this, "CPF já existe!");
 
         } else {
 
-            Funcionario f = null;
-
             if (this.boxCargos.getSelectedItem().equals("Secretária")) {
 
-                f = new Secretaria();
-                this.copiarCamposParaObjeto(f);
+                this.aux = new Secretaria();
+                this.copiarCamposParaObjeto(this.aux);
 
             } else if (this.boxCargos.getSelectedItem().equals("Auxiliar")) {
 
-                f = new Auxiliar();
-                this.copiarCamposParaObjeto(f);
+                this.aux = new Auxiliar();
+                this.copiarCamposParaObjeto(this.aux);
 
             } else if (this.boxCargos.getSelectedItem().equals("Faxineira")) {
 
-                f = new Faxineira();
-                this.copiarCamposParaObjeto(f);
+                this.aux = new Faxineira();
+                this.copiarCamposParaObjeto(this.aux);
 
             }
 
-            this.tmFuncionario.addLinha(f);
+            this.tmFuncionario.addLinha(this.aux);
         }
 
         this.salvarNoArquivo("src/csv/lst_funcionarios.csv");
@@ -569,18 +582,18 @@ public class FrCadFuncionario extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
-        String info = JOptionPane.showInputDialog("Digite o CPF:");
-
-        Funcionario f = new Funcionario();
-
-        f = this.tmFuncionario.getLstFuncionarios().get(this.buscar(info));
-
         int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente editar?");
 
         if (confirm == JOptionPane.YES_OPTION) {
             this.alteracao = true;
+
+            ListaFuncionarios lista = new ListaFuncionarios(this, true);
+            lista.setVisible(true);
+            Funcionario f = lista.getAux();
+
             this.copiarObjetoParaCampos(f);
             this.habilitarCampos(true);
+
         } else if (confirm == JOptionPane.NO_OPTION) {
             this.btnCancelarActionPerformed(evt);
         }
@@ -589,22 +602,25 @@ public class FrCadFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void brnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnExcluirActionPerformed
-        String info = JOptionPane.showInputDialog("Digite o CPF");
-        Funcionario f = new Funcionario();
-        f = this.tmFuncionario.getLstFuncionarios().get(this.buscar(info));
 
-        int confirm = JOptionPane.showConfirmDialog(null, "Realmente desejar excluir?");
+        int confirm = JOptionPane.showConfirmDialog(this, "Realmente desejar excluir?");
 
         if (confirm == JOptionPane.YES_OPTION) {
+
+            ListaFuncionarios lista = new ListaFuncionarios(this, true);
+            lista.setVisible(true);
+            Funcionario f = lista.getAux();
+
             this.tmFuncionario.getLstFuncionarios().remove(f);
-            this.salvarNoArquivo("src/csv/lst_funcionarios");
-            JOptionPane.showMessageDialog(null, "Funcionário excluído!");
+            this.salvarNoArquivo("src/csv/lst_funcionarios.csv");
+            JOptionPane.showMessageDialog(this, "Funcionário excluído!");
             this.tmFuncionario.fireTableDataChanged();
+
         }
     }//GEN-LAST:event_brnExcluirActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente salvar?");
+        int confirm = JOptionPane.showConfirmDialog(this, "Deseja realmente salvar?");
 
         if (confirm == JOptionPane.YES_OPTION) {
             if (this.verificarCamposVazios()) {

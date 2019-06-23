@@ -1,7 +1,6 @@
 package consultorioodontologico;
 
 import javax.swing.JFrame;
-import model.Procedimento;
 import view.*;
 
 /**
@@ -16,14 +15,9 @@ import view.*;
 public class ConsultorioOdontologico {
 
     public static void main(String[] args) {
-        FrCadLogin login = new FrCadLogin();
+
+        JFrame login = new FrCadLogin();
         login.setVisible(true);
-//        JFrame view = new FrCadProcedimento();
-//        view.setVisible(true);
-//        JFrame view = new FrCadPaciente();
-//        view.setVisible(true);
-//        FrListaPacientes view = new FrListaPacientes();
-//        view.setVisible(true);
 
     }
 
