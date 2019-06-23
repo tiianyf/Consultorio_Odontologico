@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.DColaborador;
+import model.DiasSemana;
 
 /**
  *
@@ -84,6 +85,23 @@ public class FrCadDentistaColaborador extends javax.swing.JFrame {
         d.setTelefone(this.edtTelefone.getText());
         d.setEmail(this.edtEmail.getText());
         d.setCro(this.edtCro.getText());
+
+        if (this.boxSegunda.isSelected()) {
+            d.getDias().add(DiasSemana.SEGUNDA);
+        }
+        if (this.boxTerca.isSelected()) {
+            d.getDias().add(DiasSemana.TERCA);
+        }
+        if (this.boxQuarta.isSelected()) {
+            d.getDias().add(DiasSemana.QUARTA);
+        }
+        if (this.boxQuinta.isSelected()) {
+            d.getDias().add(DiasSemana.QUINTA);
+        }
+        if (this.boxSexta.isSelected()) {
+            d.getDias().add(DiasSemana.SEXTA);
+        }
+
     }
 
     public void copiarObjetoParaCampos(DColaborador d) {
@@ -100,6 +118,27 @@ public class FrCadDentistaColaborador extends javax.swing.JFrame {
         this.edtTelefone.setText(d.getTelefone());
         this.edtEmail.setText(d.getEmail());
         this.edtCro.setText(d.getCro());
+
+        for (DiasSemana i : d.getDias()) {
+
+            if (i.equals(DiasSemana.SEGUNDA)) {
+                this.boxSegunda.setSelected(true);
+            }
+            if (i.equals(DiasSemana.TERCA)) {
+                this.boxTerca.setSelected(true);
+            }
+            if (i.equals(DiasSemana.QUARTA)) {
+                this.boxQuarta.setSelected(true);
+            }
+            if (i.equals(DiasSemana.QUINTA)) {
+                this.boxQuinta.setSelected(true);
+            }
+            if (i.equals(DiasSemana.SEXTA)) {
+                this.boxSexta.setSelected(true);
+            }
+
+        }
+
     }
 
     public int buscar(String termo) {
@@ -533,12 +572,13 @@ public class FrCadDentistaColaborador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNovo)
-                    .addComponent(btnEditar)
-                    .addComponent(btnCancelar)
-                    .addComponent(brnExcluir)
-                    .addComponent(btnSalvar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnNovo)
+                        .addComponent(btnEditar)
+                        .addComponent(btnCancelar)
+                        .addComponent(brnExcluir))
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()

@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -86,7 +85,7 @@ public class DColaborador extends Dentista {
                     this.dias.add(DiasSemana.QUINTA);
                     break;
                 case "SEXTA":
-                    this.dias.add(DiasSemana.TERCA);
+                    this.dias.add(DiasSemana.SEXTA);
                     break;
                 default:
                     break;
