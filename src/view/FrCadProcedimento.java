@@ -27,6 +27,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     public FrCadProcedimento() {
         initComponents();
 
+        this.usuarioLogado = new DColaborador();
         this.lstProcedimentos = new ArrayList<>();
         this.paciente = new Paciente();
         this.tmProcedimentos = new TMProcedimentos();
@@ -36,7 +37,6 @@ public class FrCadProcedimento extends javax.swing.JFrame {
 //        String usuario = this.usuarioLogado.getUsuario();
 //        String caminho = "src/csv/lst_procedimentos_" + usuario + ".csv";
 //        this.carregarArquivo(caminho);
-
         this.tmProcedimentos.fireTableDataChanged();
         this.btnNovo.requestFocus();
     }
@@ -49,23 +49,14 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         this.usuarioLogado = usuarioLogado;
     }
 
-    /**
-     * @return the lstProcedimentos
-     */
     public List<Procedimento> getLstProcedimentos() {
         return lstProcedimentos;
     }
 
-    /**
-     * @param lstProcedimentos the lstProcedimentos to set
-     */
     public void setLstProcedimentos(List<Procedimento> lstProcedimentos) {
         this.lstProcedimentos = lstProcedimentos;
     }
 
-    /**
-     * @param tmProcedimentos the tmProcedimentos to set
-     */
     public void setTmProcedimentos(TMProcedimentos tmProcedimentos) {
         this.tmProcedimentos = tmProcedimentos;
     }
@@ -99,7 +90,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FrCadProcedimento.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "ERRO! Arquivo não foi carregado.");
+            JOptionPane.showMessageDialog(this, "ERRO! Arquivo não foi carregado.");
         }
 
     }
@@ -605,10 +596,10 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
         if (this.verificarCamposVazios()) {
-            JOptionPane.showMessageDialog(null, "Favor preencher todos os dados");
+            JOptionPane.showMessageDialog(this, "Favor preencher todos os dados");
 
         } else {
-            int confirmacao = JOptionPane.showConfirmDialog(null, "Deseja realmente salvar?");
+            int confirmacao = JOptionPane.showConfirmDialog(this, "Deseja realmente salvar?");
 
             if (confirmacao == JOptionPane.YES_OPTION) {
 
@@ -616,7 +607,9 @@ public class FrCadProcedimento extends javax.swing.JFrame {
                 this.tmProcedimentos.addLinha(this.aux);
 
                 this.habilitarCampos(false);
-                this.salvarArquivo("src/csv/lst_procedimentos.csv");
+                String caminho = "src/csv/lst_procedimentos_" + this.usuarioLogado.getUsuario() + ".csv";
+                this.salvarArquivo(caminho);
+                this.tmProcedimentos.fireTableDataChanged();
 
             }
 
@@ -628,6 +621,8 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         ListaPacientes lista = new ListaPacientes(this, true);
         lista.setVisible(true);
         this.paciente = lista.getPacienteSelecionado();
+        this.tmProcedimentos.fireTableDataChanged();
+//        this.tblProcedimento.getModel().
 
         this.copiarObjetoParaCampos(this.aux);
         this.edtTempo.requestFocus();

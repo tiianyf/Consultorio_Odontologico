@@ -202,7 +202,6 @@ public class FrCadLogin extends javax.swing.JFrame {
                     flag = true;
                     FrTelaDColaborador tela = new FrTelaDColaborador();
                     tela.setDentista(i); // informando qual dentista acessou o sistema
-                    System.out.println(i.getUsuario());
                     tela.setVisible(flag);
                 }
             }
