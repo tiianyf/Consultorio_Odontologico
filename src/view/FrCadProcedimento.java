@@ -235,6 +235,28 @@ public class FrCadProcedimento extends javax.swing.JFrame {
      */
     public void copiarCamposParaObjeto(Procedimento p) {
 
+        if (this.boxTipos.getSelectedItem().equals("Clareamento dental")) {
+            p = Procedimento.CLAREAMENTO;
+
+        } else if (this.boxTipos.getSelectedItem().equals("Tratamento ortodôntico")) {
+            p = Procedimento.TRATAMENTO;
+
+        } else if (this.boxTipos.getSelectedItem().equals("Implante")) {
+            p = Procedimento.IMPLANTE;
+
+        } else if (this.boxTipos.getSelectedItem().equals("Próteses fixas")) {
+            p = Procedimento.IMPLANTE;
+
+        } else if (this.boxTipos.getSelectedItem().equals("Enxerto gengival")) {
+            p = Procedimento.ENXERTO;
+
+        } else if (this.boxTipos.getSelectedItem().equals("Periodontia")) {
+            p = Procedimento.RASPAGEM;
+
+        } else if (this.boxTipos.getSelectedItem().equals("Endodontia")) {
+            p = Procedimento.ENDODONTIA;
+        }
+
         p.setId(this.txtId.getText());
         p.setPaciente(this.paciente);
         p.setTempo(Integer.parseInt((this.edtTempo.getText())));
@@ -619,10 +641,10 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     private void btnBuscaPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaPacienteActionPerformed
 
         ListaPacientes lista = new ListaPacientes(this, true);
+
         lista.setVisible(true);
         this.paciente = lista.getPacienteSelecionado();
         this.tmProcedimentos.fireTableDataChanged();
-//        this.tblProcedimento.getModel().
 
         this.copiarObjetoParaCampos(this.aux);
         this.edtTempo.requestFocus();
@@ -634,9 +656,10 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoFocusGained
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        String usuario = this.usuarioLogado.getUsuario();
-        String caminho = "src/csv/lst_procedimentos_" + usuario + ".csv";
-        this.carregarArquivo(caminho);
+//        String usuario = this.usuarioLogado.getUsuario();
+//        String caminho = "src/csv/lst_procedimentos_" + usuario + ".csv";
+//        this.carregarArquivo(caminho);
+//        System.out.println("Isso tá sendo ativado toda hora");
     }//GEN-LAST:event_formWindowActivated
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

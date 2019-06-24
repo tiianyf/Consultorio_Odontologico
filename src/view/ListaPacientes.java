@@ -36,11 +36,11 @@ public class ListaPacientes extends javax.swing.JDialog {
         initComponents();
 
         this.tmPacientes = new TMPacientes();
+        this.pacienteSelecionado = new Paciente();
+        this.indiceSelecionado = -1;
         this.tblPacientes.setModel(tmPacientes);
         this.carregarArquivo("src/csv/lst_pacientes.csv");
         this.tmPacientes.fireTableDataChanged();
-        this.pacienteSelecionado = new Paciente();
-        this.indiceSelecionado = -1;
 
     }
 

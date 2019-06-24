@@ -338,6 +338,9 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
     private void btnPainelInternoProcedimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPainelInternoProcedimentoActionPerformed
         FrCadProcedimento tela = new FrCadProcedimento();
         tela.setUsuarioLogado(this.dentista);
+        
+        String caminho = "src/csv/lst_procedimentos_" + this.dentista.getUsuario() + ".csv";
+        tela.carregarArquivo(caminho);
         tela.setVisible(true);
     }//GEN-LAST:event_btnPainelInternoProcedimentoActionPerformed
 
