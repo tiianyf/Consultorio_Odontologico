@@ -286,13 +286,14 @@ public class FrCadProcedimento extends javax.swing.JFrame {
      */
     public Procedimento confirmarId() {
 
-        do {
-
-            String resultado = aux.idAleatorio();
-            this.aux.setId(resultado);
-
-        } while (this.existe(this.aux));
-
+//        do {
+//
+//            String resultado = aux.idAleatorio();
+//            this.aux.setId(resultado);
+//
+//        } while (this.existe(this.aux));
+        String resultado = aux.idAleatorio();
+        this.aux.setId(resultado);
         return this.aux;
 
     }
@@ -612,7 +613,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         this.habilitarCampos(true);
         this.boxTipos.requestFocus();
-//        this.aux = null;
+        this.aux = null;
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -625,15 +626,11 @@ public class FrCadProcedimento extends javax.swing.JFrame {
 
             if (confirmacao == JOptionPane.YES_OPTION) {
 
-//                Procedimento p = null;
-                this.copiarCamposParaObjeto(this.aux);
-                System.out.println("O objeto atual -->ID: " + this.aux.getId() + "\tPaciente: " + this.aux.getPaciente().getNome());
-                System.out.println("A lista:");
-                for (Procedimento i : this.tmProcedimentos.getLstProcedimentos()) {
-                    System.out.println("ID: " + i.getId() + "\tPaciente: " + i.getPaciente().getNome());
-                }
+                this.aux = null;
+                Procedimento p = null;
 
-                this.tmProcedimentos.addLinha(this.aux);
+                this.copiarCamposParaObjeto(p);
+                this.tmProcedimentos.addLinha(p);
 
                 this.habilitarCampos(false);
                 String caminho = "src/csv/lst_procedimentos_" + this.usuarioLogado.getUsuario() + ".csv";
@@ -650,9 +647,11 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         ListaPacientes lista = new ListaPacientes(this, true);
 
         lista.setVisible(true);
+        
         this.paciente = lista.getPacienteSelecionado();
         this.tmProcedimentos.fireTableDataChanged();
 
+//        this.aux = null;
         this.copiarObjetoParaCampos(this.aux);
         this.edtTempo.requestFocus();
 
