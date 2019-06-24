@@ -8,11 +8,7 @@ package view;
 import controller.TMProcedimentos;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import model.DColaborador;
 import model.Procedimento;
 
@@ -45,10 +41,8 @@ public class ListaProcedimentos extends javax.swing.JDialog {
 //        String usuario = this.usuarioLogado.getUsuario();
 //        String caminho = "src/csv/lst_procedimentos_" + usuario + ".csv";
 //        this.carregarArquivo(caminho);
-
         this.tmProcedimentos.fireTableDataChanged();
         this.indiceSelecionado = -1;
-        System.out.println(this.usuarioLogado.getUsuario());
 
     }
 
@@ -85,7 +79,6 @@ public class ListaProcedimentos extends javax.swing.JDialog {
     }
 
     public final void carregarArquivo(String caminho) {
-        
 
         try {
 
@@ -107,15 +100,7 @@ public class ListaProcedimentos extends javax.swing.JDialog {
             }
 
         } catch (FileNotFoundException ex) {
-//            FileWriter arquivo;
-            /*
-            arquivo = new FileWriter(new File("Arquivo.txt"));
-		arquivo.write(textoQueSeraEscrito);
-		arquivo.close();
-            */
-//            arquivo = new
-            
-            
+            System.out.println("Não achei o arquivo");
         }
     }
 
@@ -230,14 +215,15 @@ public class ListaProcedimentos extends javax.swing.JDialog {
         if (evt.getClickCount() == 2) {
             this.indiceSelecionado = this.tblProcedimentos.getSelectedRow();
             this.procedimentoSelecionado = this.getTmProcedimentos().getLstProcedimentos().get(this.indiceSelecionado);
+            this.tmProcedimentos.fireTableDataChanged();
             dispose();
         }
     }//GEN-LAST:event_tblProcedimentosMouseReleased
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        String usuario = this.usuarioLogado.getUsuario();
-        String caminho = "src/csv/lst_procedimentos_" + usuario + ".csv";
+        String caminho = "src/csv/lst_procedimentos_" + this.usuarioLogado.getUsuario() + ".csv";
         this.carregarArquivo(caminho);
+        this.tmProcedimentos.fireTableDataChanged();
     }//GEN-LAST:event_formWindowActivated
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

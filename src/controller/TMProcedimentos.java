@@ -106,4 +106,8 @@ public class TMProcedimentos extends AbstractTableModel {
 
     }
 
+    public void atualizar(){
+        this.fireTableDataChanged();
+    }
+    
 }

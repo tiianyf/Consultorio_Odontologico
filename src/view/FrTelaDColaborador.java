@@ -385,7 +385,6 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
     private void subMenuLstProcedimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuLstProcedimentosActionPerformed
         ListaProcedimentos tela = new ListaProcedimentos(this, true);
         tela.setUsuarioLogado(this.dentista);
-        System.out.println(tela.getUsuarioLogado().getUsuario());
         tela.setVisible(true);
     }//GEN-LAST:event_subMenuLstProcedimentosActionPerformed
 
