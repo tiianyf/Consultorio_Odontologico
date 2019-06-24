@@ -612,7 +612,7 @@ public class FrCadDentistaColaborador extends javax.swing.JFrame {
 
         if (confirm == JOptionPane.YES_OPTION) {
 
-            ListaDColaboradores lista = new ListaDColaboradores(this, true);
+            ListaDentistas lista = new ListaDentistas(this, true);
             lista.setVisible(true);
             DColaborador d = lista.getDentistaSelecionado();
 
@@ -635,7 +635,7 @@ public class FrCadDentistaColaborador extends javax.swing.JFrame {
 
         if (confirm == JOptionPane.YES_OPTION) {
 
-            ListaDColaboradores lista = new ListaDColaboradores(this, true);
+            ListaDentistas lista = new ListaDentistas(this, true);
             lista.setVisible(true);
             int i = lista.getIndiceSelecionado();
 

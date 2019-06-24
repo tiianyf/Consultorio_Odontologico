@@ -19,7 +19,7 @@ import model.Paciente;
  *
  * @author ch
  */
-public class ListaDColaboradores extends javax.swing.JDialog {
+public class ListaDentistas extends javax.swing.JDialog {
 
     private int indiceSelecionado;
     private DColaborador dentistaSelecionado;
@@ -30,7 +30,7 @@ public class ListaDColaboradores extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public ListaDColaboradores(java.awt.Frame parent, boolean modal) {
+    public ListaDentistas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
@@ -38,7 +38,7 @@ public class ListaDColaboradores extends javax.swing.JDialog {
         this.dentistaSelecionado = new DColaborador();
         this.tmDentistas = new TMDColaboradores();
         this.tblDentistas.setModel(tmDentistas);
-        this.carregarArquivo("src/csv/lst_dcolaboradores.csv");
+        this.carregarArquivo("src/csv/lst_dentistas.csv");
     }
 
     public TMDColaboradores getTmDentistas() {

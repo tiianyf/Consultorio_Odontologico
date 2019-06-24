@@ -11,6 +11,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +27,7 @@ import model.Paciente;
  * @author cfreitas
  */
 public final class FrAgenda extends javax.swing.JFrame {
-    
+
     private final TMAgenda tmAgendamentos;
     private Paciente paciente = new Paciente();
     private DColaborador dentista;
@@ -45,123 +48,127 @@ public final class FrAgenda extends javax.swing.JFrame {
         this.carregarArquivo("src/csv/lst_agendamentos.csv");
         this.tmAgendamentos.fireTableDataChanged();
         this.a = new Agenda();
-        
+
         this.btnNovo.requestFocus();
-        
+
     }
-    
-    
+
     public int getIndiceSelecionado() {
         return indiceSelecionado;
     }
-    
+
     public void setIndiceSelecionado(int indiceSelecionado) {
         this.indiceSelecionado = indiceSelecionado;
     }
-    
+
     public void habilitarCampos(boolean flag) {
-        
+
         this.edtPaciente.setEnabled(flag);
         this.edtDentista.setEnabled(flag);
-        this.edtData.setEnabled(flag);
+        this.escolherData.setEnabled(flag);
         this.edtHorario.setEnabled(flag);
         this.btnBuscarPaciente.setEnabled(flag);
         this.btnBuscarDentista.setEnabled(flag);
-        
+
         if (!flag) {
             this.limparTodosCampos();
         }
     }
-    
+
     public void limparTodosCampos() {
-        
+
         this.edtPaciente.setText(null);
         this.edtDentista.setText(null);
-        this.edtData.setText(null);
+        this.escolherData.cleanup();
         this.edtHorario.setText(null);
-        
+
     }
-    
+
     public void copiarCamposParaObjeto(Agenda a) {
-        
+
         a.setPaciente(this.paciente);
         a.setDentista(this.dentista);
-        a.setData(this.edtData.getText());
+
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        a.setData(df.format(this.escolherData.getDate()));
         a.setHorario(this.edtHorario.getText());
-        
+
     }
-    
+
     public void copiarObjetoParaCampos(Agenda a) {
-        
+
         this.edtPaciente.setText(this.paciente.getNome());
         this.edtDentista.setText(this.dentista.getNome());
-        this.edtData.setText(a.getData());
+        this.escolherData.setDate(Date.valueOf(a.getData()));
         this.edtHorario.setText(a.getHorario());
-        
+
     }
-    
+
     public void carregarArquivo(String caminho) {
-        
+
         FileReader arquivo;
         try {
             arquivo = new FileReader(caminho);
             Scanner ler = new Scanner(arquivo);
             ler.useDelimiter("\n");
-//            ler.next();
-            
+            ler.next();
+
             while (ler.hasNext()) {
                 String linhaCsv = ler.next();
-                Agenda a = new Agenda();
-                a.setInfoCSV(linhaCsv);
-                this.tmAgendamentos.addLinha(a);
+                Agenda ag = new Agenda();
+                ag.setInfoCSV(linhaCsv);
+                this.tmAgendamentos.addLinha(ag);
             }
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FrAgenda.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     public void salvarArquivo(String caminho) {
-        
+
         try {
             FileWriter arquivo = new FileWriter(caminho);
-            
+
             try (PrintWriter escrita = new PrintWriter(arquivo)) {
                 Agenda aux = new Agenda();
                 String info = aux.getCabecalhoCSV();
-                
-                for (Agenda a : this.tmAgendamentos.getLstAgendamentos()) {
-                    info += a.getInfoCSV();
+
+                for (Agenda ag : this.tmAgendamentos.getLstAgendamentos()) {
+                    info += ag.getInfoCSV();
                 }
                 escrita.print(info);
+
             } catch (Exception e) {
+
+                System.out.println("ERRO: " + e.getMessage());
             }
         } catch (IOException ex) {
             Logger.getLogger(FrAgenda.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     public void salvar() {
-        
-        Agenda a = new Agenda();
-        this.copiarCamposParaObjeto(a);
-        this.tmAgendamentos.addLinha(a);
-        
+
+        Agenda aux = new Agenda();
+        this.copiarCamposParaObjeto(aux);
+        this.tmAgendamentos.addLinha(aux);
+
         this.salvarArquivo("src/csv/lst_agendamentos.csv");
         this.tmAgendamentos.fireTableDataChanged();
         this.habilitarCampos(false);
-        
+
     }
-    
+
     public void mostrarTabela() {
-        
-        for (Agenda a : this.tmAgendamentos.getLstAgendamentos()) {
-            this.tmAgendamentos.addLinha(a);
+
+        for (Agenda ag : this.tmAgendamentos.getLstAgendamentos()) {
+            this.tmAgendamentos.addLinha(ag);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -174,10 +181,10 @@ public final class FrAgenda extends javax.swing.JFrame {
         edtHorario = new javax.swing.JTextField();
         lblData1 = new javax.swing.JLabel();
         btnBuscarPaciente = new javax.swing.JButton();
-        edtData = new javax.swing.JTextField();
         lblDentista = new javax.swing.JLabel();
         edtDentista = new javax.swing.JTextField();
         btnBuscarDentista = new javax.swing.JButton();
+        escolherData = new com.toedter.calendar.JDateChooser();
         btnNovo = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
@@ -231,19 +238,6 @@ public final class FrAgenda extends javax.swing.JFrame {
         painel1.add(btnBuscarPaciente);
         btnBuscarPaciente.setBounds(580, 20, 90, 20);
 
-        edtData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edtDataActionPerformed(evt);
-            }
-        });
-        edtData.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                edtDataKeyReleased(evt);
-            }
-        });
-        painel1.add(edtData);
-        edtData.setBounds(90, 100, 130, 19);
-
         lblDentista.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblDentista.setText("Dentista");
         painel1.add(lblDentista);
@@ -260,6 +254,15 @@ public final class FrAgenda extends javax.swing.JFrame {
         });
         painel1.add(btnBuscarDentista);
         btnBuscarDentista.setBounds(580, 60, 90, 20);
+
+        escolherData.setDateFormatString("dd-MM-yyyy");
+        escolherData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                escolherDataMouseReleased(evt);
+            }
+        });
+        painel1.add(escolherData);
+        escolherData.setBounds(90, 100, 160, 19);
 
         btnNovo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
@@ -339,14 +342,15 @@ public final class FrAgenda extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(painel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNovo)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(brnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(22, 22, 22))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(brnExcluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(btnNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         setSize(new java.awt.Dimension(723, 442));
@@ -364,10 +368,10 @@ public final class FrAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
- 
+
         int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente salvar?");
-        
-        if(confirm == JOptionPane.YES_OPTION){
+
+        if (confirm == JOptionPane.YES_OPTION) {
             this.salvar();
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -375,59 +379,55 @@ public final class FrAgenda extends javax.swing.JFrame {
     private void brnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnExcluirActionPerformed
 
         int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?");
-        
-        if(confirm == JOptionPane.YES_OPTION){
-            ListaAgendamentos lista = new ListaAgendamentos(this,true);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            ListaAgendamentos lista = new ListaAgendamentos(this, true);
             lista.setVisible(true);
             int i = lista.getIndiceSelecionado();
-            
+
             this.tmAgendamentos.getLstAgendamentos().remove(i);
             this.salvarArquivo("src/csv/lst_agendamentos.csv");
             JOptionPane.showMessageDialog(this, "Agendamento excluído!");
             this.tmAgendamentos.fireTableDataChanged();
-            
-        }
-        else{
-            
+
+        } else {
+
             this.btnCancelarActionPerformed(evt);
-    }
-        
+        }
+
     }//GEN-LAST:event_brnExcluirActionPerformed
 
     private void btnBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPacienteActionPerformed
 
-        ListaPacientes lista = new ListaPacientes(this,true);
+        ListaPacientes lista = new ListaPacientes(this, true);
         lista.setVisible(true);
         this.paciente = lista.getPacienteSelecionado();
-        
-        this.copiarObjetoParaCampos(this.a);
+        this.a.setPaciente(this.paciente);
+        this.edtPaciente.setText(this.paciente.getNome());
+//        this.copiarObjetoParaCampos(this.a);
         this.btnBuscarDentista.requestFocus();
     }//GEN-LAST:event_btnBuscarPacienteActionPerformed
 
     private void btnBuscarDentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDentistaActionPerformed
-        ListaDColaboradores lista = new ListaDColaboradores(this,true);
+        ListaDentistas lista = new ListaDentistas(this, true);
         lista.setVisible(true);
         this.dentista = lista.getDentistaSelecionado();
-        
-        this.copiarObjetoParaCampos(a);
-        this.edtData.requestFocus();
+        this.a.setDentista(this.dentista);
+        this.edtDentista.setText(this.dentista.getNome());
+//        this.copiarObjetoParaCampos(a);
+        this.escolherData.requestFocus();
     }//GEN-LAST:event_btnBuscarDentistaActionPerformed
 
-    private void edtDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtDataActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_edtDataActionPerformed
-
-    private void edtDataKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtDataKeyReleased
-        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
-            this.edtHorario.requestFocus();
-        }
-    }//GEN-LAST:event_edtDataKeyReleased
-
     private void edtHorarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtHorarioKeyReleased
-         if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
             this.btnSalvar.requestFocus();
         }
     }//GEN-LAST:event_edtHorarioKeyReleased
+
+    private void escolherDataMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_escolherDataMouseReleased
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+//        this.setText(df.format(this.escolherData.getDate()));
+    }//GEN-LAST:event_escolherDataMouseReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brnExcluir;
@@ -436,10 +436,10 @@ public final class FrAgenda extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JTextField edtData;
     private javax.swing.JTextField edtDentista;
     private javax.swing.JTextField edtHorario;
     private javax.swing.JTextField edtPaciente;
+    private com.toedter.calendar.JDateChooser escolherData;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblData1;
     private javax.swing.JLabel lblDentista;

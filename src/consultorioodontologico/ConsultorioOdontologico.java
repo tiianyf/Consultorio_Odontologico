@@ -16,8 +16,10 @@ public class ConsultorioOdontologico {
 
     public static void main(String[] args) {
 
-        JFrame login = new FrCadLogin();
-        login.setVisible(true);
+//        JFrame login = new FrCadLogin();
+//        login.setVisible(true);
 
+    FrAgenda view = new FrAgenda();
+    view.setVisible(true);
     }
 }
