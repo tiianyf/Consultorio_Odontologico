@@ -64,6 +64,11 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuAgendarActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="subMenuLstAgendamentos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Lista de Agendamentos"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuConsultar">

@@ -32,6 +32,7 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
         this.subMenuCadProprietario.setEnabled(false);
         this.subMenuLstFuncionarios.setEnabled(false);
         this.subMenuAgendar.setEnabled(false);
+        this.subMenuLstAgendamentos.setEnabled(false);
 
     }
 
@@ -61,6 +62,7 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
         subMenuCadProprietario = new javax.swing.JMenuItem();
         menuAgenda = new javax.swing.JMenu();
         subMenuAgendar = new javax.swing.JMenuItem();
+        subMenuLstAgendamentos = new javax.swing.JMenuItem();
         menuConsultar = new javax.swing.JMenu();
         subMenuLstPacientes = new javax.swing.JMenuItem();
         subMenuLstFuncionarios = new javax.swing.JMenuItem();
@@ -232,6 +234,9 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
             }
         });
         menuAgenda.add(subMenuAgendar);
+
+        subMenuLstAgendamentos.setText("Lista de Agendamentos");
+        menuAgenda.add(subMenuLstAgendamentos);
 
         menuPrincipal.add(menuAgenda);
 
@@ -411,6 +416,7 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
     private javax.swing.JMenuItem subMenuCadFuncionarios;
     private javax.swing.JMenuItem subMenuCadProcedimento;
     private javax.swing.JMenuItem subMenuCadProprietario;
+    private javax.swing.JMenuItem subMenuLstAgendamentos;
     private javax.swing.JMenuItem subMenuLstFuncionarios;
     private javax.swing.JMenuItem subMenuLstPacientes;
     private javax.swing.JMenuItem subMenuLstProcedimentos;

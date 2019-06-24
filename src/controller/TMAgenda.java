@@ -1,42 +1,47 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.Agenda;
 
 /**
- * Controlador (Table Model) da classe Agenda. Está é uma tabela contendo todos
- * os agendamentos marcados no sistema, dispõe de 4 colunas:
- * (PACIENTE;DENTISTA;DATA;HORARIO).
  *
  * @author cfreitas
  */
 public class TMAgenda extends AbstractTableModel {
-    private final ArrayList<Agenda> lstAgendamentos = new ArrayList<>();
-    private final ArrayList<String> lstColunas = new ArrayList<>();
-    
+
+    private List<String> lstColunas;
+    private List<Agenda> lstAgendamentos;
+
     public TMAgenda() {
+
+        this.lstColunas = new ArrayList<>();
+        this.lstAgendamentos = new ArrayList<>();
+
         this.lstColunas.add("Paciente");
-//        this.lstColunas.add("Dentista");
+        this.lstColunas.add("Dentista");
         this.lstColunas.add("Data");
         this.lstColunas.add("Horario");
+
     }
 
-    public ArrayList<Agenda> getLstAgendamentos() {
+    public List<Agenda> getLstAgendamentos() {
         return lstAgendamentos;
     }
 
-    public ArrayList<String> getLstColunas() {
-        return lstColunas;
-    }
-    
     public Agenda getRow(int index) {
-        return this.getLstAgendamentos().get(index);
+        return this.lstAgendamentos.get(index);
     }
-    
+
     @Override
     public String getColumnName(int index) {
-        return this.getLstColunas().get(index);
+        return this.lstColunas.get(index);
     }
 
     @Override
@@ -51,33 +56,38 @@ public class TMAgenda extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int linha, int coluna) {
-        if(coluna == this.lstColunas.indexOf("Paciente")){
+
+        if (coluna == this.lstColunas.indexOf("Paciente")) {
             return this.lstAgendamentos.get(linha).getPaciente().getNome();
-        }
-        else if(coluna == this.lstColunas.indexOf("Data")){
+            
+        } else if (coluna == this.lstColunas.indexOf("Dentista")) {
+            return this.lstAgendamentos.get(linha).getDentista().getNome();
+            
+        } else if (coluna == this.lstColunas.indexOf("Data")) {
             return this.lstAgendamentos.get(linha).getData();
-        }
-        else if(coluna == this.lstColunas.indexOf("Horario")){
+            
+        } else if (coluna == this.lstColunas.indexOf("Horario")) {
             return this.lstAgendamentos.get(linha).getHorario();
-        }
-        else{
+            
+        } else {
             System.out.println("Objeto não encontrado!");
             return null;
         }
     }
-    
-    public void addLinha(Agenda a){
-        this.getLstAgendamentos().add(a);
+
+    public void addLinha(Agenda a) {
+
+        this.lstAgendamentos.add(a);
         this.fireTableDataChanged();
+
     }
-   
-    public void removerLinha(int linha){
-        this.lstAgendamentos.remove(linha);
+
+    public void removeLinha(int linha) {
+
+        this.getLstAgendamentos().remove(linha);
         this.fireTableRowsDeleted(linha, linha);
         this.fireTableDataChanged();
+
     }
-    
-    public Agenda getLinha(int indice){
-        return this.lstAgendamentos.get(indice);
-    }
+
 }

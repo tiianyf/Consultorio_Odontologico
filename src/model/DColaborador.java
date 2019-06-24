@@ -100,11 +100,6 @@ public class DColaborador extends Dentista {
     }
 
     @Override
-    public String acessarRelatorio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public boolean alterarUsuario(String usuario, String senha) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -116,6 +111,11 @@ public class DColaborador extends Dentista {
 
     @Override
     public boolean cadastrarProcedimento(String usuario, String senha) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String acessarRelatorio() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

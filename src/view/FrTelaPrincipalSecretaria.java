@@ -45,6 +45,7 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
         menuCadProprietario = new javax.swing.JMenuItem();
         menuAgenda = new javax.swing.JMenu();
         menuAgendar = new javax.swing.JMenuItem();
+        menuLstAgendamentos = new javax.swing.JMenuItem();
         menuConsultar = new javax.swing.JMenu();
         menuLstPacientes = new javax.swing.JMenuItem();
         menuLstFuncionarios = new javax.swing.JMenuItem();
@@ -217,6 +218,14 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
         });
         menuAgenda.add(menuAgendar);
 
+        menuLstAgendamentos.setText("Lista de Agendamentos");
+        menuLstAgendamentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuLstAgendamentosActionPerformed(evt);
+            }
+        });
+        menuAgenda.add(menuLstAgendamentos);
+
         menuPrincipal.add(menuAgenda);
 
         menuConsultar.setText("Consulta");
@@ -338,6 +347,11 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_btnTelaInternaAgendaActionPerformed
 
+    private void menuLstAgendamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLstAgendamentosActionPerformed
+        ListaAgendamentos tela = new ListaAgendamentos(this, true);
+        tela.setVisible(true);
+    }//GEN-LAST:event_menuLstAgendamentosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPainelInternoDColaborador;
     private javax.swing.JButton btnPainelInternoFuncionario;
@@ -362,6 +376,7 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuCaixa;
     private javax.swing.JMenu menuConsultar;
+    private javax.swing.JMenuItem menuLstAgendamentos;
     private javax.swing.JMenuItem menuLstFuncionarios;
     private javax.swing.JMenuItem menuLstPacientes;
     private javax.swing.JMenuBar menuPrincipal;
