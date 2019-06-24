@@ -273,7 +273,6 @@ public class FrCadProcedimento extends javax.swing.JFrame {
         this.txtNome.setText(this.paciente.getNome());
         this.txtCpf.setText(this.paciente.getCpf());
         this.txtId.setText(this.confirmarId().getId());
-//        this.edtTempo.setText(Integer.toString(this.aux.getTempo()));
 
     }
 
@@ -613,6 +612,7 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         this.habilitarCampos(true);
         this.boxTipos.requestFocus();
+//        this.aux = null;
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -625,7 +625,14 @@ public class FrCadProcedimento extends javax.swing.JFrame {
 
             if (confirmacao == JOptionPane.YES_OPTION) {
 
+//                Procedimento p = null;
                 this.copiarCamposParaObjeto(this.aux);
+                System.out.println("O objeto atual -->ID: " + this.aux.getId() + "\tPaciente: " + this.aux.getPaciente().getNome());
+                System.out.println("A lista:");
+                for (Procedimento i : this.tmProcedimentos.getLstProcedimentos()) {
+                    System.out.println("ID: " + i.getId() + "\tPaciente: " + i.getPaciente().getNome());
+                }
+
                 this.tmProcedimentos.addLinha(this.aux);
 
                 this.habilitarCampos(false);
@@ -656,10 +663,6 @@ public class FrCadProcedimento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoFocusGained
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-//        String usuario = this.usuarioLogado.getUsuario();
-//        String caminho = "src/csv/lst_procedimentos_" + usuario + ".csv";
-//        this.carregarArquivo(caminho);
-//        System.out.println("Isso tá sendo ativado toda hora");
     }//GEN-LAST:event_formWindowActivated
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

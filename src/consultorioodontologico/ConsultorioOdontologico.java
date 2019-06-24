@@ -1,6 +1,7 @@
 package consultorioodontologico;
 
 import javax.swing.JFrame;
+import model.Procedimento;
 import view.*;
 
 /**
@@ -18,6 +19,8 @@ public class ConsultorioOdontologico {
 
         JFrame login = new FrCadLogin();
         login.setVisible(true);
+//        Procedimento p = Procedimento.CLAREAMENTO;
+//        System.out.println(p.getCabecalhoCSV());
 
     }
 }
