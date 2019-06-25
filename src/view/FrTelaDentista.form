@@ -41,14 +41,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuCadDColaboradorActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="subMenuCadProprietario">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Propriet&#xe1;rio"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuCadProprietarioActionPerformed"/>
-              </Events>
-            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuAgenda">
@@ -76,29 +68,34 @@
             <Property name="text" type="java.lang.String" value="Consulta"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="subMenuLstPacientes">
+            <MenuItem class="javax.swing.JMenuItem" name="subMenuPacientes">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Lista de Pacientes"/>
+                <Property name="text" type="java.lang.String" value="Pacientes"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuLstPacientesActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuPacientesActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="subMenuLstFuncionarios">
+            <MenuItem class="javax.swing.JMenuItem" name="subMenuFuncionarios">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Lista de Funcion&#xe1;rios"/>
+                <Property name="text" type="java.lang.String" value="Funcion&#xe1;rios"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuLstFuncionariosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuFuncionariosActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="subMenuLstProcedimentos">
+            <MenuItem class="javax.swing.JMenuItem" name="subMenuProcedimentos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Lista de Procedimentos"/>
+                <Property name="text" type="java.lang.String" value="Procedimentos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuLstProcedimentosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuProcedimentosActionPerformed"/>
               </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="subMenuDentistas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Dentistas"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -206,6 +203,11 @@
               <Image iconType="3" name="/icons/close.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Fechar Bem-Vindo"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
@@ -213,7 +215,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="820" y="10" width="30" height="40"/>
+              <AbsoluteConstraints x="810" y="10" width="40" height="40"/>
             </Constraint>
           </Constraints>
         </Component>

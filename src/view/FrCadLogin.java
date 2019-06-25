@@ -23,7 +23,7 @@ public class FrCadLogin extends javax.swing.JFrame {
         initComponents();
 
         this.usuarios = new ArrayList<>();
-        this.carregarArquivo("src/csv/lst_dcolaboradores.csv");
+        this.carregarArquivo("src/csv/lst_dentistas.csv");
     }
 
     public List<DColaborador> getUsuarios() {
@@ -200,7 +200,7 @@ public class FrCadLogin extends javax.swing.JFrame {
                 if (this.edtLogin.getText().equals(i.getUsuario()) && this.edtSenha.getText().equals(i.getSenha())) {
 
                     flag = true;
-                    FrTelaDColaborador tela = new FrTelaDColaborador();
+                    FrTelaDentista tela = new FrTelaDentista();
                     tela.setDentista(i); // informando qual dentista acessou o sistema
                     tela.setVisible(flag);
                 }

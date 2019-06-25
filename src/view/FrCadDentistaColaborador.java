@@ -27,7 +27,7 @@ public class FrCadDentistaColaborador extends javax.swing.JFrame {
         this.tmDColaborador = new TMDColaboradores();
         this.alteracao = false;
         this.habilitarCampos(false);
-        this.carregarArquivo("src/csv/lst_dcolaboradores.csv");
+        this.carregarArquivo("src/csv/lst_dentistas.csv");
         this.tmDColaborador.fireTableDataChanged();
 
     }
@@ -232,7 +232,7 @@ public class FrCadDentistaColaborador extends javax.swing.JFrame {
                 this.tmDColaborador.addLinha(d);
             }
         }
-        this.salvarNoArquivo("src/csv/lst_dcolaboradores.csv");
+        this.salvarNoArquivo("src/csv/lst_dentistas.csv");
         this.tmDColaborador.fireTableDataChanged();
         this.habilitarCampos(false);
     }
@@ -640,7 +640,7 @@ public class FrCadDentistaColaborador extends javax.swing.JFrame {
             int i = lista.getIndiceSelecionado();
 
             this.tmDColaborador.getLstDColaboradores().remove(i);
-            this.salvarNoArquivo("src/csv/lst_dcolaboradores.csv");
+            this.salvarNoArquivo("src/csv/lst_dentistas.csv");
             JOptionPane.showMessageDialog(null, "Dentista Colaborador excluído!");
             this.tmDColaborador.fireTableDataChanged();
         }

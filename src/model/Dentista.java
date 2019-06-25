@@ -7,7 +7,7 @@ package model;
  *
  * @author cfreitas
  */
- abstract public class Dentista extends Funcionario implements Usuario{
+ abstract public class Dentista extends Funcionario implements Usuario {
 
     protected String cro;
     protected String usuario;

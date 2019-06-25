@@ -13,7 +13,6 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
         this.btnPainelInternoFuncionario.setEnabled(false);
         this.menuCadDColaborador.setEnabled(false);
         this.menuCadFuncionarios.setEnabled(false);
-        this.menuCadProprietario.setEnabled(false);
         this.menuCadFuncionarios.setEnabled(false);
         this.menuCadProcedimento.setEnabled(false);
         this.subMenuLstProcedimentos.setEnabled(false);
@@ -42,7 +41,6 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
         menuCadFuncionarios = new javax.swing.JMenuItem();
         menuCadProcedimento = new javax.swing.JMenuItem();
         menuCadDColaborador = new javax.swing.JMenuItem();
-        menuCadProprietario = new javax.swing.JMenuItem();
         menuAgenda = new javax.swing.JMenu();
         menuAgendar = new javax.swing.JMenuItem();
         menuLstAgendamentos = new javax.swing.JMenuItem();
@@ -198,14 +196,6 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
         });
         menuCadastro.add(menuCadDColaborador);
 
-        menuCadProprietario.setText("Proprietário");
-        menuCadProprietario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuCadProprietarioActionPerformed(evt);
-            }
-        });
-        menuCadastro.add(menuCadProprietario);
-
         menuPrincipal.add(menuCadastro);
 
         menuAgenda.setText("Agenda");
@@ -327,11 +317,6 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_menuCadDColaboradorActionPerformed
 
-    private void menuCadProprietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadProprietarioActionPerformed
-        FrCadDentista tela = new FrCadDentista();
-        tela.setVisible(true);
-    }//GEN-LAST:event_menuCadProprietarioActionPerformed
-
     private void menuAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAgendarActionPerformed
         FrAgenda tela = new FrAgenda();
         tela.setVisible(true);
@@ -372,7 +357,6 @@ public final class FrTelaPrincipalSecretaria extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCadDColaborador;
     private javax.swing.JMenuItem menuCadFuncionarios;
     private javax.swing.JMenuItem menuCadProcedimento;
-    private javax.swing.JMenuItem menuCadProprietario;
     private javax.swing.JMenu menuCadastro;
     private javax.swing.JMenu menuCaixa;
     private javax.swing.JMenu menuConsultar;

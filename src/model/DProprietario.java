@@ -13,8 +13,8 @@ public class DProprietario extends Dentista implements Admin, Dono {
     public DProprietario() {
 
         super();
-        this.usuario = "cfreitas";
-        this.senha = "tiiany";
+        this.usuario = "jose";
+        this.senha = "rui";
 
     }
 

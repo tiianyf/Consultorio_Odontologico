@@ -64,11 +64,15 @@ public final class FrAgenda extends javax.swing.JFrame {
     public void habilitarCampos(boolean flag) {
 
         this.edtPaciente.setEnabled(flag);
+        this.edtCpf.setEnabled(flag);
         this.edtDentista.setEnabled(flag);
         this.escolherData.setEnabled(flag);
-        this.edtHorario.setEnabled(flag);
+        this.boxHorarios.setEnabled(flag);
         this.btnBuscarPaciente.setEnabled(flag);
         this.btnBuscarDentista.setEnabled(flag);
+        this.escolherData.setEnabled(flag);
+        this.boxProcedimentos.setEnabled(flag);
+        this.boxHorarios.setEnabled(flag);
 
         if (!flag) {
             this.limparTodosCampos();
@@ -78,9 +82,9 @@ public final class FrAgenda extends javax.swing.JFrame {
     public void limparTodosCampos() {
 
         this.edtPaciente.setText(null);
+        this.edtCpf.setText(null);
         this.edtDentista.setText(null);
         this.escolherData.cleanup();
-        this.edtHorario.setText(null);
 
     }
 
@@ -91,16 +95,48 @@ public final class FrAgenda extends javax.swing.JFrame {
 
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         a.setData(df.format(this.escolherData.getDate()));
-        a.setHorario(this.edtHorario.getText());
+
+        if (this.boxHorarios.getSelectedItem().equals("30 min")) {
+            a.setHorario("30");
+
+        } else if (this.boxHorarios.getSelectedItem().equals("1h")) {
+            a.setHorario("60");
+
+        } else if (this.boxHorarios.getSelectedItem().equals("1h30min")) {
+            a.setHorario("90");
+
+        } else if (this.boxHorarios.getSelectedItem().equals("2h")) {
+            a.setHorario("120");
+        }
+        a.setId(this.edtId.getText());
 
     }
 
     public void copiarObjetoParaCampos(Agenda a) {
 
         this.edtPaciente.setText(this.paciente.getNome());
+        this.edtCpf.setText(this.paciente.getCpf());
         this.edtDentista.setText(this.dentista.getNome());
         this.escolherData.setDate(Date.valueOf(a.getData()));
-        this.edtHorario.setText(a.getHorario());
+
+        switch (a.getHorario()) {
+            case "30":
+                this.boxHorarios.setSelectedItem("30 min");
+                break;
+            case "60":
+                this.boxHorarios.setSelectedItem("1h");
+                break;
+            case "90":
+                this.boxHorarios.setSelectedItem("1h30min");
+                break;
+            case "120":
+                this.boxHorarios.setSelectedItem("2h");
+                break;
+            default:
+                break;
+        }
+        
+        this.edtId.setText(a.getId());
 
     }
 
@@ -178,17 +214,23 @@ public final class FrAgenda extends javax.swing.JFrame {
         lblPaciente = new javax.swing.JLabel();
         lblHorario = new javax.swing.JLabel();
         edtPaciente = new javax.swing.JTextField();
-        edtHorario = new javax.swing.JTextField();
-        lblData1 = new javax.swing.JLabel();
+        lblData = new javax.swing.JLabel();
         btnBuscarPaciente = new javax.swing.JButton();
         lblDentista = new javax.swing.JLabel();
         edtDentista = new javax.swing.JTextField();
         btnBuscarDentista = new javax.swing.JButton();
         escolherData = new com.toedter.calendar.JDateChooser();
+        lblCpf = new javax.swing.JLabel();
+        edtCpf = new javax.swing.JTextField();
+        lblProcedimento = new javax.swing.JLabel();
+        boxHorarios = new javax.swing.JComboBox<>();
+        boxProcedimentos = new javax.swing.JComboBox<>();
+        lblId = new javax.swing.JLabel();
+        edtId = new javax.swing.JTextField();
         btnNovo = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
-        brnExcluir = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAgenda = new javax.swing.JTable();
 
@@ -211,22 +253,16 @@ public final class FrAgenda extends javax.swing.JFrame {
         lblHorario.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lblHorario.setText("Horário");
         painel1.add(lblHorario);
-        lblHorario.setBounds(270, 100, 70, 17);
+        lblHorario.setBounds(20, 140, 60, 20);
+
+        edtPaciente.setEditable(false);
         painel1.add(edtPaciente);
-        edtPaciente.setBounds(90, 20, 480, 19);
+        edtPaciente.setBounds(90, 20, 320, 19);
 
-        edtHorario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                edtHorarioKeyReleased(evt);
-            }
-        });
-        painel1.add(edtHorario);
-        edtHorario.setBounds(350, 100, 200, 19);
-
-        lblData1.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
-        lblData1.setText("Data ");
-        painel1.add(lblData1);
-        lblData1.setBounds(20, 100, 38, 17);
+        lblData.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        lblData.setText("Data ");
+        painel1.add(lblData);
+        lblData.setBounds(20, 100, 38, 17);
 
         btnBuscarPaciente.setText("Buscar");
         btnBuscarPaciente.setContentAreaFilled(false);
@@ -242,6 +278,8 @@ public final class FrAgenda extends javax.swing.JFrame {
         lblDentista.setText("Dentista");
         painel1.add(lblDentista);
         lblDentista.setBounds(20, 60, 59, 17);
+
+        edtDentista.setEditable(false);
         painel1.add(edtDentista);
         edtDentista.setBounds(90, 60, 480, 19);
 
@@ -254,15 +292,49 @@ public final class FrAgenda extends javax.swing.JFrame {
         });
         painel1.add(btnBuscarDentista);
         btnBuscarDentista.setBounds(580, 60, 90, 20);
+        painel1.add(escolherData);
+        escolherData.setBounds(90, 100, 150, 19);
 
-        escolherData.setDateFormatString("dd-MM-yyyy");
-        escolherData.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                escolherDataMouseReleased(evt);
+        lblCpf.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        lblCpf.setText("CPF");
+        painel1.add(lblCpf);
+        lblCpf.setBounds(420, 20, 30, 17);
+
+        edtCpf.setEditable(false);
+        painel1.add(edtCpf);
+        edtCpf.setBounds(460, 20, 110, 19);
+
+        lblProcedimento.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        lblProcedimento.setText("Procedimento");
+        painel1.add(lblProcedimento);
+        lblProcedimento.setBounds(340, 100, 100, 20);
+
+        boxHorarios.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        boxHorarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "30 min", "1h", "1h30min", "2h" }));
+        boxHorarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxHorariosActionPerformed(evt);
             }
         });
-        painel1.add(escolherData);
-        escolherData.setBounds(90, 100, 160, 19);
+        painel1.add(boxHorarios);
+        boxHorarios.setBounds(90, 140, 85, 20);
+
+        boxProcedimentos.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        boxProcedimentos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Clareamento dental", "Tratamento ortodôntico", "Implante", "Próteses fixas", "Enxerto gengival", "Periodontia", "Endodontia" }));
+        boxProcedimentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxProcedimentosActionPerformed(evt);
+            }
+        });
+        painel1.add(boxProcedimentos);
+        boxProcedimentos.setBounds(460, 100, 210, 20);
+
+        lblId.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        lblId.setText("ID");
+        painel1.add(lblId);
+        lblId.setBounds(220, 140, 15, 20);
+        painel1.add(edtId);
+        edtId.setBounds(250, 140, 90, 20);
 
         btnNovo.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/new.png"))); // NOI18N
@@ -292,12 +364,12 @@ public final class FrAgenda extends javax.swing.JFrame {
             }
         });
 
-        brnExcluir.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        brnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete.png"))); // NOI18N
-        brnExcluir.setText("Excluir");
-        brnExcluir.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete.png"))); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                brnExcluirActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -330,7 +402,7 @@ public final class FrAgenda extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnCancelar)
                         .addGap(18, 18, 18)
-                        .addComponent(brnExcluir)
+                        .addComponent(btnExcluir)
                         .addGap(18, 18, 18)
                         .addComponent(btnSalvar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -340,12 +412,12 @@ public final class FrAgenda extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painel1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .addComponent(painel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(brnExcluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -353,7 +425,7 @@ public final class FrAgenda extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(723, 442));
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -374,9 +446,10 @@ public final class FrAgenda extends javax.swing.JFrame {
         if (confirm == JOptionPane.YES_OPTION) {
             this.salvar();
         }
+        this.btnCancelarActionPerformed(evt);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void brnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnExcluirActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
 
         int confirm = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?");
 
@@ -395,7 +468,7 @@ public final class FrAgenda extends javax.swing.JFrame {
             this.btnCancelarActionPerformed(evt);
         }
 
-    }//GEN-LAST:event_brnExcluirActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPacienteActionPerformed
 
@@ -403,8 +476,9 @@ public final class FrAgenda extends javax.swing.JFrame {
         lista.setVisible(true);
         this.paciente = lista.getPacienteSelecionado();
         this.a.setPaciente(this.paciente);
+
         this.edtPaciente.setText(this.paciente.getNome());
-//        this.copiarObjetoParaCampos(this.a);
+        this.edtCpf.setText(this.paciente.getCpf());
         this.btnBuscarDentista.requestFocus();
     }//GEN-LAST:event_btnBuscarPacienteActionPerformed
 
@@ -418,33 +492,41 @@ public final class FrAgenda extends javax.swing.JFrame {
         this.escolherData.requestFocus();
     }//GEN-LAST:event_btnBuscarDentistaActionPerformed
 
-    private void edtHorarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtHorarioKeyReleased
-        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
-            this.btnSalvar.requestFocus();
-        }
-    }//GEN-LAST:event_edtHorarioKeyReleased
-
     private void escolherDataMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_escolherDataMouseReleased
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 //        this.setText(df.format(this.escolherData.getDate()));
     }//GEN-LAST:event_escolherDataMouseReleased
 
+    private void boxHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxHorariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxHorariosActionPerformed
+
+    private void boxProcedimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxProcedimentosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxProcedimentosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton brnExcluir;
+    private javax.swing.JComboBox<String> boxHorarios;
+    private javax.swing.JComboBox<String> boxProcedimentos;
     private javax.swing.JButton btnBuscarDentista;
     private javax.swing.JButton btnBuscarPaciente;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JTextField edtCpf;
     private javax.swing.JTextField edtDentista;
-    private javax.swing.JTextField edtHorario;
+    private javax.swing.JTextField edtId;
     private javax.swing.JTextField edtPaciente;
     private com.toedter.calendar.JDateChooser escolherData;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblData1;
+    private javax.swing.JLabel lblCpf;
+    private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblDentista;
     private javax.swing.JLabel lblHorario;
+    private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblPaciente;
+    private javax.swing.JLabel lblProcedimento;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel painel1;
     private javax.swing.JTable tblAgenda;

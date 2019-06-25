@@ -25,10 +25,24 @@ public class TMAgenda extends AbstractTableModel {
         this.lstAgendamentos = new ArrayList<>();
 
         this.lstColunas.add("Paciente");
+        this.lstColunas.add("CPF");
         this.lstColunas.add("Dentista");
         this.lstColunas.add("Data");
-        this.lstColunas.add("Horario");
+        this.lstColunas.add("Horário");
+        this.lstColunas.add("ID");
 
+    }
+
+    public List<String> getLstColunas() {
+        return lstColunas;
+    }
+
+    public void setLstColunas(List<String> lstColunas) {
+        this.lstColunas = lstColunas;
+    }
+
+    public void setLstAgendamentos(List<Agenda> lstAgendamentos) {
+        this.lstAgendamentos = lstAgendamentos;
     }
 
     public List<Agenda> getLstAgendamentos() {
@@ -59,16 +73,22 @@ public class TMAgenda extends AbstractTableModel {
 
         if (coluna == this.lstColunas.indexOf("Paciente")) {
             return this.lstAgendamentos.get(linha).getPaciente().getNome();
+
+        } else if (coluna == this.lstColunas.indexOf("CPF")) {
+            return this.lstAgendamentos.get(linha).getPaciente().getCpf();
             
         } else if (coluna == this.lstColunas.indexOf("Dentista")) {
             return this.lstAgendamentos.get(linha).getDentista().getNome();
-            
+
         } else if (coluna == this.lstColunas.indexOf("Data")) {
             return this.lstAgendamentos.get(linha).getData();
-            
-        } else if (coluna == this.lstColunas.indexOf("Horario")) {
+
+        } else if (coluna == this.lstColunas.indexOf("Horário")) {
             return this.lstAgendamentos.get(linha).getHorario();
-            
+
+        } else if (coluna == this.lstColunas.indexOf("ID")) {
+            return this.lstAgendamentos.get(linha).getId();
+
         } else {
             System.out.println("Objeto não encontrado!");
             return null;

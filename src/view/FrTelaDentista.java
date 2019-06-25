@@ -2,11 +2,11 @@ package view;
 
 import model.DColaborador;
 
-public final class FrTelaDColaborador extends javax.swing.JFrame {
+public final class FrTelaDentista extends javax.swing.JFrame {
 
     private DColaborador dentista; // dentista logado
 
-    public FrTelaDColaborador() {
+    public FrTelaDentista() {
         initComponents();
         this.habilitarBotoes();
 
@@ -29,8 +29,7 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
         this.subMenuCadCliente.setEnabled(false);
         this.subMenuCadDColaborador.setEnabled(false);
         this.subMenuCadFuncionarios.setEnabled(false);
-        this.subMenuCadProprietario.setEnabled(false);
-        this.subMenuLstFuncionarios.setEnabled(false);
+        this.subMenuFuncionarios.setEnabled(false);
         this.subMenuAgendar.setEnabled(false);
         this.subMenuLstAgendamentos.setEnabled(false);
 
@@ -59,14 +58,14 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
         subMenuCadFuncionarios = new javax.swing.JMenuItem();
         subMenuCadProcedimento = new javax.swing.JMenuItem();
         subMenuCadDColaborador = new javax.swing.JMenuItem();
-        subMenuCadProprietario = new javax.swing.JMenuItem();
         menuAgenda = new javax.swing.JMenu();
         subMenuAgendar = new javax.swing.JMenuItem();
         subMenuLstAgendamentos = new javax.swing.JMenuItem();
         menuConsultar = new javax.swing.JMenu();
-        subMenuLstPacientes = new javax.swing.JMenuItem();
-        subMenuLstFuncionarios = new javax.swing.JMenuItem();
-        subMenuLstProcedimentos = new javax.swing.JMenuItem();
+        subMenuPacientes = new javax.swing.JMenuItem();
+        subMenuFuncionarios = new javax.swing.JMenuItem();
+        subMenuProcedimentos = new javax.swing.JMenuItem();
+        subMenuDentistas = new javax.swing.JMenuItem();
         menuCaixa = new javax.swing.JMenu();
         menuBoasVindas = new javax.swing.JMenu();
         subMenuBoasVindas = new javax.swing.JMenuItem();
@@ -89,6 +88,7 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
 
         btnTelaInternaSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/close.png"))); // NOI18N
         btnTelaInternaSair.setToolTipText("Fechar Bem-Vindo");
+        btnTelaInternaSair.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnTelaInternaSair.setContentAreaFilled(false);
         btnTelaInternaSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +96,7 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
             }
         });
         telaInterna.getContentPane().add(btnTelaInternaSair);
-        btnTelaInternaSair.setBounds(820, 10, 30, 40);
+        btnTelaInternaSair.setBounds(810, 10, 40, 40);
 
         painelInterno.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         painelInterno.setLayout(null);
@@ -215,14 +215,6 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
         });
         menuCadastro.add(subMenuCadDColaborador);
 
-        subMenuCadProprietario.setText("Proprietário");
-        subMenuCadProprietario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                subMenuCadProprietarioActionPerformed(evt);
-            }
-        });
-        menuCadastro.add(subMenuCadProprietario);
-
         menuPrincipal.add(menuCadastro);
 
         menuAgenda.setText("Agenda");
@@ -242,29 +234,32 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
 
         menuConsultar.setText("Consulta");
 
-        subMenuLstPacientes.setText("Lista de Pacientes");
-        subMenuLstPacientes.addActionListener(new java.awt.event.ActionListener() {
+        subMenuPacientes.setText("Pacientes");
+        subMenuPacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                subMenuLstPacientesActionPerformed(evt);
+                subMenuPacientesActionPerformed(evt);
             }
         });
-        menuConsultar.add(subMenuLstPacientes);
+        menuConsultar.add(subMenuPacientes);
 
-        subMenuLstFuncionarios.setText("Lista de Funcionários");
-        subMenuLstFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+        subMenuFuncionarios.setText("Funcionários");
+        subMenuFuncionarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                subMenuLstFuncionariosActionPerformed(evt);
+                subMenuFuncionariosActionPerformed(evt);
             }
         });
-        menuConsultar.add(subMenuLstFuncionarios);
+        menuConsultar.add(subMenuFuncionarios);
 
-        subMenuLstProcedimentos.setText("Lista de Procedimentos");
-        subMenuLstProcedimentos.addActionListener(new java.awt.event.ActionListener() {
+        subMenuProcedimentos.setText("Procedimentos");
+        subMenuProcedimentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                subMenuLstProcedimentosActionPerformed(evt);
+                subMenuProcedimentosActionPerformed(evt);
             }
         });
-        menuConsultar.add(subMenuLstProcedimentos);
+        menuConsultar.add(subMenuProcedimentos);
+
+        subMenuDentistas.setText("Dentistas");
+        menuConsultar.add(subMenuDentistas);
 
         menuPrincipal.add(menuConsultar);
 
@@ -310,7 +305,7 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTelaInternaSairActionPerformed
 
     private void subMenuBoasVindasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuBoasVindasActionPerformed
-        FrTelaDColaborador tela = new FrTelaDColaborador();
+        FrTelaDentista tela = new FrTelaDentista();
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_subMenuBoasVindasActionPerformed
@@ -338,7 +333,7 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
     private void btnPainelInternoProcedimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPainelInternoProcedimentoActionPerformed
         FrCadProcedimento tela = new FrCadProcedimento();
         tela.setUsuarioLogado(this.dentista);
-        
+
         String caminho = "src/csv/lst_procedimentos_" + this.dentista.getUsuario() + ".csv";
         tela.carregarArquivo(caminho);
         tela.setVisible(true);
@@ -360,36 +355,31 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_subMenuCadDColaboradorActionPerformed
 
-    private void subMenuCadProprietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuCadProprietarioActionPerformed
-        FrCadDentista tela = new FrCadDentista();
-        tela.setVisible(true);
-    }//GEN-LAST:event_subMenuCadProprietarioActionPerformed
-
     private void subMenuAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuAgendarActionPerformed
         FrAgenda tela = new FrAgenda();
         tela.setVisible(true);
     }//GEN-LAST:event_subMenuAgendarActionPerformed
 
-    private void subMenuLstPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuLstPacientesActionPerformed
+    private void subMenuPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuPacientesActionPerformed
         ListaPacientes tela = new ListaPacientes(this, true);
         tela.setVisible(true);
 
-    }//GEN-LAST:event_subMenuLstPacientesActionPerformed
+    }//GEN-LAST:event_subMenuPacientesActionPerformed
 
-    private void subMenuLstFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuLstFuncionariosActionPerformed
+    private void subMenuFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuFuncionariosActionPerformed
         FrListaFuncionarios tela = new FrListaFuncionarios();
         tela.setVisible(true);
-    }//GEN-LAST:event_subMenuLstFuncionariosActionPerformed
+    }//GEN-LAST:event_subMenuFuncionariosActionPerformed
 
     private void btnTelaInternaAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTelaInternaAgendaActionPerformed
 
     }//GEN-LAST:event_btnTelaInternaAgendaActionPerformed
 
-    private void subMenuLstProcedimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuLstProcedimentosActionPerformed
+    private void subMenuProcedimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subMenuProcedimentosActionPerformed
         ListaProcedimentos tela = new ListaProcedimentos(this, true);
         tela.setUsuarioLogado(this.dentista);
         tela.setVisible(true);
-    }//GEN-LAST:event_subMenuLstProcedimentosActionPerformed
+    }//GEN-LAST:event_subMenuProcedimentosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPainelInternoDColaborador;
@@ -417,11 +407,11 @@ public final class FrTelaDColaborador extends javax.swing.JFrame {
     private javax.swing.JMenuItem subMenuCadDColaborador;
     private javax.swing.JMenuItem subMenuCadFuncionarios;
     private javax.swing.JMenuItem subMenuCadProcedimento;
-    private javax.swing.JMenuItem subMenuCadProprietario;
+    private javax.swing.JMenuItem subMenuDentistas;
+    private javax.swing.JMenuItem subMenuFuncionarios;
     private javax.swing.JMenuItem subMenuLstAgendamentos;
-    private javax.swing.JMenuItem subMenuLstFuncionarios;
-    private javax.swing.JMenuItem subMenuLstPacientes;
-    private javax.swing.JMenuItem subMenuLstProcedimentos;
+    private javax.swing.JMenuItem subMenuPacientes;
+    private javax.swing.JMenuItem subMenuProcedimentos;
     private javax.swing.JMenuItem subMenuSairSistema;
     private javax.swing.JInternalFrame telaInterna;
     // End of variables declaration//GEN-END:variables

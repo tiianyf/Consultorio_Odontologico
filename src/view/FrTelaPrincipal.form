@@ -41,14 +41,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCadDColaboradorActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuCadProprietario">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Propriet&#xe1;rio"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCadProprietarioActionPerformed"/>
-              </Events>
-            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuAgenda">
@@ -79,28 +71,28 @@
             <Property name="text" type="java.lang.String" value="Consulta"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuLstPacientes">
+            <MenuItem class="javax.swing.JMenuItem" name="subMenuPacientes">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Lista de Pacientes"/>
+                <Property name="text" type="java.lang.String" value="Pacientes"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuLstPacientesActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuPacientesActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuLstFuncionarios">
+            <MenuItem class="javax.swing.JMenuItem" name="subMenuFuncionarios">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Lista de Funcion&#xe1;rios"/>
+                <Property name="text" type="java.lang.String" value="Funcion&#xe1;rios"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuLstFuncionariosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuFuncionariosActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="subMenuLstProcedimentos">
+            <MenuItem class="javax.swing.JMenuItem" name="subMenuProcedimentos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Lista de Procedimentos"/>
+                <Property name="text" type="java.lang.String" value="Procedimentos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuLstProcedimentosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subMenuProcedimentosActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
